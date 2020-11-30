@@ -1,0 +1,28 @@
+#navbar {
+	position: sticky;
+	top: 0px;
+	z-index: 6969;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: white;
+	color: black;
+	box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.3);
+	padding: 12px;
+	z-index: 99999999;
+}
+#navbar > * {
+	/* margin: 0.5em 0 1.5em; */
+}
+#nav-logo {
+	font-size: 28px;
+}
+
+#nav-links-container {
+	display: flex;
+}
+.nav-items {
+	cursor: pointer;
+	margin: 0px 24px;
+	color: #340e62;
+}

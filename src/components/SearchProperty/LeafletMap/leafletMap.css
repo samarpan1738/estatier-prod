@@ -1,0 +1,57 @@
+.leaflet-container {
+	width: 100%;
+	height: 40vh;
+	position: relative;
+	/* overflow: hidden; */
+}
+.close-btn {
+	/* display: inline-block; */
+	font-size: 20px;
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+	z-index: 1000;
+	cursor: pointer;
+	color: darkslateblue;
+	background-color: white;
+	/* display: flex; */
+	/* justify-content: center; */
+	/* align-items: center; */
+	padding: 0.25em;
+	height: 30px;
+	width: 30px;
+	border-radius: 100px;
+	transition: transform 200ms ease-in-out;
+}
+.close-btn:hover {
+	transform: scale(1.1);
+}
+.leaflet-popup-content-wrapper {
+	padding: 0;
+	margin: 0;
+	width: max-content;
+	height: max-content;
+	background-color: transparent;
+	box-shadow: none;
+	/* width: 200px; */
+	/* height: 300px; */
+}
+.leaflet-popup-content {
+	margin: 0;
+	padding: 0;
+}
+.leaflet-prop-card {
+	opacity: 1;
+}
+.leaflet-container a.leaflet-popup-close-button {
+	/* right: 0.5em; */
+	/* top: 1em; */
+	left: 0.75em;
+	top: 0.75em;
+	font-size: 1.2rem;
+	color: white;
+}
+.leaflet-container a.leaflet-popup-close-button:hover {
+	transform: scale(1.3);
+	color: white;
+}

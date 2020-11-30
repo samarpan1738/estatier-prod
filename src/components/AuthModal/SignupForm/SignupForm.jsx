@@ -14,7 +14,7 @@ import FormikControl from "../FormikControl/FormikControl";
 import * as Yup from "yup";
 
 // Extras
-import googleIcon from "../img/google-icon.ico";
+import googleIcon from "../../../img/google-icon.ico";
 import "./signupForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "@chakra-ui/react";

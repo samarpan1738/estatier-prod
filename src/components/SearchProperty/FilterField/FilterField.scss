@@ -1,0 +1,175 @@
+.filter-field {
+	display: flex;
+	// justify-content: center;
+	// align-items: center;
+	flex-direction: column;
+	position: relative;
+	border-right: 1px solid lightgrey;
+	width: max-content;
+	padding: 0.5em 0.5em;
+	cursor: pointer;
+	height: 57.6px;
+	/* max-width: 210px; */
+	transition: all 200ms ease-in-out;
+	/* margin-bottom: 0.5em; */
+	/* width: 160px; */
+	width: calc(100% / 6);
+	&:hover,
+	&.selected-field {
+		// background-color: #e8e9ea;
+		background-color: var(--accent-color);
+		/* border: 1px solid white; */
+		& .filter-title {
+			color: white;
+		}
+		& .current-selected > p {
+			color: white;
+		}
+		& .current-selected > svg {
+			fill: white;
+		}
+	}
+	&.budget .options {
+		padding: 1em 1.5em;
+		width: max-content;
+	}
+
+	/* height: 50px; */
+	/* margin-left: 1em; */
+	/* border: 1px solid lightgrey; */
+	/* border-radius: 10px; */
+}
+.filter-field .current-selected > p {
+	font-size: 14px;
+}
+
+// .filter-field:hover .filter-title {
+// 	color: white;
+// }
+// .filter-field:hover .current-selected > p {
+// 	color: white;
+// }
+// .filter-field:hover .current-selected > svg {
+// 	fill: white;
+// }
+.filter-field:last-child {
+	border: none;
+}
+.filter-field-select {
+	padding: 0em 0.75em;
+	display: flex;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.current-selected {
+	display: flex;
+	width: 100%;
+	max-width: 180px;
+	height: 24px;
+}
+.current-selected > p {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding: 0.125em 0.75em;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	color: darkslategray;
+}
+/* .current-selected:hover + .options {
+	display: flex;
+} */
+
+/* .filter-field:hover .options {
+	display: flex;
+} */
+.filter-title {
+	color: rgb(59, 65, 68);
+	font-size: 13px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.options {
+	display: none;
+	flex-direction: column;
+
+	// * Positioning
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	// * -- Positioning END --
+
+	/* padding: 1em; */
+	/* padding-top: 2em; */
+	background-color: white;
+	border: grey;
+	box-shadow: rgba(41, 51, 57, 0.75) 0px 10px 30px 0px;
+	z-index: 100;
+	min-width: 100%;
+	margin-top: 1em;
+	&::before {
+		content: "";
+		position: absolute;
+		top: -29px;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 1;
+		border: 15px solid;
+		border-top-color: currentcolor;
+		border-right-color: currentcolor;
+		border-bottom-color: currentcolor;
+		border-left-color: currentcolor;
+		border-color: transparent transparent white transparent;
+	}
+	& .option {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		border-bottom: 1px solid rgb(225, 225, 225);
+		width: 100%;
+		padding: 0.5em 1em;
+		&:hover {
+			background-color: rgb(240, 240, 240);
+		}
+	}
+}
+
+.filter-field .filter-field-selected,
+.filter-field .filter-field-selected:hover {
+	/* background-color: #eed5ee; */
+	background-color: #be78ff;
+	border-color: #b68eb6;
+}
+
+.reveal-options {
+	display: flex;
+}
+
+.prop-type {
+	& .options {
+		left: 0;
+		transform: translate(0);
+		&::before {
+			left: 10%;
+		}
+	}
+	& .more-filters {
+		max-width: 600px;
+		width: 80vw;
+	}
+}
+
+// .min-price-input:focus + .price-list {
+// 	display: block;
+// 	opacity: 1;
+// }
+@media screen and (max-width: 1000px) {
+	.filter-field {
+		/* padding: 0.25em 0; */
+	}
+}

@@ -1,0 +1,8 @@
+.options-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+.options-container label {
+	width: max-content;
+	font-weight: 500;
+}

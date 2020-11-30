@@ -1,0 +1,36 @@
+.block {
+	background-color: #fff;
+	margin-bottom: 10px;
+}
+.block-content {
+	padding: 12px 28px;
+	font-size: 14px;
+}
+.block-heading {
+	padding: 12px 28px;
+	font-size: 18px;
+	font-weight: 600;
+	border-bottom: 1px solid #eaeaea;
+}
+.block-desc {
+	font-size: 16px;
+	color: rgb(102, 102, 102);
+	font-weight: 400;
+	padding-bottom: 20px;
+}
+.info-rows > div {
+}
+.info-row {
+	border-top: 1px solid rgb(234, 234, 234);
+	padding: 10px 0;
+	/* padding: 10px 28px; */
+	display: flex;
+	align-items: center;
+}
+.info-row-title {
+	width: 170px;
+	color: rgb(153, 153, 153);
+}
+.info-row-value {
+	flex: 1;
+}

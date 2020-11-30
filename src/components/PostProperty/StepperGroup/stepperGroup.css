@@ -1,0 +1,38 @@
+.stepper-group .stepper-group {
+	margin-left: 2em;
+}
+.stepper-group > h1 {
+	/* margin-bottom: 1em; */
+	color: darkslategray;
+	margin: 0 16px 1em;
+}
+.stepper-group .stepper-group > h1 {
+	font-size: 1em;
+}
+.stepper-group .stepper-group .questions {
+	display: flex;
+}
+.stepper-group .stepper-group .group-heading {
+	display: flex;
+	margin: 0;
+	margin-bottom: 20px;
+	font-size: 16px;
+}
+.stepper-group .stepper-group .questions > .question {
+	width: calc(100% / 2);
+}
+.stepper-group .stepper-group .questions > .question input {
+	width: 100%;
+}
+.stepper-group .stepper-group .questions > .question .options-container {
+	width: 100%;
+}
+.stepper-group .stepper-group .questions > .question .options-container > * {
+	width: 90%;
+}
+.stepper-group .stepper-group .question {
+	margin: 0 1em;
+}
+.group-heading {
+	font-weight: 700;
+}

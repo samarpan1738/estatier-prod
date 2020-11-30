@@ -1,0 +1,98 @@
+.search-bar {
+	position: sticky;
+	/* top: 20px; */
+	top: 80px;
+	z-index: 100;
+	box-shadow: 0 0 1px 0 rgb(200, 200, 200);
+}
+.search-bar,
+.search-bar-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	/* margin-bottom: 1em; */
+	width: 100%;
+}
+
+.search-bar-content {
+	/* * Grid Approach */
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr 250px;
+	place-items: center;
+
+	/* * Flex Approach */
+	/* display: flex; */
+
+	padding: 1em 2em;
+	/* padding-bottom: 8px; */
+	margin-bottom: 0;
+	/* flex-direction: column; */
+	/* max-width: 800px; */
+	width: 100%;
+	/* width: max-content; */
+}
+
+.mapView-toggle {
+	border: none;
+	background: url(https://imgcy.trivago.com/q_auto/v1/hardcodedimages/map-entry-background.png);
+	width: 200px;
+	/* height: 52px; */
+	/* width: 100%; */
+	/* height: 100px; */
+	/* padding: 1.8em 0; */
+	padding: 0.8em 0;
+	border: 2px solid white;
+	border-radius: 2px;
+	/* margin: 0 auto; */
+	/* margin: 1em 1em; */
+	margin-left: auto;
+	display: block;
+	box-shadow: 0 0 8px 0 rgb(200, 200, 200);
+}
+.mapView-toggle > span {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: max-content;
+	margin: 0 auto;
+	font-weight: 600;
+	/* display: inline-block; */
+	background-color: white;
+	padding: 0.5em 0.75em;
+	/* padding: 1em 1.75em; */
+	border: 1px solid darkslategrey;
+	transition: transform 200ms ease-in-out;
+	border-radius: 2px;
+}
+.toggleMapViewIcon {
+	margin-right: 0.5em;
+}
+.mapView-toggle > span:hover {
+	transform: scale(1.1);
+	background-color: darkslategray;
+	color: white;
+}
+
+@media screen and (max-width: 768px) {
+	.filters {
+		/* flex-direction: column; */
+		flex: 1;
+	}
+	.search-bar-content {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-right: 0;
+		grid-template-columns: 1fr;
+		/* grid-template-rows: 1fr 1fr; */
+		/* grid-template-columns: 1fr; */
+	}
+	.search-bar-content {
+		/* margin-bottom: 1em; */
+	}
+	.location-box {
+		width: 100%;
+	}
+}

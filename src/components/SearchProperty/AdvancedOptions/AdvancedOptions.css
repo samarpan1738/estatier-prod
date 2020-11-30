@@ -1,0 +1,31 @@
+.options-main-container {
+	overflow-y: scroll;
+}
+.options-main-container {
+	padding: 1.5em 1.5em;
+	flex: 1;
+}
+.options-main-item-values-container .filter-option-selected {
+	background-color: #eed5ee;
+	border-color: #b68eb6;
+}
+.options-main-container h5 {
+	margin: 0;
+	color: rgb(48, 48, 48);
+	margin-bottom: 1em;
+	font-weight: 600;
+}
+.options-main-item-values-container {
+	display: flex;
+}
+.options-main-item {
+	padding-bottom: 32px;
+}
+.options-main-item-value {
+	margin-right: 0.5em;
+	font-size: 13px;
+	border: 1px solid rgb(221, 221, 221);
+	border-radius: 100px;
+	line-height: 28px;
+	padding: 0 16px;
+}

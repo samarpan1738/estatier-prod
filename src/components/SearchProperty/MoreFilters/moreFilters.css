@@ -1,0 +1,65 @@
+.filters .more-filters {
+	max-width: 700px;
+	width: 90vw;
+	/* max-width: 800px; */
+	/* right: 0; */
+	right: -50px;
+	/* display: flex; */
+	flex-direction: row;
+	max-height: 60vh;
+	height: max-content;
+	/* overflow: hidden; */
+	/* justify-content: center; */
+}
+.more .more-filters::before {
+	/* left: 85%; */
+}
+
+.options-sidebar-container,
+.options-main-container {
+	overflow-y: scroll;
+}
+.options-sidebar-item {
+	padding: 1em 1.5em;
+	border-bottom: 1px solid lightgrey;
+}
+.options-sidebar-item:hover {
+}
+
+.options-main-container {
+	padding: 1.5em 1.5em;
+	flex: 1;
+	padding-bottom: 0;
+}
+.options-main-item-values-container .filter-option-selected {
+	background-color: #eed5ee;
+	border-color: #b68eb6;
+}
+.options-main-container h5 {
+	margin: 0;
+	color: rgb(48, 48, 48);
+	margin-bottom: 1em;
+	font-weight: 600;
+}
+.options-main-item-values-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+.options-main-item {
+	padding-bottom: 25px;
+}
+.options-main-item-value {
+	margin-right: 0.5em;
+	font-size: 13px;
+	border: 1px solid rgb(221, 221, 221);
+	border-radius: 100px;
+	line-height: 28px;
+	padding: 0 16px;
+	margin-bottom: 1em;
+}
+
+@media screen and (max-width: 768px) {
+	.more-filters::before {
+		/* left: 75%; */
+	}
+}

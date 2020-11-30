@@ -3,7 +3,7 @@ import "./loginForm.css";
 
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import googleIcon from "../img/google-icon.ico";
+import googleIcon from "../../../img/google-icon.ico";
 
 import FormikControl from "../FormikControl/FormikControl";
 import { Spinner } from "@chakra-ui/react";
@@ -31,7 +31,7 @@ function LoginForm() {
 	const dispatch = useDispatch();
 	const userId = useSelector(selectUserId);
 	const [{ fetching, error, data }, executeQuery] = useQuery(LOGIN_QUERY);
-	console.log(userId);
+	console.log(data);
 	useEffect(() => {
 		if (data) dispatch(loginUser(data.createUser));
 	}, [data]);

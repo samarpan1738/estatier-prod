@@ -1,0 +1,60 @@
+.menu-section {
+	box-sizing: border-box;
+	/* padding: 1em; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* align-items: center; */
+	/* width: 80%; */
+	/* padding: 1em 2em; */
+	/* background-color: rgb(245, 245, 245); */
+	margin-bottom: 1em;
+	border-radius: 10px;
+	width: 100%;
+}
+.menu-section > p {
+	margin-bottom: 1em;
+	color: rgb(134, 144, 153);
+	/* color: rgb(255, 255, 255); */
+	font-weight: 300;
+}
+.sub-menu .menu-section > p {
+	color: rgb(210, 210, 210);
+}
+.menu-items-container {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.menu-item {
+	/* display: flex; */
+	margin-bottom: 0.5em;
+	/* margin-left: 1em; */
+	margin-right: 0.5em;
+	border: 1px solid lightgrey;
+	border-radius: 10px;
+	padding: 0.5em 0.6em;
+	width: max-content;
+	font-size: 0.9rem;
+	cursor: pointer;
+	color: darkslategray;
+}
+.sub-menu .menu-item {
+	color: white;
+}
+/* .menu-item > input {
+	margin-right: 1em;
+}
+.menu-item > div {
+	font-weight: 600;
+	color: darkslategray;
+} */
+.menu-item-selected {
+	background-color: var(--selected-bg-color);
+	color: var(--accent-color-2);
+	border-color: #b68eb6;
+	font-weight: 600;
+}
+.sub-menu .menu-item-selected {
+	color: var(--accent-color-2);
+}
