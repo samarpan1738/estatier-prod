@@ -1,0 +1,17 @@
+.qwerty-cover-image {
+	width: 100%;
+	height: 0px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 8px;
+	margin-bottom: 68px;
+	position: relative;
+	padding-bottom: 32%;
+}
+
+.qwerty-cover-image > div {
+	position: absolute;
+	bottom: -60px;
+	left: 8%;
+}
