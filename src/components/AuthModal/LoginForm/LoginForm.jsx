@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./loginForm.css";
 
 import { Formik, Form } from "formik";
@@ -8,17 +8,14 @@ import googleIcon from "../img/google-icon.ico";
 import FormikControl from "../FormikControl/FormikControl";
 import { Spinner } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-	selectGQL,
-	setError,
-	toggleFetching,
-} from "../../features/graphql/graphqlSlice";
+
 import request, { gql } from "graphql-request";
 import {
 	loginUser,
 	selectUser,
 	selectUserId,
-} from "../../features/user/userSlice";
+} from "../../../features/user/userSlice";
+import useQuery from "../../../Hooks/useQuery";
 
 const LOGIN_QUERY = gql`
 	query Login($email: String!, $password: String!) {
@@ -32,20 +29,12 @@ const LOGIN_QUERY = gql`
 
 function LoginForm() {
 	const dispatch = useDispatch();
-	const { fetching, error } = useSelector(selectGQL);
 	const userId = useSelector(selectUserId);
+	const [{ fetching, error, data }, executeQuery] = useQuery(LOGIN_QUERY);
 	console.log(userId);
-	const makeRequest = (data) => {
-		dispatch(toggleFetching());
-		request("https://estatier.herokuapp.com/graphql", LOGIN_QUERY, data)
-			.then((data) => {
-				dispatch(toggleFetching());
-				dispatch(loginUser(data.login));
-			})
-			.catch((err) => {
-				dispatch(setError(err.message.split(":")[0]));
-			});
-	};
+	useEffect(() => {
+		if (data) dispatch(loginUser(data.createUser));
+	}, [data]);
 
 	const schema = Yup.object({
 		email: Yup.string().email("Invalid Email").required(),
@@ -56,8 +45,7 @@ function LoginForm() {
 		<Formik
 			validationSchema={schema}
 			onSubmit={(values) => {
-				// return login(values);
-				makeRequest(values);
+				return executeQuery(values);
 			}}
 			initialValues={{
 				email: "",
@@ -78,7 +66,7 @@ function LoginForm() {
 					<FormikControl
 						type="email"
 						control="input"
-						label="Email"
+						label="Email or Phone Number"
 						name="email"
 					/>
 					<FormikControl

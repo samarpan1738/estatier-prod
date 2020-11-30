@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // Components
 import {
@@ -6,14 +6,9 @@ import {
 	loginUser,
 	// * Selectors
 	selectUser,
-} from "../../features/user/userSlice";
-import {
-	selectGQL,
-	setData,
-	setError,
-	toggleFetching,
-} from "../../features/graphql/graphqlSlice";
-import { request, gql } from "graphql-request";
+} from "../../../features/user/userSlice";
+
+import { gql } from "graphql-request";
 import { Formik, Form } from "formik";
 import FormikControl from "../FormikControl/FormikControl";
 import * as Yup from "yup";
@@ -23,8 +18,9 @@ import googleIcon from "../img/google-icon.ico";
 import "./signupForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "@chakra-ui/react";
+import useQuery from "../../../Hooks/useQuery";
 
-const mutation = gql`
+const SIGNUP_MUTATION = gql`
 	mutation Register(
 		$email: String!
 		$password: String!
@@ -103,18 +99,11 @@ const mutation = gql`
 
 function SignupForm() {
 	const dispatch = useDispatch();
-	const { fetching, error, data } = useSelector(selectGQL);
-	const makeRequest = (data) => {
-		dispatch(toggleFetching());
-		request("https://estatier.herokuapp.com/graphql", mutation, data)
-			.then((data) => {
-				dispatch(toggleFetching());
-				dispatch(loginUser(data.createUser));
-			})
-			.catch((err) => {
-				dispatch(setError(err.message.split(":")[0]));
-			});
-	};
+	const [{ fetching, error, data }, executeQuery] = useQuery(SIGNUP_MUTATION);
+	useEffect(() => {
+		if (data) dispatch(loginUser(data.login));
+	}, [data]);
+
 	const schema = Yup.object({
 		name: Yup.string(),
 		email: Yup.string().email("Invalid Email").required(),
@@ -122,6 +111,9 @@ function SignupForm() {
 		confirmPassword: Yup.string()
 			.oneOf([Yup.ref("password"), ""], "Passwords must match")
 			.required("Required"),
+		mobileNo: Yup.string()
+			.max(10, "Max 10 digits allowed")
+			.matches("^[6-9][0-9]{9}$", { message: "Enter a valid phone number" }),
 	});
 
 	return (
@@ -129,18 +121,16 @@ function SignupForm() {
 			<Formik
 				validationSchema={schema}
 				onSubmit={(values) => {
-					let { name, email, password } = values;
-					return makeRequest({ name, email, password, mobileNo: "9123457780" });
-					// return register({
-					// 	name,
-					// 	email,
-					// 	password,
-					// });
+					let { name, email, password, mobileNo } = values;
+
+					// TODO: Fix mobile no. NULL issue
+					return executeQuery({ name, email, password, mobileNo });
 				}}
 				initialValues={{
-					email: "",
-					password: "",
 					name: "",
+					email: "",
+					mobileNo: "",
+					password: "",
 					confirmPassword: "",
 				}}
 			>
@@ -166,6 +156,12 @@ function SignupForm() {
 							control="input"
 							label="Email"
 							name="email"
+						/>
+						<FormikControl
+							type="text"
+							control="input"
+							label="Phone Number"
+							name="mobileNo"
 						/>
 						<FormikControl
 							type="password"

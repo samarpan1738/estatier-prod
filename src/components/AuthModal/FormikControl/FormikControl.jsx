@@ -7,8 +7,7 @@ import CheckboxGroup from "../InputTypes/CheckboxGroup";
 import ChakraInput from "../InputTypes/ChakraInput";
 import "./formikControl.css";
 
-function FormikControl(props) {
-	const { control, ...rest } = props;
+function FormikControl({ control, ...rest }) {
 	switch (control) {
 		case "input":
 			return <Input {...rest} />;
