@@ -1,0 +1,28 @@
+.qwerty-user-avatar {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.qwerty-user-avatar div,
+.qwerty-user-avatar img {
+	height: 100%;
+	width: 100%;
+}
+
+.qwerty-user-avatar div {
+	display: grid;
+	font-size: 36px;
+	font-weight: 500;
+	place-content: center;
+	background-color: #f55f44;
+
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+
+.loading-img {
+	display: none;
+}

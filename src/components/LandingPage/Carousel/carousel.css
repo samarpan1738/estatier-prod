@@ -1,0 +1,9 @@
+.slider-container {
+	margin: 0 auto;
+}
+
+.slick-arrow::before {
+	color: #340e62 !important;
+	font-size: 24px !important;
+	opacity: 1 !important;
+}
