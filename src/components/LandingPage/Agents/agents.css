@@ -1,0 +1,107 @@
+.agent-slider-container {
+	width: 84%;
+}
+
+.agent-card {
+	margin: 60px 24px 24px;
+	position: relative;
+	width: 280px;
+	height: 400px;
+	padding: 48px 12px 20px;
+	border-radius: 8px;
+	box-shadow: 0px 0px 16px 0px rgb(200, 200, 200);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: all ease-out 150ms;
+}
+
+.agent-card:hover {
+	transform: translateY(-12px);
+}
+
+.agent-image {
+	left: 0px;
+	right: 0px;
+	margin: auto;
+	top: -38px;
+	position: absolute;
+	border-radius: 50%;
+	box-shadow: 0px 0px 16px 0px rgb(200, 200, 200);
+}
+
+.agent-name {
+	font-size: 24px;
+	font-weight: 500;
+}
+
+.agent-company {
+	color: grey;
+}
+
+.agent-certified {
+	margin-top: 16px;
+	display: flex;
+	align-items: center;
+	border-radius: 24px;
+	padding: 0.2em 0.7em;
+	color: white;
+	background-color: rgb(2, 170, 2);
+}
+
+.agent-certified img {
+	margin-right: 4px;
+}
+
+.agent-deals-in {
+	padding: 0px 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex: 1;
+}
+
+.agent-deals-in div {
+	color: grey;
+	font-weight: 500;
+	margin-bottom: 4px;
+}
+
+.agent-stats {
+	background-color: #340e62;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	border-radius: 8px;
+	padding: 0.5em 0px;
+}
+
+.agent-for-sale,
+.agent-for-rent {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+}
+
+.agent-for-sale div:first-child,
+.agent-for-rent div:first-child {
+	font-weight: 500;
+}
+
+.agent-for-sale div:not(:first-child),
+.agent-for-rent div:not(:first-child) {
+	font-size: 28px;
+	font-weight: 700;
+}
+
+.show-more {
+	margin-top: 100px;
+	padding: 0.8em 1.5em;
+	color: white;
+	font-size: 20px;
+	border-radius: 8px;
+	border: none;
+	outline: none;
+	background-color: #340e62;
+}

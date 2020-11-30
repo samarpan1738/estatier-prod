@@ -1,0 +1,155 @@
+#conversation-container {
+	display: grid;
+	grid-template-rows: 80px 1fr 60px;
+}
+
+#conversation-details {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 40px;
+	border-bottom: 2px solid rgb(235, 235, 235);
+}
+
+#conversation-contact-name {
+	font-weight: 500;
+	font-size: 24px;
+}
+
+.conversation-icon {
+	display: inline;
+	position: relative;
+	margin: 0px 20px;
+	cursor: pointer;
+	color: #340e62;
+	height: max-content;
+}
+
+.close-icon{
+	display: none;
+}
+
+.conversation-icon::after {
+	position: absolute;
+	content: attr(data-content);
+	width: max-content;
+	height: max-content;
+	color: white;
+	background-color: rgb(65, 65, 65);
+	bottom: -20px;
+	right: 0px;
+	padding: 0.1em 0.3em;
+	transition: all 150ms ease-in-out;
+	visibility: hidden;
+	opacity: 0;
+}
+
+.conversation-icon:hover::after {
+	visibility: visible;
+	opacity: 1;
+}
+
+#conversation-contact-property {
+	color: rgb(150, 150, 150);
+}
+
+#conversation-message-container {
+	height: calc(80vh - 144px);
+	padding: 20px;
+	overflow-y: scroll;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+#conversation-message-container::-webkit-scrollbar {
+	width: 0.3em;
+}
+
+#conversation-message-container::-webkit-scrollbar-track {
+	background-color: whitesmoke;
+}
+#conversation-message-container::-webkit-scrollbar-thumb {
+	background-color: #340e62;
+	border-radius: 4px;
+}
+
+.message-box {
+	border-radius: 4px;
+	padding: 1em 1em;
+	margin-bottom: 12px;
+	width: max-content;
+	max-width: 50%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.sender {
+	align-self: flex-end;
+	background-color: rgb(240, 240, 240);
+}
+
+.receiver {
+	color: white;
+	align-self: flex-start;
+	background-color: #340e62;
+}
+
+.message-time {
+	font-size: 12px;
+	margin-top: 8px;
+	align-self: flex-end;
+}
+
+#conversation-input-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-top: 2px solid rgb(235, 235, 235);
+}
+
+#conversation-input-container input {
+	width: 80%;
+	height: 80%;
+	border: 2px solid rgb(230, 230, 230);
+	padding: 0px 1em;
+	border-radius: 2px;
+}
+
+#conversation-input-container input:focus {
+	border: 2px solid #340e62;
+}
+
+#conversation-input-container button {
+	height: 80%;
+	margin-left: 16px;
+	border-radius: 8px;
+	padding: 0px 2em;
+	display: grid;
+	place-content: center;
+	border: none;
+	outline: none;
+	background-color: #f55f44;
+	color: white;
+}
+
+@media(max-width: 1000px){
+	#conversation-container{
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		background-color: white;
+		position: absolute;
+		/* display: none; */
+	}
+
+	#conversation-message-container {
+		height: calc(100vh - 144px);
+	}
+	
+	.close-icon{
+		display: inline-block;
+	}
+}

@@ -1,0 +1,5 @@
+.App {
+	overflow: hidden;
+	display: flex;
+	height: 100vh;
+}

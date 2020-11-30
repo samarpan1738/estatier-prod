@@ -1,0 +1,9 @@
+.section-container {
+	padding: 100px 0px;
+	height: max-content;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}

@@ -1,0 +1,106 @@
+.project-gallery-slider {
+	width: 92%;
+}
+
+.project-card {
+	overflow: hidden;
+	padding: 8px;
+	width: 400px;
+	height: 352px;
+	margin: 20px auto;
+	background-color: white;
+	box-shadow: 0px 0px 16px 0px rgb(200, 200, 200);
+	border-radius: 16px;
+	border-bottom: 8px solid #340e62;
+}
+
+.top-project {
+	height: 200px;
+	position: relative;
+	border-radius: 16px;
+	overflow: hidden;
+}
+
+.top-project img {
+	height: 100%;
+	width: 100%;
+	transition: all ease-out 150ms;
+}
+
+.project-card:hover .top-project img {
+	transform: scale(1.1);
+}
+
+.top-detail-container {
+	position: absolute;
+	right: 12px;
+	bottom: 12px;
+	display: flex;
+	align-items: center;
+}
+
+.project-price,
+.project-bhk {
+	color: white;
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 0.5em 0.7em;
+	border-radius: 24px;
+	margin: 0px 8px;
+}
+
+.bottom-project {
+	display: flex;
+	align-items: center;
+	height: 148px;
+}
+
+.bottom-left {
+	position: relative;
+	padding: 12px;
+}
+
+.bottom-left::after {
+	position: absolute;
+	content: "";
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	margin: auto;
+	height: 80%;
+	width: 1px;
+	border-right: 1px solid rgb(200, 200, 200);
+}
+
+.bottom-right {
+	height: 100%;
+	width: 100%;
+	padding: 12px 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.project-title {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.project-location {
+	margin: 2px 0px;
+}
+
+.project-builder {
+	color: grey;
+	font-size: 14px;
+}
+
+.bottom-project button {
+	all: unset;
+	cursor: pointer;
+	padding: 0.5em 0.7em;
+	background-color: #340e62;
+	color: white;
+	border-radius: 4px;
+	margin-top: 4px;
+	align-self: flex-end;
+}
