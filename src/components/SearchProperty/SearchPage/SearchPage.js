@@ -13,7 +13,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import Navbar from "../Navbar/Navbar";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 
-import propData from "../../properties";
+import propData from "../../../utils/SearchProperty/properties";
 
 function SearchPage() {
 	const [properties, setProperties] = useState(propData);
@@ -34,8 +34,8 @@ function SearchPage() {
 			(item.querySelector(".content").getBoundingClientRect().height + rowGap) /
 				(rowHeight + rowGap)
 		);
-		// console.log(item.querySelector(".content").getBoundingClientRect().height);
-		// console.log(rowHeight);
+		console.log(item.querySelector(".content").getBoundingClientRect().height);
+		console.log(rowHeight);
 		item.style.gridRowEnd = "span " + rowSpan;
 		item.style.opacity = "1";
 	}

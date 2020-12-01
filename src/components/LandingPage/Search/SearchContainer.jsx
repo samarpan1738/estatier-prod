@@ -2,9 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
 import MapIcon from "@material-ui/icons/Map";
 import SearchIcon from "@material-ui/icons/Search";
-import HistoryIcon from "@material-ui/icons/History";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { Map, Popup, TileLayer } from "react-leaflet";
+import { Popup, TileLayer, MapContainer } from "react-leaflet";
 import * as L from "esri-leaflet-geocoder";
 import "./search.css";
 
@@ -62,11 +60,21 @@ export default function SearchContainer(props) {
 		componentRestrictions: { country: ["in"] },
 	};
 	console.log(centerCoord);
+
 	return (
-		<PlacesAutocomplete value={address} onChange={setAddress} onSelect={handleSelect} searchOptions={searchOptions}>
+		<PlacesAutocomplete
+			value={address}
+			onChange={setAddress}
+			onSelect={handleSelect}
+			searchOptions={searchOptions}
+		>
 			{({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
 				return (
-					<div className={"search-container " + (props.className ? props.className : "")}>
+					<div
+						className={
+							"search-container " + (props.className ? props.className : "")
+						}
+					>
 						<input {...getInputProps({ placeholder: "Enter Location" })} />
 						<button className="search-map" onClick={() => setShowMap(true)}>
 							<MapIcon />
@@ -75,7 +83,7 @@ export default function SearchContainer(props) {
 							<SearchIcon />
 						</button>
 						{showMap ? (
-							<Map
+							<MapContainer
 								center={centerCoord}
 								zoom={12}
 								className="map-container"
@@ -107,7 +115,10 @@ export default function SearchContainer(props) {
 												<button className="Yes" onClick={addAddress}>
 													Yes
 												</button>
-												<button className="no" onClick={() => setShowPopup(false)}>
+												<button
+													className="no"
+													onClick={() => setShowPopup(false)}
+												>
 													No
 												</button>
 											</div>
@@ -116,7 +127,7 @@ export default function SearchContainer(props) {
 								) : (
 									<div></div>
 								)}
-							</Map>
+							</MapContainer>
 						) : (
 							""
 						)}

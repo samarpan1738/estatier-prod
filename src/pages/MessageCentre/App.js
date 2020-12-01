@@ -1,8 +1,8 @@
 import "./App.css";
-import Provider from "./context/LocationContext";
-import ContactsContainer from "./components/ContactsContainer/ContactsContainer";
-import ConversationContainer from "./components/ConversationContainer/ConversationContainer";
-import Navbar from "./components/Navbar/Navbar";
+import Provider from "../../components/context/LocationContext";
+import ContactsContainer from "../../components/MessageCentre/ContactsContainer/ContactsContainer";
+import ConversationContainer from "../../components/MessageCentre/ConversationContainer/ConversationContainer";
+import Navbar from "../../components/General/Navbar/Navbar";
 
 function App() {
 	return (

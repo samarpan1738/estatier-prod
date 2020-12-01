@@ -8,7 +8,7 @@ import MobileFilter from "../MobileFilter/MobileFilter";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 // Data
-import filterData from "../../data";
+import filterData from "./data";
 
 // SCSS
 import "./Filters.scss";

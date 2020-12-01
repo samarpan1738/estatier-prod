@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import useWidth from "../../Hooks/useWidth";
+import useWidth from "../../../Hooks/useWidth";
 
 export default function OfferItem(props) {
 	const windowWidth = useWidth();
@@ -13,7 +13,10 @@ export default function OfferItem(props) {
 	}, [windowWidth]);
 
 	return (
-		<div className={"offer-card " + props.color} style={{ width: itemWidth.current }}>
+		<div
+			className={"offer-card " + props.color}
+			style={{ width: itemWidth.current }}
+		>
 			<div id="left-offer">
 				<img src={props.src} alt="" id="offer-img" />
 			</div>

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { LocationContext } from "../../context/LocationContext";
-import usePromise from "../../Hooks/usePromise";
+import usePromise from "../../../Hooks/usePromise";
 import "./header.css";
 
 export default function Header(props) {
@@ -12,7 +12,11 @@ export default function Header(props) {
 			{props.text}
 			<span>
 				{" "}
-				{location.city ? (location.city.length > 20 ? location.city.slice(0, 20) + "..." : location.city) : ""}
+				{location.city
+					? location.city.length > 20
+						? location.city.slice(0, 20) + "..."
+						: location.city
+					: ""}
 			</span>
 		</div>
 	);

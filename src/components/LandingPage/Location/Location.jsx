@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import usePromise from "../../Hooks/usePromise";
+import usePromise from "../../../Hooks/usePromise";
 import Actions from "../../context/LocationActions";
 import PlacesAutocomplete from "react-places-autocomplete";
 import { LocationContext } from "../../context/LocationContext";
@@ -43,17 +43,27 @@ export default function Location() {
 						onSelect={handleSelect}
 						searchOptions={searchOptions}
 					>
-						{({ getInputProps, suggestions, getSuggestionItemProps, loading }) => {
+						{({
+							getInputProps,
+							suggestions,
+							getSuggestionItemProps,
+							loading,
+						}) => {
 							return (
 								<div className="places-input-container">
 									<div className="container-arrow"></div>
 									<input
-										{...getInputProps({ className: "place-input", placeholder: "Enter Location" })}
+										{...getInputProps({
+											className: "place-input",
+											placeholder: "Enter Location",
+										})}
 									/>
 
 									{suggestions.length > 0 ? (
 										<div className="places-suggestion-container">
-											{loading ? <div className="place-item">...loading</div> : null}
+											{loading ? (
+												<div className="place-item">...loading</div>
+											) : null}
 
 											{suggestions.map((suggestion, i) => {
 												return (

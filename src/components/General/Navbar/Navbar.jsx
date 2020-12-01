@@ -20,7 +20,11 @@ export default function Navbar({ atBanner }) {
 				<NotificationsIcon className="nav-items" style={{ fontSize: 32 }}>
 					<div>Hey there</div>
 				</NotificationsIcon>
-				<MenuIcon className="nav-items" style={{ fontSize: 32 }} onClick={() => setShow((prev) => !prev)} />
+				<MenuIcon
+					className="nav-items"
+					style={{ fontSize: 32 }}
+					onClick={() => setShow((prev) => !prev)}
+				/>
 			</div>
 			<Hamburger closeDrawer={setShow} showDrawer={show} />
 		</div>

@@ -1,0 +1,12 @@
+:root {
+	--text-color: rgb(59, 65, 68);
+	--accent-color: #340e62;
+	--accent-color-2: #5e35b1;
+	--selected-bg-color: #e1bee7;
+	--my-accent: #9575cd;
+}
+@media screen and (max-width: 1000px) {
+	#navbar {
+		/* flex-direction: column; */
+	}
+}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer as Map, Marker, Popup, TileLayer } from "react-leaflet";
 // import { Icon } from "leaflet";
 import CloseIcon from "@material-ui/icons/Close";
 import "./leafletMap.css";

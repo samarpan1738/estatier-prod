@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 // SVGs
-import BedIcon from "../../assets/svg/icons/bed.svg";
-import BathingAreaIcon from "../../assets/svg/icons/bathingArea.svg";
-import AreaIcon from "../../assets/svg/icons/area.svg";
+import BedIcon from "../../../img/bed_dark.svg";
+import BathingAreaIcon from "../../../img/bath_dark.svg";
+import AreaIcon from "../../../img/area.svg";
 // Icons
 import MapIcon from "@material-ui/icons/Map";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
@@ -12,6 +12,7 @@ import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 // import MapViewToggleIcon from "../../assets/svg/icons/mapViewToggle.svg";
 // import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 // import FavoriteIcon from "@material-ui/icons/Favorite";
+import CardImg from "../../../img/card-img.jpg";
 // Styles
 import "./card.scss";
 
@@ -30,12 +31,7 @@ function Card({ p, setMapState, height, mapToggle, opacity }) {
 			<div className="content">
 				<div className="card-img-top">
 					<div className="card-img-container">
-						<img
-							loading="lazy"
-							src="/img/card-img.jpg"
-							alt=""
-							height={height}
-						/>
+						<img loading="lazy" src={CardImg} alt="" height={height} />
 					</div>
 				</div>
 				<div className="card-body">
