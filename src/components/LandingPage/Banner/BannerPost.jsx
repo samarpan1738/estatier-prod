@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "../Carousel/Carousel";
+import Carousel from "../../General/Carousel/Carousel";
 import BannerPostItem from "./BannerPostItem";
 import HomeIcon from "@material-ui/icons/Home";
 import BusinessIcon from "@material-ui/icons/Business";

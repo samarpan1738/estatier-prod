@@ -2,8 +2,14 @@ import React from "react";
 import HamburgerItem from "./HamburgerItem";
 import "./hamburger.css";
 import { useEffect } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser, logout } from "../../../features/user/userSlice";
+import { Button } from "@chakra-ui/react";
+import { AiOutlineLogout, IoIosLogOut } from "react-icons/all";
 export default function Hamburger({ showDrawer, closeDrawer }) {
+	const dispatch = useDispatch();
+
+	const user = useSelector(selectUser);
 	useEffect(() => {
 		console.log(showDrawer);
 
@@ -12,18 +18,32 @@ export default function Hamburger({ showDrawer, closeDrawer }) {
 	}, [showDrawer]);
 
 	return (
-		<div className={"hamburger-drawer " + (!showDrawer ? "hidden-drawer" : null)}>
+		<div
+			className={"hamburger-drawer " + (!showDrawer ? "hidden-drawer" : null)}
+		>
 			<button onClick={() => closeDrawer(false)} id="hamburger-drawer-close">
 				&#x2716;
 			</button>
 			<div id="drawer-user-details">
+				<Button
+					leftIcon={<AiOutlineLogout className="logout-icon" size="1.5em" />}
+					onClick={() => dispatch(logout())}
+					fontSize="14px"
+					position="absolute"
+					top="24px"
+					right="20px"
+				>
+					Logout
+				</Button>
 				<div id="drawer-user-image">
 					<img src="https://source.unsplash.com/80x80/?face" alt="" />
 				</div>
 				<a href="" id="drawer-user-name">
-					Sarthik Garg
+					{user.name || "Sarthik Garg"}
 				</a>
-				<div id="drawer-user-email">sarthikgarg01@gmail.com</div>
+				<div id="drawer-user-email">
+					{user.email || "sarthikgarg01@gmail.com"}
+				</div>
 			</div>
 			<div className="hamburger-drawer-item-container">
 				<HamburgerItem item="Profile" />
@@ -34,7 +54,7 @@ export default function Hamburger({ showDrawer, closeDrawer }) {
 						</>
 					}
 				/>
-				<HamburgerItem item="Message Centre" />
+				<HamburgerItem item="Message Centre" to="/message" />
 				<HamburgerItem item="Saved Searches" />
 				<HamburgerItem item="Pins" />
 				<HamburgerItem item="Properties">

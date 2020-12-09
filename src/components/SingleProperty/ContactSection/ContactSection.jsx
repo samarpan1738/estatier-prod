@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./contactSection.css";
-import { Button } from "@chakra-ui/core";
+import { Button } from "@chakra-ui/react";
 import { MdCall, MdMessage } from "react-icons/all";
 function ContactSection() {
 	const [liked, setLiked] = useState(false);

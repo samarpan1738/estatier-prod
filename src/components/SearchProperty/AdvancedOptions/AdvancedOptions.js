@@ -4,11 +4,11 @@ import "./AdvancedOptions.css";
 function AdvancedOptions({ options, selectOption }) {
 	return (
 		<div className="options-main-container">
-			{options.map(({ filterType, values }, i) => (
+			{options.map(({ title, options }, i) => (
 				<div className="options-main-item" key={i}>
-					<h5>{filterType}</h5>
-					<div className="options-main-item-values-container">
-						{values.map((v, j) => (
+					<h5>{title}</h5>
+					<div className="options-main-item-options-container">
+						{options.map((v, j) => (
 							<div
 								key={j}
 								className="options-main-item-value"

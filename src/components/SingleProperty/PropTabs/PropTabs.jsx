@@ -1,12 +1,12 @@
 import React from "react";
-import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/core";
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import "./propTabs.css";
 import PropDetails from "../PropDetails/PropDetails";
 import AgentDetails from "../AgentDetails/AgentDetails";
 import TagsWrap from "../TagsWrap/TagsWrap";
 import InfoBlock from "../InfoBlock/InfoBlock";
-import BedIcon from "../../img/bed.svg";
-import BathIcon from "../../img/bath.svg";
+import BedIcon from "../../../img/bed.svg";
+import BathIcon from "../../../img/bath.svg";
 import { FaHandshake, FaListUl } from "react-icons/all";
 import { useMediaQuery } from "@material-ui/core";
 function PropTabs() {

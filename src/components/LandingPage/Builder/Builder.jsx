@@ -1,7 +1,7 @@
 import React from "react";
 import Section from "../Section/Section";
 import Header from "../Header/Header";
-import Carousel from "../Carousel/Carousel";
+import Carousel from "../../General/Carousel/Carousel";
 import BuilderItem from "./BuilderItem";
 import "./builder.css";
 

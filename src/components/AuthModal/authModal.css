@@ -1,3 +1,6 @@
+.auth-modal {
+	min-height: 400px;
+}
 .login-button {
 	width: 100%;
 }
@@ -11,17 +14,28 @@
 	align-items: center !important;
 }
 .google-auth {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
 	/* background-color: red; */
-	border-radius: 10px;
 	border: 2px solid #0a8080;
+	border-radius: 4px;
 	color: #0a8080;
-	font-weight: 700;
-}
-.google-auth:hover {
+	font-weight: 600;
+	padding: 6px 12px;
+	/* margin-bottom: 20px; */
 	background-color: #0a8080;
 	color: white;
 }
+.google-auth > img {
+	width: 25px;
+	height: 25px;
+}
+/* .google-auth:hover {
+	background-color: #0a8080;
+	color: white;
+} */
 .icon-text {
 	margin: 0 0.5em;
 }

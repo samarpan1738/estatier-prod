@@ -26,7 +26,7 @@ function MoreFilters({
 	useEffect(() => {
 		let arr = Array(options.length);
 		for (let i = 0; i < options.length; ++i) {
-			arr[i] = Array(options[i].values.length);
+			arr[i] = Array(options[i].options.length);
 			arr[i].fill(0);
 		}
 		selectedOptionsRef.current = arr;
@@ -37,7 +37,7 @@ function MoreFilters({
 
 		const i = e.target.dataset.i;
 		const j = e.target.dataset.j;
-		const currentVal = options[i].values[j];
+		const currentVal = options[i].options[j];
 		// if (selectedArray.current.has(currentVal))
 		// 	selectedArray.current.delete(currentVal);
 		// else selectedArray.current.add(currentVal);
@@ -94,9 +94,9 @@ function MoreFilters({
 			>
 				{sidebar && (
 					<div className="options-sidebar-container">
-						{options.map(({ filterType }, i) => (
+						{options.map(({ title }, i) => (
 							<div key={i} className="options-sidebar-item">
-								{filterType}
+								{title}
 							</div>
 						))}
 					</div>

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import SearchContainer from "../Search/SearchContainer";
+import SearchContainer from "../../General/Search/SearchContainer";
 import BuildingImg from "../../img/buildingimg.svg";
 import NewsletterImg from "../../img/newsletter.svg";
 import PostImg from "../../img/post.svg";
@@ -11,8 +11,6 @@ export default function Banner({ setAtBanner }) {
 	const optionRef = useRef();
 	const [option, setOption] = useState("Search");
 	const [inViewRef, inView, entry] = useInView();
-
-	console.log(entry);
 
 	useEffect(() => {
 		setAtBanner(inView);
@@ -29,7 +27,9 @@ export default function Banner({ setAtBanner }) {
 	let optionElement = "";
 	let imageSVG = "";
 	if (option === "Search") {
-		optionElement = <SearchContainer className="banner-option-input banner-search" />;
+		optionElement = (
+			<SearchContainer className="banner-option-input banner-search" />
+		);
 		imageSVG = BuildingImg;
 	}
 	if (option === "Post") {
@@ -41,7 +41,12 @@ export default function Banner({ setAtBanner }) {
 			<div id="join-container">
 				<div id="join-header">Subscribe to the Newsletter</div>
 				<div id="join-input-container">
-					<input type="email" name="email" id="email-join" placeholder="Enter Email" />
+					<input
+						type="email"
+						name="email"
+						id="email-join"
+						placeholder="Enter Email"
+					/>
 					<button>Join</button>
 				</div>
 			</div>
@@ -54,7 +59,9 @@ export default function Banner({ setAtBanner }) {
 			<div id="left-banner-content">
 				<div id="banner-heading-container">
 					<div id="banner-heading">A Quick Way to Find your Dream House.</div>
-					<div id="banner-subheading">India's #1 stop for Real Estate to Rent, Own or Sell a house.</div>
+					<div id="banner-subheading">
+						India's #1 stop for Real Estate to Rent, Own or Sell a house.
+					</div>
 				</div>
 				<div className="banner-options-container">
 					<div id="banner-options-button-container">

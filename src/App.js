@@ -6,6 +6,9 @@ import PostProperty from "./pages/PostProperty/PostProperty";
 import LandingPage from "./pages/LandingPage/App";
 import MessageCentre from "./pages/MessageCentre/App";
 import Search from "./pages/Search/Search";
+import AuthModal from "./components/AuthModal/AuthModal";
+import OtpValidation from "./components/AuthModal/OtpValidation/OtpValidation";
+import SinglePropertyPage from "./pages/SingleProperty/App";
 
 function App() {
 	return (
@@ -15,6 +18,12 @@ function App() {
 					<Route exact path="/">
 						<LandingPage />
 					</Route>
+					<Route exact path="/otp">
+						<OtpValidation mobileNo="8279701267" />
+					</Route>
+					<Route exact path="/auth">
+						<AuthModal />
+					</Route>
 					<Route exact path="/message">
 						<MessageCentre />
 					</Route>
@@ -23,6 +32,9 @@ function App() {
 					</Route>
 					<Route exact path="/post-prop">
 						<PostProperty />
+					</Route>
+					<Route exact path="/prop">
+						<SinglePropertyPage />
 					</Route>
 				</Switch>
 			</Router>

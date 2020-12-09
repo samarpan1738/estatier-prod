@@ -91,6 +91,7 @@
 	font-size: 13px;
 	text-overflow: ellipsis;
 	overflow: hidden;
+	height: 17px;
 }
 
 .options {
@@ -133,6 +134,7 @@
 		border-bottom: 1px solid rgb(225, 225, 225);
 		width: 100%;
 		padding: 0.5em 1em;
+		margin: 0;
 		&:hover {
 			background-color: rgb(240, 240, 240);
 		}

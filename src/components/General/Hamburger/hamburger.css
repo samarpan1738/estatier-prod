@@ -27,6 +27,7 @@
 }
 
 #drawer-user-details {
+	position: relative;
 	margin: 20px 12px;
 	border-radius: 8px;
 	padding: 24px 24px;

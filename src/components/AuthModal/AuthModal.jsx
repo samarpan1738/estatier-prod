@@ -17,10 +17,11 @@ import {
 	ModalContent,
 	ModalCloseButton,
 } from "@chakra-ui/react";
-
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./authModal.css";
+import OtpValidation from "./OtpValidation/OtpValidation";
 
 const AuthModal = () => {
 	const [modalStatus, setModalStatus] = useState(false);
@@ -29,13 +30,18 @@ const AuthModal = () => {
 
 	const toggle = () => setModalStatus(!modalStatus);
 	return (
-		<div>
-			<Button color="danger" onClick={onOpen}>
-				Login/Signup
+		<>
+			<Button
+				colorScheme="purple"
+				onClick={onOpen}
+				className="nav-auth-btn"
+				bgColor="#340e62"
+			>
+				Sign in
 			</Button>
 			<Modal isOpen={isOpen} onClose={onClose} className="auth-modal">
 				<ModalOverlay />
-				<ModalContent>
+				<ModalContent paddingBottom="10px" top="20px">
 					<Tabs>
 						<TabList>
 							<Tab p={4}>Signup</Tab>
@@ -53,7 +59,7 @@ const AuthModal = () => {
 					</Tabs>
 				</ModalContent>
 			</Modal>
-		</div>
+		</>
 	);
 };
 

@@ -1,3 +1,6 @@
 .menu-item {
 	padding: 1em;
 }
+.selectMenu {
+	min-height: 55px !important;
+}

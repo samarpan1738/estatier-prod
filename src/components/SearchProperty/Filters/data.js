@@ -1,4 +1,4 @@
-export default {
+export const filterState = {
 	Residential: {
 		Flat: true,
 		"House/Villa": false,
@@ -39,3 +39,111 @@ export default {
 	Floor: { "Ready to move": false, "Under Construction": false },
 	Amenities: { "Ready to move": false, "Under Construction": false },
 };
+export const filterData = [
+	{
+		moreFilters: true,
+		title: "Property Type",
+		className: "prop-type",
+		options: [
+			{
+				title: "Residential",
+				options: ["Flat", "House/Villa"],
+			},
+			{
+				title: "Commercial",
+				options: [
+					"Office Space",
+					"Shop/Showroom",
+					"Commercial Land",
+					"Coworking Space",
+					"Warehouse/Godown",
+					"Industrial Building",
+					"Industrial Shed",
+				],
+			},
+			{
+				title: "Others",
+				options: ["Agriculture Land", "Farm House"],
+			},
+		],
+	},
+	{
+		title: "Top Localities",
+		className: "top-localities",
+		options: [
+			"Raj Nagar Extension",
+			"Indirapuram",
+			"Crossings Republik",
+			"Vasundhara",
+			"NH 24",
+			"Vaishali",
+		],
+	},
+	{
+		title: "Budget",
+		className: "budget",
+		options: ["5 Lac", "10 Lac", "15 Lac", ">15 Lac"],
+	},
+	{
+		title: "BHK",
+		className: "bhk-cnt",
+		options: ["1 BHK", "2 BHK", "3 BHK", "4 BHK", "5 BHK", ">5 BHK"],
+	},
+	{
+		moreFilters: true,
+		title: "More Filters",
+		className: "more",
+		options: [
+			{
+				title: "Construction",
+				options: ["Ready to move", "Under Construction"],
+			},
+			{
+				title: "Ownership",
+				options: ["Ready to move", "Under Construction"],
+			},
+			{
+				title: "Sale",
+				options: ["Ready to move", "Under Construction"],
+			},
+			{
+				title: "Covered",
+				options: ["Ready to move", "Under Construction"],
+			},
+			{
+				title: "Bathroom",
+				options: ["Ready to move", "Under Construction"],
+			},
+			{
+				title: "Furnishing",
+				options: ["Ready to move", "Under Construction"],
+			},
+			{
+				title: "Facing",
+				options: ["Ready to move", "Under Construction"],
+			},
+			{
+				title: "Floor",
+				options: ["Ready to move", "Under Construction"],
+			},
+			{
+				title: "Amenities",
+				options: ["Ready to move", "Under Construction"],
+			},
+		],
+		sidebar: true,
+	},
+
+	{
+		title: "Sort By",
+		className: "sort-by",
+		options: [
+			"Relevance",
+			"Price - Low to High",
+			"Price - High to Low",
+			"Most Recent",
+			"Rate/sqft - Low to High",
+			"Rate/sqft - High to Low",
+		],
+	},
+];
