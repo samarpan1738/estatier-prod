@@ -1,6 +1,6 @@
 import React from "react";
 import "./header.css";
-import { Avatar } from "@chakra-ui/core";
+import { Avatar } from "@chakra-ui/react";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { GrDirections } from "react-icons/gr";
 import { RiDirectionFill } from "react-icons/ri";

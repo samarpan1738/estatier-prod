@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "../Carousel/Carousel";
+import Carousel from "../../General/Carousel/Carousel";
 import Header from "../Header/Header";
 import PropCard from "../PropCard/PropCard";
 import PropTabs from "../PropTabs/PropTabs";

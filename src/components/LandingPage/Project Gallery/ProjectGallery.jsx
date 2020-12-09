@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../Header/Header";
 import Section from "../Section/Section";
-import Carousel from "../Carousel/Carousel";
+import Carousel from "../../General/Carousel/Carousel";
 import ProjectItem from "./ProjectItem";
 import "./projgallery.css";
 

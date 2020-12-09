@@ -15,12 +15,31 @@ import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import CardImg from "../../../img/card-img.jpg";
 // Styles
 import "./card.scss";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { pinProperty } from "../../../features/search/searchSlice";
 
-function Card({ p, setMapState, height, mapToggle, opacity }) {
+function Card({ index, p, setMapState, height, mapToggle, opacity }) {
 	// console.log(p);
-	const { location, street, price, bedCnt, baCnt, area, lat, lng } = p;
-	const [fav, setFav] = useState(false);
 
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const {
+		location,
+		street,
+		price,
+		bedCnt,
+		baCnt,
+		area,
+		lat,
+		lng,
+		isPinned,
+	} = p;
+	// const [fav, setFav] = useState(false);
+	const handlePinProperty = () => {
+		// Make  a request to pin property : Params -> prop_id
+		dispatch(pinProperty(index));
+	};
 	function openMap() {
 		console.log("Open Map");
 		setMapState({ open: true, position: [[lat, lng]], p: p });
@@ -64,11 +83,8 @@ function Card({ p, setMapState, height, mapToggle, opacity }) {
 								<MapIcon fontSize="small" />
 							</div>
 						) : null}
-						<div
-							className="fav-toggle toggle-icon"
-							onClick={() => setFav((old) => !old)}
-						>
-							{fav ? (
+						<div className="fav-toggle toggle-icon" onClick={handlePinProperty}>
+							{isPinned ? (
 								<BookmarkIcon fontSize="small" />
 							) : (
 								<BookmarkBorderIcon fontSize="small" />
@@ -76,7 +92,10 @@ function Card({ p, setMapState, height, mapToggle, opacity }) {
 						</div>
 
 						<div className="open-card-toggle toggle-icon">
-							<OpenInNewIcon fontSize="small" />
+							<OpenInNewIcon
+								fontSize="small"
+								onClick={() => history.push("/prop")}
+							/>
 						</div>
 					</div>
 				</div>

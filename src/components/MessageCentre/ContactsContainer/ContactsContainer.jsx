@@ -26,7 +26,7 @@ export default function ContactsContainer() {
 	return (
 		<div id="contacts-container">
 			<div id="contact-filter-container">
-				<div>
+				<div className="contact-filter-container-topbar">
 					<label id="choose-property-text" htmlFor="contact-property-dropdown">
 						Choose Property
 					</label>
@@ -39,7 +39,11 @@ export default function ContactsContainer() {
 							All Properties
 						</MenuItem>
 						{properties.map((prop, i) => (
-							<MenuItem className="contact-property-option" key={i} value={i + 1}>
+							<MenuItem
+								className="contact-property-option"
+								key={i}
+								value={i + 1}
+							>
 								{prop}
 							</MenuItem>
 						))}
@@ -49,7 +53,11 @@ export default function ContactsContainer() {
 
 			<div id="contacts-list">
 				<div id="search-contact-container">
-					<input type="text" id="search-contact-input" placeholder="Search a user here" />
+					<input
+						type="text"
+						id="search-contact-input"
+						placeholder="Search a user here"
+					/>
 					<button id="search-contact-button">
 						<SearchIcon style={{ color: "white" }} />
 					</button>

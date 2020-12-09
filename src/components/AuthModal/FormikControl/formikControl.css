@@ -12,23 +12,23 @@
 .formik-control > input {
 	width: 100% !important;
 }
-label {
+.formik-control label {
 	font-weight: bold;
 	display: flex;
 	margin-bottom: 5px;
 }
 
-input + label {
+.formik-control input + label {
 	font-weight: bold;
 	display: inline-flex;
 	margin-right: 20px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea,
-select {
+.formik-control input[type="text"],
+.formik-control input[type="email"],
+.formik-control input[type="password"],
+.formik-control textarea,
+.formik-control select {
 	display: block;
 	width: 400px;
 	padding: 6px 12px !important;

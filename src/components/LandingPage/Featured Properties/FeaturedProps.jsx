@@ -3,7 +3,7 @@ import FeaturedPropItem from "./FeaturedPropItem";
 import "./featprop.css";
 import Header from "../Header/Header";
 import Section from "../Section/Section";
-import Carousel from "../Carousel/Carousel";
+import Carousel from "../../General/Carousel/Carousel";
 
 export default function FeaturedProps() {
 	const settings = {

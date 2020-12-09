@@ -10,6 +10,8 @@ import React, { useState } from "react";
 import { AiOutlineFileImage } from "react-icons/all";
 import { array } from "yup";
 import "./imageUpload.css";
+import fs from "fs";
+import path from "path";
 const useStyles = makeStyles((theme) => ({
 	formControl: {
 		// margin: theme.spacing(1),
@@ -28,7 +30,6 @@ function ImageUpload() {
 		const imgName = e.currentTarget.files[0].name + "_" + imgs.length;
 		// setImgUrl(e.currentTarget.value);
 		const reader = new FileReader();
-
 		reader.readAsDataURL(e.currentTarget.files[0]);
 		reader.onload = () => {
 			if (reader.readyState === 2) {
@@ -38,6 +39,20 @@ function ImageUpload() {
 					file: reader.result,
 					label: "BHK #1",
 				});
+			}
+		};
+		const storeImgs = (img) => {
+			/*
+			3. Else create `${prop-id}` named folder and store uploaded image there.
+			4. Store the path of the image in state
+			*/
+			const propId = "abc";
+			const propImgPath = path.join(__dirname, "images", propId);
+
+			// 1. Check if /images folder has `${prop-id}` named folder
+			if (fs.existsSync(path)) {
+				// 2. Store uploaded image here
+				fs.writeFile(`${propId}`);
 			}
 		};
 		// setValues({ ...values, [imgName]: "BHK #1" });

@@ -10,38 +10,62 @@ import SearchBar from "../SearchBar/SearchBar";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import SaveIcon from "@material-ui/icons/Save";
 // import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Navbar from "../Navbar/Navbar";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+import Navbar from "../../General/Navbar_2/Navbar";
 
-import propData from "../../../utils/SearchProperty/properties";
+import {
+	selectLocation,
+	setProperties,
+	selectProperties,
+} from "../../../features/search/searchSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function SearchPage() {
-	const [properties, setProperties] = useState(propData);
+	const dispatch = useDispatch();
+	const location = useSelector(selectLocation);
+	// const [properties, setProperties] = useState(propData);
+	const properties = useSelector(selectProperties);
 	const [mapState, setMapState] = useState({
 		open: false,
 		position: [],
 	});
-
+	useEffect(() => {
+		// Make a request to get all properties and set
+		// dispatch(setProperties([]));
+	}, [location]);
+	console.log("Location => ", location);
 	function resizeGridItem(item) {
 		const grid = document.getElementsByClassName("card-view")[0];
-		const rowHeight = parseInt(
+		const rowHeight = parseFloat(
 			window.getComputedStyle(grid).getPropertyValue("grid-auto-rows")
 		);
-		const rowGap = parseInt(
+		const rowGap = parseFloat(
 			window.getComputedStyle(grid).getPropertyValue("grid-row-gap")
 		);
-		const rowSpan = Math.ceil(
-			(item.querySelector(".content").getBoundingClientRect().height + rowGap) /
-				(rowHeight + rowGap)
+		const imgHeight = parseFloat(
+			item.querySelector(".card-img-container img").attributes.height.nodeValue
 		);
-		console.log(item.querySelector(".content").getBoundingClientRect().height);
-		console.log(rowHeight);
+		item.querySelector(
+			".card-img-container img"
+		).style.height = `${imgHeight}px`;
+		const cardBodyHeight = parseFloat(
+			item.querySelector(".card-body").getBoundingClientRect().height
+		);
+		const rowSpan = Math.ceil(
+			(cardBodyHeight + imgHeight + rowGap + 20) / (rowHeight + rowGap)
+		);
+
+		console.log(item.querySelector(".card-img-container img"));
+		console.log(
+			item.querySelector(".content").getBoundingClientRect().height + rowGap
+		);
+		console.log(rowHeight + rowGap);
 		item.style.gridRowEnd = "span " + rowSpan;
 		item.style.opacity = "1";
 	}
 
 	function resizeAllGridItems() {
 		const allItems = document.getElementsByClassName("prop-card");
+
 		for (let x = 0; x < allItems.length; x++) {
 			resizeGridItem(allItems[x]);
 		}
@@ -53,7 +77,7 @@ function SearchPage() {
 		resizeAllGridItems();
 		window.addEventListener("resize", resizeAllGridItems);
 		return () => {
-			window.removeEventListener("resize");
+			window.removeEventListener("resize", resizeAllGridItems);
 		};
 	}, []);
 
@@ -89,9 +113,11 @@ function SearchPage() {
 						key={i}
 						setMapState={setMapState}
 						height={i % 2 ? "200px" : "300px"}
+						index={i}
 					/>
 				))}
 			</div>
+
 			<div className="utility-btns">
 				<button className="save-search-btn">
 					<SaveIcon className="save-search-icon" />

@@ -6,7 +6,7 @@ import FormikStepForm from "../../components/PostProperty/FormikStepForm/FormikS
 // Styles
 import "./postProperty.css";
 
-function App() {
+function PostProperty() {
 	return (
 		<div className="post-property-page">
 			<FormikStepForm />
@@ -14,4 +14,4 @@ function App() {
 	);
 }
 
-export default App;
+export default PostProperty;

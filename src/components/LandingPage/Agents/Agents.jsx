@@ -3,7 +3,7 @@ import Section from "../Section/Section";
 import Header from "../Header/Header";
 import AgentItem from "./AgentItem";
 import "./agents.css";
-import Carousel from "../Carousel/Carousel";
+import Carousel from "../../General/Carousel/Carousel";
 
 export default function Agents() {
 	const settings = {
@@ -45,7 +45,8 @@ export default function Agents() {
 					user={{
 						name: "QWERTY ASDF",
 						company: "Malamal Real Estate",
-						deals: "New C G Road, Gota, Chandkheda, ONGC, Motera, Vaishno Devi, Koteshwar",
+						deals:
+							"New C G Road, Gota, Chandkheda, ONGC, Motera, Vaishno Devi, Koteshwar",
 						certified: true,
 						sale: 40,
 						rent: 60,
@@ -55,7 +56,8 @@ export default function Agents() {
 					user={{
 						name: "QWERTY ASDF",
 						company: "Malamal Real Estate",
-						deals: "New C G Road, Gota, Chandkheda, ONGC, Motera, Vaishno Devi, Koteshwar",
+						deals:
+							"New C G Road, Gota, Chandkheda, ONGC, Motera, Vaishno Devi, Koteshwar",
 						certified: true,
 						sale: 40,
 						rent: 60,
@@ -65,7 +67,8 @@ export default function Agents() {
 					user={{
 						name: "QWERTY ASDF",
 						company: "Malamal Real Estate",
-						deals: "New C G Road, Gota, Chandkheda, ONGC, Motera, Vaishno Devi, Koteshwar",
+						deals:
+							"New C G Road, Gota, Chandkheda, ONGC, Motera, Vaishno Devi, Koteshwar",
 						certified: false,
 						sale: 40,
 						rent: 60,
@@ -75,7 +78,8 @@ export default function Agents() {
 					user={{
 						name: "QWERTY ASDF",
 						company: "Malamal Real Estate",
-						deals: "New C G Road, Gota, Chandkheda, ONGC, Motera, Vaishno Devi, Koteshwar",
+						deals:
+							"New C G Road, Gota, Chandkheda, ONGC, Motera, Vaishno Devi, Koteshwar",
 						certified: true,
 						sale: 40,
 						rent: 60,
@@ -85,7 +89,8 @@ export default function Agents() {
 					user={{
 						name: "QWERTY ASDF",
 						company: "Malamal Real Estate",
-						deals: "New C G Road, Gota, Chandkheda, ONGC, Motera, Vaishno Devi, Koteshwar",
+						deals:
+							"New C G Road, Gota, Chandkheda, ONGC, Motera, Vaishno Devi, Koteshwar",
 						certified: false,
 						sale: 40,
 						rent: 60,
@@ -95,7 +100,8 @@ export default function Agents() {
 					user={{
 						name: "QWERTY ASDF",
 						company: "Malamal Real Estate",
-						deals: "New C G Road, Gota, Chandkheda, ONGC, Motera, Vaishno Devi, Koteshwar",
+						deals:
+							"New C G Road, Gota, Chandkheda, ONGC, Motera, Vaishno Devi, Koteshwar",
 						certified: false,
 						sale: 40,
 						rent: 60,
