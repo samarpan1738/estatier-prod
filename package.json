@@ -22,7 +22,7 @@
     "graphql": "^15.4.0",
     "graphql-request": "^3.3.0",
     "leaflet": "^1.7.1",
-    "node-sass": "4.14.1",
+    "node-sass": "4.14",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
