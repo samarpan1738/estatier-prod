@@ -5,6 +5,7 @@
 	width: 600px;
 	box-shadow: 0px 0px 4px 0px rgb(200, 200, 200);
 	transition: all 150ms ease-in-out;
+	height: 45px;
 }
 
 .search-container input {
@@ -32,7 +33,7 @@
 	all: unset;
 	background-color: #f55f44;
 	color: white;
-	padding: 20px 28px;
+	padding: 10px 20px;
 	border-radius: 0px 8px 8px 0px;
 	cursor: pointer;
 }

@@ -5,10 +5,12 @@ import FormikStepForm from "../../components/PostProperty/FormikStepForm/FormikS
 
 // Styles
 import "./postProperty.css";
+import Navbar from "../../components/General/Navbar_2/Navbar";
 
 function PostProperty() {
 	return (
 		<div className="post-property-page">
+			<Navbar />
 			<FormikStepForm />
 		</div>
 	);

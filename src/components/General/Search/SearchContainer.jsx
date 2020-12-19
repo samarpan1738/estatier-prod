@@ -4,7 +4,7 @@ import MapIcon from "@material-ui/icons/Map";
 import SearchIcon from "@material-ui/icons/Search";
 import { Popup, TileLayer, MapContainer } from "react-leaflet";
 import * as L from "esri-leaflet-geocoder";
-import "./search.css";
+import "./searchContainer.css";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {

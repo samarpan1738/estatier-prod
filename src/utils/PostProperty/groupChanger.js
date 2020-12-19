@@ -3,6 +3,7 @@ import {
 	conditions,
 	subgroupsCollection,
 } from "./PropertyDataStructure_final";
+import checkConditions from "../../utils/PostProperty/checker";
 export async function nextGroup(
 	validateForm,
 	values,
@@ -10,8 +11,8 @@ export async function nextGroup(
 	setFieldTouched,
 	setStep,
 	setStepperCnt,
-	checkConditions,
-	setTooltip
+	setTooltip,
+	stepperCnt
 ) {
 	// * Validate Form
 	const errors = await validateForm(values);
@@ -27,28 +28,28 @@ export async function nextGroup(
 		});
 		return;
 	}
-	// Reset Tooltip
+
 	setTooltip({ content: "Group Tooltip" });
-	// * Increment Stepper Count by 1
-	setStepperCnt((curr) => curr + 1);
+	setStepperCnt(stepperCnt + 1);
 
 	// * Check for the next group to render
-	setStep((step) => {
-		let gNo = Math.min(groups.length - 1, step + 1);
-		for (let k = gNo; k < groups.length; ++k) {
-			const { skipConditions, renderConditions } = groups[k];
-			if (
-				(skipConditions &&
-					checkConditions(values, conditions[skipConditions])) ||
-				(renderConditions &&
-					!checkConditions(values, conditions[renderConditions]))
-			) {
-				gNo = Math.min(groups.length - 1, gNo + 1);
-			} else break;
-		}
-		setTooltip({ content: `Group Tooltip ${groups[gNo].name}` });
-		return gNo;
-	});
+
+	let gNo = Math.min(groups.length - 1, step + 1);
+	for (let k = gNo; k < groups.length; ++k) {
+		const { skipConditions, renderConditions } = groups[k];
+		if (
+			(skipConditions && checkConditions(values, conditions[skipConditions])) ||
+			(renderConditions &&
+				!checkConditions(values, conditions[renderConditions]))
+		) {
+			gNo = Math.min(groups.length - 1, gNo + 1);
+		} else break;
+	}
+
+	setTooltip({ content: `Group Tooltip ${groups[gNo].name}` });
+	// console.log("Setting step --> ", gNo);
+	// debugger;
+	setStep(gNo);
 }
 // * Prev Btn Handler
 export function prevGroup(
@@ -58,25 +59,24 @@ export function prevGroup(
 	setFieldTouched,
 	setStep,
 	setStepperCnt,
-	checkConditions,
-	setTooltip
+	setTooltip,
+	stepperCnt
 ) {
-	setStepperCnt((curr) => curr - 1);
-	setStep((step) => {
-		let gNo = Math.max(0, step - 1);
-		for (let k = gNo; k >= 0; --k) {
-			let { skipConditions, renderConditions } = groups[k];
-			if (
-				(skipConditions &&
-					checkConditions(values, conditions[skipConditions])) ||
-				(renderConditions &&
-					!checkConditions(values, conditions[renderConditions]))
-			) {
-				gNo = Math.max(0, gNo - 1);
-			} else break;
-		}
-		setTooltip({ content: `Group Tooltip ${groups[gNo].name}` });
-		return gNo;
-	});
+	setStepperCnt(stepperCnt - 1);
+	// setStep((step) => {
+	let gNo = Math.max(0, step - 1);
+	for (let k = gNo; k >= 0; --k) {
+		let { skipConditions, renderConditions } = groups[k];
+		if (
+			(skipConditions && checkConditions(values, conditions[skipConditions])) ||
+			(renderConditions &&
+				!checkConditions(values, conditions[renderConditions]))
+		) {
+			gNo = Math.max(0, gNo - 1);
+		} else break;
+	}
+	setTooltip({ content: `Group Tooltip ${groups[gNo].name}` });
+	setStep(gNo);
+	// });
 	// setStep((step) => Math.max(0, step - 1));
 }

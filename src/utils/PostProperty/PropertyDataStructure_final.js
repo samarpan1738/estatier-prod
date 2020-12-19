@@ -1,7 +1,7 @@
 // TODO: Add acknowledgement group
 // TODO: Add image group acc. to prev info (Dropdown)
 // TODO: To escape schema validation, remove the ansType property from the question
-
+// TODO: Set parent question and level - Do this while generating init state
 export const groups = [
 	{
 		name: "User Type",
@@ -9,7 +9,7 @@ export const groups = [
 			{
 				content: "Who are you?",
 				ansType: "radio",
-				key: "user_type",
+				key: "user_group",
 				options: [
 					{ displayText: "Owner" },
 					{ displayText: "Agent" },
@@ -24,7 +24,7 @@ export const groups = [
 			{
 				content: "What are you planning?",
 				ansType: "radio",
-				key: "transaction_type",
+				key: "pro_trans_type",
 				options: [
 					{ displayText: "Rental" },
 					{ displayText: "BuySell" },
@@ -39,25 +39,40 @@ export const groups = [
 		questions: [
 			{
 				content: "Select a category",
-				key: "prop_cat",
+				key: "pro_category",
 				ansType: "radio",
 				options: [
-					{ displayText: "Residential", skipConditions: "$prop_cat_builder" },
+					{
+						displayText: "Residential",
+						skipConditions: "$pro_category_builder",
+					},
 					{
 						displayText: "Residential Project",
-						skipConditions: "$prop_cat_pg",
+						skipConditions: "$pro_category_pg",
 					},
-					{ displayText: "Commercial", skipConditions: "$prop_cat_builder" },
+					{
+						displayText: "Commercial",
+						skipConditions: "$pro_category_builder",
+					},
 					{
 						displayText: "Commercial Project",
 						renderConditions: "$ut_builder",
 					},
-					{ displayText: "Office Space", skipConditions: "$prop_cat_builder" },
-					{ displayText: "Industrial", skipConditions: "$prop_cat_builder" },
-					{ displayText: "Agricultural", skipConditions: "$prop_cat_builder" },
+					{
+						displayText: "Office Space",
+						skipConditions: "$pro_category_builder",
+					},
+					{
+						displayText: "Industrial",
+						skipConditions: "$pro_category_builder",
+					},
+					{
+						displayText: "Agricultural",
+						skipConditions: "$pro_category_builder",
+					},
 					{
 						displayText: "PG",
-						renderConditions: "$prop_cat_pg",
+						renderConditions: "$pro_category_pg",
 					},
 				],
 			},
@@ -72,7 +87,7 @@ export const groups = [
 			{
 				content: "What type of property your're looking for?",
 				ansType: "radio",
-				key: "prop_type_name",
+				key: "pro_type",
 				options: [
 					{ displayText: "Bungalow" },
 					{ displayText: "Villa" },
@@ -115,7 +130,7 @@ export const groups = [
 		questions: [
 			{
 				content: "What type of property your're looking for?",
-				key: "prop_type_name",
+				key: "pro_type",
 				ansType: "radio",
 				options: [
 					{ displayText: "Shop (Multiple Shutters)" },
@@ -141,7 +156,7 @@ export const groups = [
 		questions: [
 			{
 				content: "What type of property your're looking for?",
-				key: "prop_type_name",
+				key: "pro_type",
 				ansType: "radio",
 				options: [
 					{ displayText: "Office Space" },
@@ -164,7 +179,7 @@ export const groups = [
 		questions: [
 			{
 				content: "What type of property your're looking for?",
-				key: "prop_type_name",
+				key: "pro_type",
 				ansType: "radio",
 				options: [
 					{ displayText: "Industrial Land" },
@@ -180,7 +195,7 @@ export const groups = [
 		questions: [
 			{
 				content: "What type of property your're looking for?",
-				key: "prop_type_name",
+				key: "pro_type",
 				ansType: "radio",
 				options: [
 					{ displayText: "Single Crop" },
@@ -804,160 +819,163 @@ export const conditions = {
 				$pre: "$userType_oa",
 			},
 			{
-				prop_cat: "Residential Project",
+				pro_category: "Residential Project",
 			},
 		],
 	},
 	$office_space_share: {
 		$and: [
-			{ prop_cat: "Office Space" },
+			{ pro_category: "Office Space" },
 			{
 				$or: [
-					{ prop_type_name: "Office Space (Time-Share)" },
-					{ prop_type_name: "Office Space (SEZ)" },
+					{ pro_type: "Office Space (Time-Share)" },
+					{ pro_type: "Office Space (SEZ)" },
 				],
 			},
 		],
 	},
 	$not_agro_pg_indus: {
 		$and: [
-			{ prop_cat: { $ne: "Agricultural" } },
-			{ prop_cat: { $ne: "PG" } },
-			{ prop_cat: { $ne: "Industrial" } },
+			{ pro_category: { $ne: "Agricultural" } },
+			{ pro_category: { $ne: "PG" } },
+			{ pro_category: { $ne: "Industrial" } },
 		],
 	},
 	$prop_type_os_rent: {
-		transaction_type: "Rental",
+		pro_trans_type: "Rental",
 	},
 	$comm_prop_type_buy_sell: {
 		$or: [
 			{
-				transaction_type: "BuySell",
+				pro_trans_type: "BuySell",
 			},
 			{
-				transaction_type: "Lease",
+				pro_trans_type: "Lease",
 			},
 		],
 	},
-	$prop_cat_pg: {
-		transaction_type: "Paying Guest",
+	$pro_category_pg: {
+		pro_trans_type: "Paying Guest",
 	},
-	$ut_builder: { user_type: "Builder" },
-	$prop_cat_builder: {
-		$or: [{ user_type: "Builder" }, { $pre: "$prop_cat_pg" }],
+	$ut_builder: { user_group: "Builder" },
+	$pro_category_builder: {
+		$or: [{ user_group: "Builder" }, { $pre: "$pro_category_pg" }],
 	},
 
 	// *============ Repeating Conditions
 	$userType_oa: {
-		$or: [{ user_type: "Owner" }, { user_type: "Agent" }],
+		$or: [{ user_group: "Owner" }, { user_group: "Agent" }],
 	},
-	$prop_cat_resi_resiProj: {
-		$or: [{ prop_cat: "Residential" }, { prop_cat: "Residential Project" }],
+	$pro_category_resi_resiProj: {
+		$or: [
+			{ pro_category: "Residential" },
+			{ pro_category: "Residential Project" },
+		],
 	},
 	$prop_type_home_apart: {
 		$or: [
-			{ prop_type_name: "Bungalow" },
-			{ prop_type_name: "Villa" },
-			{ prop_type_name: "Independent House" },
-			{ prop_type_name: "Simplex" },
-			{ prop_type_name: "Duplex" },
-			{ prop_type_name: "Triplex" },
-			{ prop_type_name: "Row House" },
-			{ prop_type_name: "Town House" },
-			{ prop_type_name: "Semi Detached House" },
-			{ prop_type_name: "#Apartment" },
-			{ prop_type_name: "Apartment" },
-			{ prop_type_name: "Flat" },
-			{ prop_type_name: "Studio Apartment" },
-			{ prop_type_name: "Builder Floor" },
-			{ prop_type_name: "Penthouse" },
+			{ pro_type: "Bungalow" },
+			{ pro_type: "Villa" },
+			{ pro_type: "Independent House" },
+			{ pro_type: "Simplex" },
+			{ pro_type: "Duplex" },
+			{ pro_type: "Triplex" },
+			{ pro_type: "Row House" },
+			{ pro_type: "Town House" },
+			{ pro_type: "Semi Detached House" },
+			{ pro_type: "#Apartment" },
+			{ pro_type: "Apartment" },
+			{ pro_type: "Flat" },
+			{ pro_type: "Studio Apartment" },
+			{ pro_type: "Builder Floor" },
+			{ pro_type: "Penthouse" },
 			// {
-			// 	prop_type_name: { $ne: "Residential Land" },
+			// 	pro_type: { $ne: "Residential Land" },
 			// },
 			// {
-			// 	prop_type_name: { $ne: "Residential Plot" },
+			// 	pro_type: { $ne: "Residential Plot" },
 			// },
 			// {
-			// 	prop_type_name: { $ne: "Residential Plot in a Project" },
+			// 	pro_type: { $ne: "Residential Plot in a Project" },
 			// },
 			// {
-			// 	prop_type_name: { $ne: "Farm House" },
+			// 	pro_type: { $ne: "Farm House" },
 			// },
 			// {
-			// 	prop_type_name: { $ne: "River/Water Facing House" },
+			// 	pro_type: { $ne: "River/Water Facing House" },
 			// },
 			// {
-			// 	prop_type_name: { $ne: "Hill-Side House" },
+			// 	pro_type: { $ne: "Hill-Side House" },
 			// },
 			// {
-			// 	prop_type_name: { $ne: "Jungle Attached House" },
+			// 	pro_type: { $ne: "Jungle Attached House" },
 			// },
 			// {
-			// 	prop_type_name: { $ne: "Industrial Land" },
+			// 	pro_type: { $ne: "Industrial Land" },
 			// },
 			// {
-			// 	prop_type_name: { $ne: "Factory Building" },
+			// 	pro_type: { $ne: "Factory Building" },
 			// },
 			// {
-			// 	prop_type_name: { $ne: "Office Space (Time-Share)" },
+			// 	pro_type: { $ne: "Office Space (Time-Share)" },
 			// },
 			// {
-			// 	prop_type_name: { $ne: "Office Space (SEZ)" },
+			// 	pro_type: { $ne: "Office Space (SEZ)" },
 			// },
 		],
 	},
 	$holiday_homes: {
 		$or: [
 			{
-				prop_type_name: "Farm House",
+				pro_type: "Farm House",
 			},
 			{
-				prop_type_name: "River/Water Facing House",
+				pro_type: "River/Water Facing House",
 			},
 			{
-				prop_type_name: "Hill-Side House",
+				pro_type: "Hill-Side House",
 			},
 			{
-				prop_type_name: "Jungle Attached House",
+				pro_type: "Jungle Attached House",
 			},
 		],
 	},
 	$transc_BSRL: {
 		$or: [
-			{ transaction_type: "Rental" },
-			{ transaction_type: "BuySell" },
-			{ transaction_type: "Lease" },
+			{ pro_trans_type: "Rental" },
+			{ pro_trans_type: "BuySell" },
+			{ pro_trans_type: "Lease" },
 		],
 	},
 	$comm_shop: {
 		$or: [
 			{
-				prop_type_name: "Shop (Single Shutter)",
+				pro_type: "Shop (Single Shutter)",
 			},
 			{
-				prop_type_name: "Shop (Multiple Shutters)",
+				pro_type: "Shop (Multiple Shutters)",
 			},
 			{
-				prop_type_name: "Shop for Brand Stores",
+				pro_type: "Shop for Brand Stores",
 			},
 
 			{
-				prop_type_name: "Building for Institutions/ Banks",
+				pro_type: "Building for Institutions/ Banks",
 			},
 			{
-				prop_type_name: "Floors in Building for Institutions/ Banks",
+				pro_type: "Floors in Building for Institutions/ Banks",
 			},
 			{
-				prop_type_name: "Building for Hostels",
+				pro_type: "Building for Hostels",
 			},
 			{
-				prop_type_name: "Floors in Building for Hostels",
+				pro_type: "Floors in Building for Hostels",
 			},
 			{
-				prop_type_name: "Godown/ Storage",
+				pro_type: "Godown/ Storage",
 			},
 			{
-				prop_type_name: "Cold Storage",
+				pro_type: "Cold Storage",
 			},
 		],
 	},
@@ -969,7 +987,7 @@ export const conditions = {
 				$pre: "$userType_oa",
 			},
 			{
-				$pre: "$prop_cat_resi_resiProj",
+				$pre: "$pro_category_resi_resiProj",
 			},
 		],
 	},
@@ -978,66 +996,69 @@ export const conditions = {
 			{
 				$pre: "$userType_oa",
 			},
-			{ prop_cat: "Residential" },
+			{ pro_category: "Residential" },
 		],
 	},
 	$5: {
-		$or: [{ transaction_type: "BuySell" }, { transaction_type: "Lease" }],
+		$or: [{ pro_trans_type: "BuySell" }, { pro_trans_type: "Lease" }],
 	},
 	$parking: {
 		$or: [
 			{
-				prop_type_name: "Residential Land",
+				pro_type: "Residential Land",
 			},
 			{
-				prop_cat: "Commercial Project",
+				pro_category: "Commercial Project",
 			},
 			{
-				prop_cat: "Commercial",
+				pro_category: "Commercial",
 			},
 			{
-				prop_cat: "Agricultural",
+				pro_category: "Agricultural",
 			},
 		],
 	},
 	$officeSpace: {
-		prop_cat: "Office Space",
+		pro_category: "Office Space",
 	},
 	$resi_resiProj: {
-		$pre: "$prop_cat_resi_resiProj",
+		$pre: "$pro_category_resi_resiProj",
 	},
 	$commr_commrProj: {
-		$or: [{ prop_cat: "Commercial" }, { prop_cat: "Commercial Project" }],
+		$or: [
+			{ pro_category: "Commercial" },
+			{ pro_category: "Commercial Project" },
+		],
 	},
 	$industrial: {
-		prop_cat: "Industrial",
+		pro_category: "Industrial",
 	},
 
 	$agricultural: {
-		prop_cat: "Agricultural",
+		pro_category: "Agricultural",
 	},
 	$prop_age_op_skip: {
-		prop_cat: "Residential",
+		pro_category: "Residential",
 	},
 	$prop_age_skip: {
 		$or: [
-			{ prop_cat: "Agricultural" },
-			{ prop_cat: "Industrial" },
+			{ pro_category: "Agricultural" },
+			{ pro_category: "Industrial" },
 			{
-				prop_type_name: "Residential Land",
+				pro_type: "Residential Land",
 			},
 			{
-				prop_type_name: "Residential Plot",
+				pro_type: "Residential Plot",
 			},
 			{
-				prop_type_name: "Residential Plot in a Project",
+				pro_type: "Residential Plot in a Project",
 			},
-			// { "prop_type_name": "Industrial Land" },
-			// { "prop_type_name": "Factory Building" },
+			// { "pro_type": "Industrial Land" },
+			// { "pro_type": "Factory Building" },
 		],
 	},
 	$user_agent: {
-		user_type: "Agent",
+		user_group: "Agent",
 	},
 	$parking_avail: {
 		parking_avail_status: "Yes",
@@ -1045,7 +1066,7 @@ export const conditions = {
 	$parking_resi_proj: {
 		$and: [
 			{
-				prop_cat: "Residential Project",
+				pro_category: "Residential Project",
 			},
 			{
 				// * Home/Apartment
@@ -1063,7 +1084,7 @@ export const conditions = {
 			{ $pre: "$transc_BSRL" },
 
 			{
-				$pre: "$prop_cat_resi_resiProj",
+				$pre: "$pro_category_resi_resiProj",
 			},
 			{
 				$or: [{ $pre: "$holiday_homes" }, { $pre: "$prop_type_home_apart" }],
@@ -1077,7 +1098,7 @@ export const conditions = {
 		// 			},
 		// 			{ $pre: "$transc_BSRL" },
 		// 			{
-		// 				prop_cat: "Residential",
+		// 				pro_category: "Residential",
 		// 			},
 		// 			{
 		// 				$or: [{ $pre: "$prop_type_home_apart" }],
@@ -1092,7 +1113,7 @@ export const conditions = {
 		// 			{ $pre: "$transc_BSRL" },
 
 		// 			{
-		// 				$pre: "$prop_cat_resi_resiProj",
+		// 				$pre: "$pro_category_resi_resiProj",
 		// 			},
 		// 			{
 		// 				$or: [{ $pre: "$holiday_homes" }],
@@ -1102,14 +1123,14 @@ export const conditions = {
 		// ],
 	},
 	$agro_area: {
-		prop_cat: "Agricultural",
+		pro_category: "Agricultural",
 	},
 	$not_agro_pg: {
 		$and: [
-			{ prop_cat: { $ne: "Agricultural" } },
-			{ prop_cat: { $ne: "PG" } },
-			{ prop_cat: { $ne: "Industrial" } },
-			{ prop_cat: { $ne: "Office Space" } },
+			{ pro_category: { $ne: "Agricultural" } },
+			{ pro_category: { $ne: "PG" } },
+			{ pro_category: { $ne: "Industrial" } },
+			{ pro_category: { $ne: "Office Space" } },
 		],
 	},
 	$industrial_area: {
@@ -1117,15 +1138,15 @@ export const conditions = {
 			{
 				$pre: "$userType_oa",
 			},
-			{ prop_cat: "Industrial" },
+			{ pro_category: "Industrial" },
 		],
 	},
 	$ca_mm: {
 		$and: [
-			{ user_type: "Builder" },
+			{ user_group: "Builder" },
 			{ $pre: "$transc_BSRL" },
 			{
-				$or: [{ prop_cat: "Residential Project" }],
+				$or: [{ pro_category: "Residential Project" }],
 			},
 			{
 				$or: [
@@ -1138,12 +1159,12 @@ export const conditions = {
 	},
 	$sbua_bua_mm: {
 		$and: [
-			{ user_type: "Builder" },
+			{ user_group: "Builder" },
 			{ $pre: "$transc_BSRL" },
 			{
 				$or: [
-					{ prop_cat: "Residential Project" },
-					{ prop_cat: "Commercial Project" },
+					{ pro_category: "Residential Project" },
+					{ pro_category: "Commercial Project" },
 				],
 			},
 			{
@@ -1160,21 +1181,21 @@ export const conditions = {
 	},
 	$no_of_units: {
 		$and: [
-			{ user_type: "Builder" },
+			{ user_group: "Builder" },
 			{ $pre: "$transc_BSRL" },
 			{
 				$or: [
-					{ prop_cat: "Residential Project" },
-					{ prop_cat: "Commercial Project" },
+					{ pro_category: "Residential Project" },
+					{ pro_category: "Commercial Project" },
 				],
 			},
 			{
 				$or: [
 					{
-						prop_type_name: "Commercial Land",
+						pro_type: "Commercial Land",
 					},
 					{
-						prop_type_name: "Residential Land",
+						pro_type: "Residential Land",
 					},
 					{ $pre: "$holiday_homes" },
 				],
@@ -1187,16 +1208,16 @@ export const conditions = {
 			{ $pre: "$userType_oa" },
 			{ $pre: "$transc_BSRL" },
 			{
-				$or: [{ prop_cat: "Commercial" }, { prop_cat: "Office Space" }],
+				$or: [{ pro_category: "Commercial" }, { pro_category: "Office Space" }],
 			},
 			{
-				$or: [{ prop_type_name: "Office Space" }, { $pre: "$comm_shop" }],
+				$or: [{ pro_type: "Office Space" }, { $pre: "$comm_shop" }],
 			},
 		],
 	},
 	$floor_area_range: {
 		$and: [
-			{ prop_cat: "Commercial Project" },
+			{ pro_category: "Commercial Project" },
 			{ $pre: "$transc_BSRL" },
 
 			{
@@ -1209,20 +1230,20 @@ export const conditions = {
 			{
 				$pre: "$userType_oa",
 			},
-			{ prop_cat: "PG" },
+			{ pro_category: "PG" },
 		],
 	},
 	$agreement_type: {
-		$or: [{ transaction_type: "Rental" }, { transaction_type: "Lease" }],
+		$or: [{ pro_trans_type: "Rental" }, { pro_trans_type: "Lease" }],
 	},
 	$room_bath_config: {
 		$and: [
-			{ $pre: "$prop_cat_resi_resiProj" },
+			{ $pre: "$pro_category_resi_resiProj" },
 			{ $pre: "$prop_type_home_apart" },
 		],
 	},
 	$bath_config: {
-		$pre: "$prop_cat_resi_resiProj",
+		$pre: "$pro_category_resi_resiProj",
 	},
 	$prop_sqft_area: {
 		$and: [
@@ -1239,15 +1260,15 @@ export const conditions = {
 			{
 				$pre: "$userType_oa",
 			},
-			{ transaction_type: "Rental" },
-			{ prop_cat: "Office Space" },
+			{ pro_trans_type: "Rental" },
+			{ pro_category: "Office Space" },
 			{
 				$or: [
 					{
-						prop_type_name: "Office Space (SEZ)",
+						pro_type: "Office Space (SEZ)",
 					},
 					{
-						prop_type_name: "Office Space (Time-Share)",
+						pro_type: "Office Space (Time-Share)",
 					},
 				],
 			},
@@ -1258,7 +1279,7 @@ export const conditions = {
 			{
 				$or: [
 					{
-						prop_cat: "Residential",
+						pro_category: "Residential",
 					},
 				],
 			},
@@ -1266,25 +1287,25 @@ export const conditions = {
 				// * Home/Apartment
 				$and: [
 					{
-						prop_type_name: { $ne: "Residential Land" },
+						pro_type: { $ne: "Residential Land" },
 					},
 					{
-						prop_type_name: { $ne: "Residential Plot" },
+						pro_type: { $ne: "Residential Plot" },
 					},
 					{
-						prop_type_name: { $ne: "Residential Plot in a Project" },
+						pro_type: { $ne: "Residential Plot in a Project" },
 					},
 					{
-						prop_type_name: { $ne: "Farm House" },
+						pro_type: { $ne: "Farm House" },
 					},
 					{
-						prop_type_name: { $ne: "River/Water Facing House" },
+						pro_type: { $ne: "River/Water Facing House" },
 					},
 					{
-						prop_type_name: { $ne: "Hill-Side House" },
+						pro_type: { $ne: "Hill-Side House" },
 					},
 					{
-						prop_type_name: { $ne: "Jungle Attached House" },
+						pro_type: { $ne: "Jungle Attached House" },
 					},
 				],
 			},
@@ -1295,7 +1316,7 @@ export const conditions = {
 			{
 				$or: [
 					{
-						prop_cat: "Residential Project",
+						pro_category: "Residential Project",
 					},
 				],
 			},
@@ -1303,25 +1324,25 @@ export const conditions = {
 				// * Home/Apartment
 				$and: [
 					{
-						prop_type_name: { $ne: "Residential Land" },
+						pro_type: { $ne: "Residential Land" },
 					},
 					{
-						prop_type_name: { $ne: "Residential Plot" },
+						pro_type: { $ne: "Residential Plot" },
 					},
 					{
-						prop_type_name: { $ne: "Residential Plot in a Project" },
+						pro_type: { $ne: "Residential Plot in a Project" },
 					},
 					{
-						prop_type_name: { $ne: "Farm House" },
+						pro_type: { $ne: "Farm House" },
 					},
 					{
-						prop_type_name: { $ne: "River/Water Facing House" },
+						pro_type: { $ne: "River/Water Facing House" },
 					},
 					{
-						prop_type_name: { $ne: "Hill-Side House" },
+						pro_type: { $ne: "Hill-Side House" },
 					},
 					{
-						prop_type_name: { $ne: "Jungle Attached House" },
+						pro_type: { $ne: "Jungle Attached House" },
 					},
 				],
 			},
@@ -1332,32 +1353,32 @@ export const conditions = {
 			// * User Type
 			{
 				$or: [
-					{ user_type: "Owner" },
-					{ user_type: "Agent" },
-					{ user_type: "Builder" },
+					{ user_group: "Owner" },
+					{ user_group: "Agent" },
+					{ user_group: "Builder" },
 				],
 			},
 			// * Transaction Type
 			{
 				$or: [
-					{ transaction_type: "Rental" },
-					{ transaction_type: "Buy Sell" },
-					{ transaction_type: "Lease" },
-					{ transaction_type: "Paying Guest" },
+					{ pro_trans_type: "Rental" },
+					{ pro_trans_type: "Buy Sell" },
+					{ pro_trans_type: "Lease" },
+					{ pro_trans_type: "Paying Guest" },
 				],
 			},
 			// * Prop Categpry
 
 			{
 				$or: [
-					{ prop_cat: "Residential" },
-					{ prop_cat: "Residential Project" },
-					{ prop_cat: "Commercial" },
-					{ prop_cat: "Commercial Project" },
-					{ prop_cat: "Office Space" },
-					{ prop_cat: "Industrial" },
-					{ prop_cat: "Agricultural" },
-					{ prop_cat: "PG" },
+					{ pro_category: "Residential" },
+					{ pro_category: "Residential Project" },
+					{ pro_category: "Commercial" },
+					{ pro_category: "Commercial Project" },
+					{ pro_category: "Office Space" },
+					{ pro_category: "Industrial" },
+					{ pro_category: "Agricultural" },
+					{ pro_category: "PG" },
 				],
 			},
 			// * Prop Type Name
@@ -1378,16 +1399,19 @@ export const conditions = {
 			// * Prop Categpry
 
 			{
-				$or: [{ $pre: "$prop_cat_resi_resiProj" }, { prop_cat: "Commercial" }],
+				$or: [
+					{ $pre: "$pro_category_resi_resiProj" },
+					{ pro_category: "Commercial" },
+				],
 			},
 			// * Prop Type Name
 			{
 				$or: [
 					{
-						prop_type_name: "Residential Land",
+						pro_type: "Residential Land",
 					},
 					{
-						prop_type_name: "Commercial Land",
+						pro_type: "Commercial Land",
 					},
 					{
 						$pre: "$holiday_homes",
@@ -1405,39 +1429,39 @@ export const conditions = {
 			// * Transaction Type
 			{
 				$or: [
-					{ transaction_type: "Rental" },
-					{ transaction_type: "Buy Sell" },
-					{ transaction_type: "Lease" },
+					{ pro_trans_type: "Rental" },
+					{ pro_trans_type: "Buy Sell" },
+					{ pro_trans_type: "Lease" },
 				],
 			},
 			// * Prop Categpry
 
 			{
-				$pre: "$prop_cat_resi_resiProj",
+				$pre: "$pro_category_resi_resiProj",
 			},
 			// * Prop Type Name
 			{
 				$and: [
 					{
-						prop_type_name: { $ne: "Residential Land" },
+						pro_type: { $ne: "Residential Land" },
 					},
 					{
-						prop_type_name: { $ne: "Residential Plot" },
+						pro_type: { $ne: "Residential Plot" },
 					},
 					{
-						prop_type_name: { $ne: "Residential Plot in a Project" },
+						pro_type: { $ne: "Residential Plot in a Project" },
 					},
 					{
-						prop_type_name: { $ne: "Farm House" },
+						pro_type: { $ne: "Farm House" },
 					},
 					{
-						prop_type_name: { $ne: "River/Water Facing House" },
+						pro_type: { $ne: "River/Water Facing House" },
 					},
 					{
-						prop_type_name: { $ne: "Hill-Side House" },
+						pro_type: { $ne: "Hill-Side House" },
 					},
 					{
-						prop_type_name: { $ne: "Jungle Attached House" },
+						pro_type: { $ne: "Jungle Attached House" },
 					},
 				],
 			},
@@ -1458,16 +1482,16 @@ export const conditions = {
 			{
 				$or: [
 					{
-						prop_cat: "Residential",
+						pro_category: "Residential",
 					},
 					{
-						prop_cat: "Residential Project",
+						pro_category: "Residential Project",
 					},
 					{
-						prop_cat: "Commercial",
+						pro_category: "Commercial",
 					},
 					{
-						prop_cat: "Office Space",
+						pro_category: "Office Space",
 					},
 				],
 			},
@@ -1475,7 +1499,7 @@ export const conditions = {
 			{
 				$or: [
 					{ $pre: "$prop_type_home_apart" },
-					{ prop_type_name: "Office Space" },
+					{ pro_type: "Office Space" },
 					{ $pre: "$comm_shop" },
 				],
 			},
@@ -1493,10 +1517,10 @@ export const conditions = {
 			{
 				$or: [
 					{
-						prop_cat: "Residential",
+						pro_category: "Residential",
 					},
 					{
-						prop_cat: "Residential Project",
+						pro_category: "Residential Project",
 					},
 				],
 			},
@@ -1509,25 +1533,25 @@ export const conditions = {
 	$area_range: {
 		$and: [
 			{
-				user_type: "Builder",
+				user_group: "Builder",
 			},
 			{
 				$or: [
-					{ transaction_type: "Rental" },
-					{ transaction_type: "BuySell" },
-					{ transaction_type: "Lease" },
+					{ pro_trans_type: "Rental" },
+					{ pro_trans_type: "BuySell" },
+					{ pro_trans_type: "Lease" },
 				],
 			},
 			{
 				$or: [
-					{ prop_cat: "Residential Project" },
-					{ prop_cat: "Commercial Project" },
+					{ pro_category: "Residential Project" },
+					{ pro_category: "Commercial Project" },
 				],
 			},
 			{
 				$or: [
-					{ prop_type_name: "Residential Land" },
-					{ prop_type_name: "Commercial Land" },
+					{ pro_type: "Residential Land" },
+					{ pro_type: "Commercial Land" },
 					{ $pre: "$holiday_homes" },
 				],
 			},
@@ -1536,13 +1560,13 @@ export const conditions = {
 	$ca_range: {
 		$and: [
 			{
-				user_type: "Builder",
+				user_group: "Builder",
 			},
 			{
 				$pre: "$transc_BSRL",
 			},
 			{
-				$or: [{ prop_cat: "Residential Project" }],
+				$or: [{ pro_category: "Residential Project" }],
 			},
 			{
 				$or: [{ $pre: "$holiday_homes" }],
@@ -1559,7 +1583,7 @@ export const conditions = {
 				$pre: "$transc_BSRL",
 			},
 			{
-				prop_cat: "Residential",
+				pro_category: "Residential",
 			},
 			{
 				$pre: "$holiday_homes",
@@ -1861,7 +1885,6 @@ export const subgroupsCollection = {
 		name: "Bath 5 Configuration",
 		questions: [
 			{
-				unit: "sqft",
 				content: "Size",
 				ansType: "number",
 				key: "bath5_cfg_size",

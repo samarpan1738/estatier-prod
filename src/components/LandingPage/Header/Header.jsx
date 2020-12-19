@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { LocationContext } from "../../context/LocationContext";
+import { useSelector } from "react-redux";
+import { selectLocation } from "../../../features/location/locationSlice";
 import usePromise from "../../../Hooks/usePromise";
 import "./header.css";
 
 export default function Header(props) {
-	const { location: locationPromise } = useContext(LocationContext);
+	const locationPromise = useSelector(selectLocation);
 	const location = usePromise(locationPromise);
 
 	return (

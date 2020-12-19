@@ -1,0 +1,54 @@
+.control-btns {
+	/* margin-top: 100px; */
+	/* margin-top: 50px; */
+	padding: 50px 28px;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	/* margin: 50px 1em 1em; */
+	margin-top: 20px;
+	margin-bottom: 10px;
+	height: 40px;
+}
+
+.control-btns button {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-right: 0px !important;
+	/* background-color: #340e62; */
+	background-color: darkslateblue;
+	/* background-color: #1647a1; */
+	letter-spacing: 1px;
+	/* background-color: #6c63ff; */
+	border: none;
+	outline: none;
+	color: white;
+	font-size: 16px;
+	border-radius: 100px;
+	/* padding: 0.65em 1em; */
+	/* padding: 0.75em 1.5em; */
+	margin-right: 1em;
+	/* padding: 0.5em 1em; */
+	padding: 0.75em 1.25em;
+	cursor: pointer;
+	border-radius: 100px;
+	transition: box-shadown 200ms ease-in-out;
+}
+.control-btns button:hover {
+	box-shadow: 0 0 8px 4px #bdadd1;
+}
+
+/* .control-btns > button:disabled {
+	background-color: rgb(150, 150, 150);
+} */
+#reset-form-btn {
+	/* margin-left: 20px; */
+	/* margin-right: 20px !important; */
+	background-color: #f55f44;
+	/* background-color: #ef9a9a; */
+}
+#reset-form-btn:hover {
+	background-color: #ef5350;
+	box-shadow: 0 0 8px 4px #c7938b;
+}

@@ -1,4 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { selectProperty } from "../../../features/singleProp/singlePropSlice";
+import { selectUser } from "../../../features/user/userSlice";
 import Carousel from "../../General/Carousel/Carousel";
 import Header from "../Header/Header";
 import PropCard from "../PropCard/PropCard";
@@ -31,13 +34,15 @@ function PropPage() {
 			},
 		],
 	};
-
+	const propData = useSelector(selectProperty);
+	const user = useSelector(selectUser);
+	console.log(propData);
 	return (
 		<>
 			<div className="prop-container">
 				{/* Navbar */}
-				<Header />
-				<PropTabs />
+				<Header propData={propData} user={user} />
+				<PropTabs propData={propData} />
 				<Carousel className="suggestions-carousel" settings={settings}>
 					<PropCard />
 					<PropCard />

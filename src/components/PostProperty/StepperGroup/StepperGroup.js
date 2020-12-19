@@ -1,17 +1,22 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 // Components
 import Question from "../Question/Question";
 
 import { useFormikContext } from "formik";
-import { conditions } from "../../../utils/PostProperty/PropertyDataStructure_final";
+import {
+	conditions,
+	groups,
+} from "../../../utils/PostProperty/PropertyDataStructure_final";
+import checkConditions from "../../../utils/PostProperty/checker";
 
 // Styles
 import "./stepperGroup.css";
-import ImageUpload from "../ImageUpload/ImageUpload";
 
-function StepperGroup({ group, checkConditions, setTooltip }) {
+function StepperGroup({ group }) {
 	const { values } = useFormikContext();
+	// console.log(group);
+	// debugger;
 	const { name, questions } = group;
 
 	return (
@@ -38,7 +43,6 @@ function StepperGroup({ group, checkConditions, setTooltip }) {
 								<Question
 									question={question}
 									questions_length={questions.length}
-									setTooltip={setTooltip}
 								/>
 							)}
 						</>
@@ -49,4 +53,7 @@ function StepperGroup({ group, checkConditions, setTooltip }) {
 	);
 }
 
-export default StepperGroup;
+export default React.memo(StepperGroup, (prevProps, nextProps) => {
+	// console.log(prevProps, nextProps);
+	return prevProps.name !== nextProps.name;
+});

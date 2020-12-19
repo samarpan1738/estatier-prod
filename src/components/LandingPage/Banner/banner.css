@@ -3,6 +3,7 @@
 	top: 0px;
 	display: flex;
 	justify-content: center;
+	max-width: 100vw;
 }
 
 #left-banner-content {
@@ -16,7 +17,8 @@
 
 #banner-heading-container {
 	display: flex;
-	width: 500px;
+	width: 100vw;
+	max-width: 500px;
 	text-align: center;
 	flex-direction: column;
 	align-items: center;

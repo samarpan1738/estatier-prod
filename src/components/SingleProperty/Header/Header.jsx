@@ -5,29 +5,45 @@ import { FaMapMarkedAlt } from "react-icons/fa";
 import { GrDirections } from "react-icons/gr";
 import { RiDirectionFill } from "react-icons/ri";
 
-function Header() {
+function Header({ propData, user }) {
+	const {
+		area_desc_sba,
+		price_details_rpsqft,
+		area_desc_room_config,
+		pro_type,
+		pro_trans_type,
+		prop_addr_ctv,
+		prop_addr_house_tncl,
+		user_group,
+	} = propData;
+	const { name } = user;
+	console.log(user);
 	return (
 		<div className="header">
 			<div className="prop-price-section">
 				<p className="prop-price">
 					<span>₹</span>
-					<span>35,000</span>
+					<span>
+						{parseInt(area_desc_sba) * parseInt(price_details_rpsqft)}
+					</span>
 				</p>
 				<p className="prop-rate">
 					<span>@ ₹</span>
-					<span>40</span>
+					<span>{price_details_rpsqft}</span>
 					<span> per sqft</span>
 				</p>
 			</div>
 			<div className="prop-meta">
 				<p className="prop-title">
-					<span>House 1 BHK</span>
+					<span>
+						{pro_type} {area_desc_room_config}
+					</span>
 				</p>
 				<p className="prop-location">
 					<span>
-						for Rental in{" "}
-						<span className="prop-location-area">Pachsheel Wellington</span> ,{" "}
-						<span className="prop-location-city">Ghaziabad</span>
+						for {pro_trans_type} in{" "}
+						<span className="prop-location-area">{prop_addr_house_tncl}</span> ,{" "}
+						<span className="prop-location-city">{prop_addr_ctv}</span>
 					</span>
 				</p>
 				<p className="map-opts-wrap">
@@ -45,12 +61,12 @@ function Header() {
 				<div className="prop-owner">
 					<Avatar
 						className="owner-avatar"
-						name="Rajeev Das"
+						name={name}
 						// src="https://bit.ly/dan-abramov"
 					/>
 					<div className="owner-name">
-						<p className="name-title">Owner</p>
-						<p className="name-value">Rajeev Das</p>
+						<p className="name-title">{user_group}</p>
+						<p className="name-value">{name}</p>
 					</div>
 					<div className="owner-contact">Contact Now</div>
 				</div>

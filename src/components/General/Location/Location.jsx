@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react";
 import usePromise from "../../../Hooks/usePromise";
-import Actions from "../../context/LocationActions";
 import PlacesAutocomplete from "react-places-autocomplete";
-import { LocationContext } from "../../context/LocationContext";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import EditLocationRoundedIcon from "@material-ui/icons/EditLocationRounded";
 import "./location.css";
@@ -11,26 +9,32 @@ import {
 	ModalOverlay,
 	ModalContent,
 	ModalHeader,
-	ModalFooter,
 	ModalBody,
 	ModalCloseButton,
 	useDisclosure,
 	Input,
 	Button,
 } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	changeLocation,
+	selectLocation,
+} from "../../../features/location/locationSlice";
 
 export default function Location() {
+	// const { location: locationPromise, dispatch } = useContext(LocationContext);
+	const dispatch = useDispatch();
+	const locationPromise = useSelector(selectLocation);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [address, setAddress] = useState("");
 	const [change, setChange] = useState(false);
-	const { location: locationPromise, dispatch } = useContext(LocationContext);
 	const location = usePromise(locationPromise);
 
 	const handleSelect = (value) => {
 		const city = value.split(",")[0];
 		setAddress("");
 		setChange(false);
-		dispatch(Actions.changeLocation({ city }));
+		dispatch(changeLocation(city));
 	};
 
 	const searchOptions = {
@@ -58,7 +62,7 @@ export default function Location() {
 					leftIcon={
 						<EditLocationRoundedIcon classes={{ root: "location-icon" }} />
 					}
-					bgColor="#EEEEEE"
+					bgColor="white"
 					onClick={onOpen}
 					id="current-location"
 				>

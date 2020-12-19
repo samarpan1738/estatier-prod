@@ -9,7 +9,11 @@ function ContactSection() {
 	};
 	return (
 		<div className="contact-section">
-			<Button className="contact-btn call" onClick={() => window.alert("ds")}>
+			<Button
+				className="contact-btn call"
+				color="white"
+				onClick={() => window.alert("ds")}
+			>
 				<MdCall className="icon" />
 				Contact owner
 			</Button>

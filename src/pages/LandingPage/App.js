@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import Provider from "../../components/context/LocationContext";
+
 import Navbar from "../../components/General/Navbar_2/Navbar";
 import Banner from "../../components/LandingPage/Banner/Banner";
 import Offers from "../../components/LandingPage/Offers/Offers";
@@ -14,18 +14,16 @@ function LandingPage() {
 	const [atBanner, setAtBanner] = useState(true);
 
 	return (
-		<Provider>
-			<div className="landing-page">
-				<Navbar atBanner={atBanner} />
-				<Banner setAtBanner={setAtBanner} />
-				<Offers />
-				<FeaturedProps />
-				<ProjectGallery />
-				<Agents />
-				<Builder />
-				<Footer />
-			</div>
-		</Provider>
+		<div className="landing-page">
+			<Navbar atBanner={atBanner} />
+			<Banner setAtBanner={setAtBanner} />
+			<Offers />
+			<FeaturedProps />
+			<ProjectGallery />
+			<Agents />
+			<Builder />
+			<Footer />
+		</div>
 	);
 }
 

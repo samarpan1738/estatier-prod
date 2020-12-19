@@ -13,6 +13,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.5.3",
+    "cloudinary-react": "^1.6.8",
     "esri-leaflet": "^2.5.1",
     "esri-leaflet-geocoder": "^2.3.3",
     "firebase": "^8.1.2",

@@ -1,20 +1,63 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const postPropertySlice = createSlice({
-	name: "",
-	initialState: {},
+	name: "postProperty",
+	initialState: {
+		step: 0,
+		stepperCnt: 0,
+		currentGroup: null,
+		values: null,
+		tooltip: { content: "Group Tooltip" },
+		subgroupsCollection: null,
+		propertyId: "",
+	},
 	reducers: {
 		setInitialState: (state, action) => {
-			state = { ...action.payload };
+			const { subgroupsCollection, ...rest } = action.payload;
+			state.subgroupsCollection = subgroupsCollection;
+			state.values = { ...state.values, ...rest };
+			// console.log(state.values);
 			return state;
+		},
+		resetForm: (state, action) => {
+			state.step = 0;
+			state.stepperCnt = 0;
+			state.currentGroup = null;
+			state.values = null;
+		},
+		setStep: (state, action) => {
+			// console.log("Setp step action running");
+			state.step = action.payload;
+		},
+		setStepperCnt: (state, action) => {
+			state.stepperCnt = action.payload;
+		},
+		setTooltip: (state, action) => {
+			state.tooltip = action.payload;
+		},
+		setPropId: (state, action) => {
+			state.propertyId = action.payload;
 		},
 	},
 });
 // * Actions
-export const { setInitialState } = userSlice.actions;
+export const {
+	setInitialState,
+	setStep,
+	resetForm,
+	setStepperCnt,
+	setTooltip,
+	setPropId,
+} = postPropertySlice.actions;
 
 // * Selectors
-export const selectUser = (state) => state.user;
+export const selectPostPropState = (state) => state.postProperty;
+export const selectSubgroupsCollection = (state) =>
+	state.postProperty.subgroupsCollection;
+export const selectStep = (state) => state.postProperty.step;
+export const selectStepperCnt = (state) => state.postProperty.stepperCnt;
+export const selectTooltip = (state) => state.postProperty.tooltip;
+export const selectPropId = (state) => state.postProperty.propertyId;
 
 export default postPropertySlice.reducer;
 /*

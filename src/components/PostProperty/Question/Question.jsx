@@ -1,12 +1,20 @@
 import { useFormikContext } from "formik";
-import React, { useRef } from "react";
-import { subgroupsCollection } from "../../../utils/PostProperty/PropertyDataStructure_final";
+import React, { useEffect, useRef } from "react";
+
 import OptionsContainer from "../OptionsContainer/OptionsContainer";
 import StepperGroup from "../StepperGroup/StepperGroup";
 import HelpIcon from "@material-ui/icons/Help";
 import "./question.css";
 import ImageUpload from "../ImageUpload/ImageUpload";
-function Question({ questions_length, question, setTooltip }) {
+import { useDispatch, useSelector } from "react-redux";
+import {
+	selectPostPropState,
+	setTooltip,
+} from "../../../features/postProperty/postPropertySlice";
+function Question({ questions_length, question }) {
+	const { subgroupsCollection } = useSelector(selectPostPropState);
+
+	const dispatch = useDispatch();
 	const {
 		content,
 		ansType,
@@ -35,7 +43,7 @@ function Question({ questions_length, question, setTooltip }) {
 						<HelpIcon
 							className="helpIcon"
 							style={{ fontSize: 16, height: 16 }}
-							onClick={() => setTooltip({ content: content })}
+							// onClick={() => dispatch(setTooltip({ content: content }))}
 						/>
 					</div>
 					{errors[key] && touched[key] ? (
@@ -82,4 +90,7 @@ function Question({ questions_length, question, setTooltip }) {
 	);
 }
 
-export default Question;
+export default React.memo(Question, (prevProps, nextProps) => {
+	// Re-render when returns true
+	return prevProps.content !== nextProps.content;
+});

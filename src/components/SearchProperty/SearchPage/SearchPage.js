@@ -47,18 +47,21 @@ function SearchPage() {
 		item.querySelector(
 			".card-img-container img"
 		).style.height = `${imgHeight}px`;
+		// console.log(item.querySelector(".card-body"));
 		const cardBodyHeight = parseFloat(
 			item.querySelector(".card-body").getBoundingClientRect().height
 		);
+		console.log(imgHeight + "+" + cardBodyHeight);
 		const rowSpan = Math.ceil(
 			(cardBodyHeight + imgHeight + rowGap + 20) / (rowHeight + rowGap)
 		);
 
-		console.log(item.querySelector(".card-img-container img"));
-		console.log(
-			item.querySelector(".content").getBoundingClientRect().height + rowGap
-		);
-		console.log(rowHeight + rowGap);
+		// console.log(item.querySelector(".card-img-container img"));
+		// console.log(
+		// 	item.querySelector(".content").getBoundingClientRect().height + rowGap
+		// );
+		// console.log(rowHeight + rowGap);
+		// console.log("Img Height ", imgHeight);
 		item.style.gridRowEnd = "span " + rowSpan;
 		item.style.opacity = "1";
 	}
@@ -74,13 +77,14 @@ function SearchPage() {
 
 	useEffect(() => {
 		// setTimeout(resizeAllGridItems, 1000);
-		resizeAllGridItems();
 		window.addEventListener("resize", resizeAllGridItems);
 		return () => {
 			window.removeEventListener("resize", resizeAllGridItems);
 		};
 	}, []);
-
+	useEffect(() => {
+		resizeAllGridItems();
+	}, [properties]);
 	function toggleMapView() {
 		let position = properties.map((p) => [p.lat, p.lng]);
 		// console.log(position);

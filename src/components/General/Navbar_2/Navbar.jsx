@@ -15,7 +15,7 @@ import {
 import AuthModal from "../../AuthModal/AuthModal";
 import { useHistory } from "react-router-dom";
 
-export default function Navbar({ atBanner }) {
+export default function Navbar({ atBanner, isSearchable = true }) {
 	const history = useHistory();
 	const isLoggedIn = useSelector(selectIsLoggedIn, shallowEqual);
 	const user = useSelector(selectUser, shallowEqual);
@@ -28,9 +28,11 @@ export default function Navbar({ atBanner }) {
 			</div>
 
 			<Location />
-			<SearchContainer
-				className={"navbar-search " + (atBanner ? "hide-nav-search" : "")}
-			/>
+			{isSearchable && (
+				<SearchContainer
+					className={"navbar-search " + (atBanner ? "hide-nav-search" : "")}
+				/>
+			)}
 			<div id="nav-links-container">
 				<AccountCircleIcon className="nav-items" style={{ fontSize: 32 }} />
 				<NotificationsIcon className="nav-items" style={{ fontSize: 32 }}>

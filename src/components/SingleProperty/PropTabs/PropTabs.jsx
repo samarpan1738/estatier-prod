@@ -9,7 +9,10 @@ import BedIcon from "../../../img/bed.svg";
 import BathIcon from "../../../img/bath.svg";
 import { FaHandshake, FaListUl } from "react-icons/all";
 import { useMediaQuery } from "@material-ui/core";
-function PropTabs() {
+function PropTabs({ propData }) {
+	const { area_desc_room_config, area_desc_bath_cnt } = propData;
+	const bedroomCnt = parseInt(area_desc_room_config);
+	const bathCnt = parseInt(area_desc_bath_cnt);
 	const data = [
 		{
 			title: "Rental Value",
@@ -49,94 +52,35 @@ function PropTabs() {
 			value: "Vaishali Metro station",
 		},
 	];
-	const bathData = [
-		[
+	const bathData = [];
+	const bedData = [];
+	for (let i = 1; i <= bedroomCnt; ++i) {
+		bedData.push([
 			{
-				title: "Bathroom 1 Area",
-				value: "200 sqft",
+				title: `Bedroom ${i} Area`,
+				value: propData[`bhk${i}_cfg_size`],
 			},
 			{
-				title: "Bathroom 1 Flooring",
-				value: "Wooden",
+				title: `Bedroom ${i} Flooring`,
+				value: propData[`bhk${i}_cfg_flooring`],
 			},
-		],
-		[
+		]);
+	}
+	for (let i = 1; i <= bathCnt; ++i) {
+		bathData.push([
 			{
-				title: "Bathroom 2 Area",
-				value: "200 sqft",
-			},
-			{
-				title: "Bathroom 2 Flooring",
-				value: "Wooden",
-			},
-		],
-		[
-			{
-				title: "Bathroom 3 Area",
-				value: "200 sqft",
+				title: `Bathroom ${i} Area`,
+				value: propData[`bath${i}_cfg_size`],
 			},
 			{
-				title: "Bathroom 3 Flooring",
-				value: "Wooden",
+				title: `Bathroom ${i} Flooring`,
+				value: propData[`bath${i}_cfg_flooring`],
 			},
-		],
-	];
-	const bedData = [
-		[
-			{
-				title: "Bedroom 1 Area",
-				value: "200 sqft",
-			},
-			{
-				title: "Bedroom 1 Flooring",
-				value: "Wooden",
-			},
-		],
-		[
-			{
-				title: "Bedroom 2 Area",
-				value: "200 sqft",
-			},
-			{
-				title: "Bedroom 2 Flooring",
-				value: "Wooden",
-			},
-		],
-		[
-			{
-				title: "Bedroom 3 Area",
-				value: "200 sqft",
-			},
-			{
-				title: "Bedroom 3 Flooring",
-				value: "Wooden",
-			},
-		],
-		[
-			{
-				title: "Bedroom 4 Area",
-				value: "200 sqft",
-			},
-			{
-				title: "Bedroom 4 Flooring",
-				value: "Wooden",
-			},
-		],
-	];
+		]);
+	}
 	const matches = useMediaQuery("(min-width:600px)");
 	return (
-		// <div className="prop-tabs">
-		// 	<div className="tab">
-		// 		<p>Property Details</p>
-		// 	</div>
-		// 	<div className="tab">
-		// 		<p>Quick Facts</p>
-		// 	</div>
-		// 	<div className="tab">
-		// 		<p>Locality Details</p>
-		// 	</div>
-		// </div>
-		<Tabs variant="soft-rounded" variantColor="purple">
+		<Tabs variant="soft-rounded">
 			<TabList backgroundColor="#F4F4F4" p="4" pl="4">
 				<Tab>
 					<FaListUl color="#9575cd" className="tab-icon" />
@@ -157,13 +101,16 @@ function PropTabs() {
 			</TabList>
 			<TabPanels>
 				<TabPanel>
-					<PropDetails src={"https://bit.ly/36fIMXv"} />
+					<PropDetails src={"https://bit.ly/36fIMXv"} propData={propData} />
 				</TabPanel>
 				<TabPanel>
 					<InfoBlock className="bedroom-cfg-wrap">
 						<h3 className="block-heading">Bedrooms</h3>
 						<div className="block-content">
-							<p className="block-desc">{bedData.length} bedrooms</p>
+							<p className="block-desc">
+								{bedroomCnt} bedroom
+								{bedroomCnt > 1 ? "s" : ""}
+							</p>
 							<div className="info-rows">
 								{bedData.map((cols) => (
 									<div>
@@ -188,7 +135,7 @@ function PropTabs() {
 					<InfoBlock className="bedroom-cfg-wrap">
 						<h3 className="block-heading">Bathrooms</h3>
 						<div className="block-content">
-							<p className="block-desc">{bathData.length} Bathrooms</p>
+							<p className="block-desc">{bathCnt} Bathrooms</p>
 							<div className="info-rows">
 								{bathData.map((cols) => (
 									<div>

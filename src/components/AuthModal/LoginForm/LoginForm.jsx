@@ -1,63 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./loginForm.css";
 
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import googleIcon from "../../../img/google-icon.ico";
+// import googleIcon from "../../../img/google-icon.ico";
 
 import FormikControl from "../FormikControl/FormikControl";
-import { Button, Spinner, Stack, useToast } from "@chakra-ui/react";
+import { Button, Stack, useToast } from "@chakra-ui/react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
-import request, { gql, GraphQLClient } from "graphql-request";
-import {
-	loginUser,
-	selectUser,
-	selectUserId,
-} from "../../../features/user/userSlice";
+import { loginUser, selectUserId } from "../../../features/user/userSlice";
 
 import useQuery from "../../../Hooks/useQuery";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
-
-const LOGIN_QUERY = gql`
-	query Login($email: String!, $password: String!) {
-		login(email: $email, password: $password) {
-			userID
-			token
-			tokenExpiration
-		}
-	}
-`;
-const GET_USER_DETAILS_QUERY = gql`
-	query GetUserDetails($_id: ID!) {
-		getUserDetails(_id: $_id) {
-			_id
-			email
-			password
-			mobileNo
-			whatsappNo
-			name
-			image
-			avtaar
-			tagline
-			about_me
-			a_name
-			a_image
-			a_avtaar
-			a_tagline
-			a_about_me
-			role
-			referrer
-			club_name
-			club_year
-			campaign_name
-			first_login_method
-			is_deleted
-			createdAt
-			updatedAt
-		}
-	}
-`;
+import { LOGIN_QUERY, GET_USER_DETAILS_QUERY } from "../../../queries";
 
 function LoginForm() {
 	const toast = useToast();
