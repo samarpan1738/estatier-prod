@@ -561,7 +561,7 @@ const PostPropLocationGroupHUpdate_MUTATION = gql`
     ) {
         PostPropLocationGroupHUpdate(
             proInput: {
-                _id: $user_id
+                _id: $_id
                 parent_question: $parent_question
                 level: $level
                 question: $question
@@ -588,7 +588,7 @@ const PostPropAddressGroupIUpdate_MUTATION = gql`
     ) {
         PostPropAddressGroupIUpdate(
             proInput: {
-                _id: $user_id
+                _id: $_id
                 parent_question: $parent_question
                 level: $level
                 question: $question
@@ -615,7 +615,7 @@ const PostPropPropertImageGroupJUpdate_MUTATION = gql`
     ) {
         PostPropPropertImageGroupJUpdate(
             proInput: {
-                _id: $user_id
+                _id: $_id
                 parent_question: $parent_question
                 level: $level
                 question: $question
@@ -716,6 +716,37 @@ const DeleteProperty_MUTATION = gql`
         }
     }
 `;
+
+// Post Enquiry
+
+export const PostEnquiry_MUTATION = gql`
+mutation PostEnquiry($propertyid: ID!) {
+    PostEnquiry(
+        $user_group: [String]
+        $user_type: [String]
+        $pro_trans_type: [String]
+        $pro_category: [String]
+        $pro_type: [String]
+        $questions: [String]
+        $answers: [String]
+        $enquiry_status: String
+        $property_enquiry_date: String
+        ) {
+        proInput:{
+            user_group: $user_group
+            user_type: $user_type
+            pro_trans_type: $pro_trans_type
+            pro_category: $pro_category
+            pro_type: $pro_type
+            questions: $questions
+            answers: $answers
+            enquiry_status: $enquiry_status
+            property_enquiry_date: $property_enquiry_date
+        }
+    }
+}
+`;
+
 // General
 export const SIGNUP_MUTATION = gql`
     mutation Register(

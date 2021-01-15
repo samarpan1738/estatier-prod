@@ -17,18 +17,6 @@ import styles from "./postEnquiry.module.css";
 function PostEnquiry({ isOpen, onOpen, onClose }) {
     return (
         <div className={styles.postEnquiry}>
-            {/* <Button
-                leftIcon={<EditLocationRoundedIcon classes={{ root: "location-icon" }} />}
-                bgColor="white"
-                onClick={onOpen}
-                id="current-location"
-            >
-                {location.city
-                    ? location.city.length > 28
-                        ? location.city.slice(0, 28) + "..."
-                        : location.city
-                    : "Set Current City"}
-            </Button> */}
             <Modal isOpen={isOpen} onClose={onClose} width="100vw">
                 <ModalOverlay />
                 <ModalContent
@@ -43,7 +31,12 @@ function PostEnquiry({ isOpen, onOpen, onClose }) {
                     <Divider />
                     <ModalCloseButton />
                     <ModalBody width="1260px" overflow="auto">
-                        <FormikStepForm conditions={conditions} groups={postEnquiryGroups} showTooltip={"false"} />
+                        <FormikStepForm
+                            conditions={conditions}
+                            groups={postEnquiryGroups}
+                            showTooltip={"false"}
+                            isPostEnquiry={"true"}
+                        />
                     </ModalBody>
                 </ModalContent>
             </Modal>

@@ -442,6 +442,7 @@ function FormikStepper({
                 </ModalContent>
             </Modal>
 
+            {/* FORM */}
             <div id="left-post">
                 <Form autoComplete="off">
                     {groups[step].name === "Mark Location" ? (
@@ -490,6 +491,7 @@ function FormikStepper({
                 </div>
             </div>
 
+            {/* TOOLTIP */}
             {matches && !showTooltip && (
                 <div id="right-post">
                     <Tooltip content={tooltip} />
