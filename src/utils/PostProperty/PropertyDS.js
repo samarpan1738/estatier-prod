@@ -1,213 +1,4 @@
-// TODO: Add acknowledgement group
-// TODO: Add image group acc. to prev info (Dropdown)
-// TODO: To escape schema validation, remove the ansType property from the question
-
-// TODO: sqft/acres option
-// TODO: Price Details - 2 options - acres/sqft and on request
-// TODO: Edit button on Prop address which takes to prev step
-// TODO: Upload Image --> Add later checkbox | Default Unchecked, Featured Image option
-// TODO: Prefered Call Days --> Default values - Sat,Sun
-// TODO: Prefered Call Timings --> if 'from' then 'to' also and validation
-// * Done
-// TODO: Show steps incrementally
-// TODO: Move to top --> Mark the property/ nearest landmark location on the map
-// TODO: Contact Publisher --> Contact Preferences
-// TODO: Mark location - Add pincode field
-// TODO: Visible to others --> Hide my plot/house no.| Default value - Yes
-
-export const postEnquiryGroups = [
-    {
-        name: "User Type",
-        questions: [
-            {
-                content: "Who are you?",
-                ansType: "checkbox",
-                key: "user_group",
-                options: [{ displayText: "Owner" }, { displayText: "Agent" }, { displayText: "Builder" }],
-            },
-        ],
-    },
-    {
-        name: "Transaction Type",
-        questions: [
-            {
-                content: "What are you planning?",
-                ansType: "checkbox",
-                key: "pro_trans_type",
-                options: [
-                    { displayText: "Rental" },
-                    { displayText: "BuySell" },
-                    { displayText: "Lease" },
-                    {
-                        displayText: "Paying Guest",
-                        renderConditions: "$userType_oa",
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        name: "Property Category",
-        questions: [
-            {
-                content: "Select a category",
-                key: "pro_category",
-                ansType: "checkbox",
-                options: [
-                    {
-                        displayText: "Residential",
-                        skipConditions: "$pro_category_builder",
-                    },
-                    {
-                        displayText: "Residential Project",
-                        skipConditions: "$pro_category_pg",
-                    },
-                    {
-                        displayText: "Commercial",
-                        skipConditions: "$pro_category_builder",
-                    },
-                    {
-                        displayText: "Commercial Project",
-                        renderConditions: "$ut_builder",
-                    },
-                    {
-                        displayText: "Office Space",
-                        skipConditions: "$pro_category_builder",
-                    },
-                    {
-                        displayText: "Industrial",
-                        skipConditions: "$pro_category_builder",
-                    },
-                    {
-                        displayText: "Agricultural",
-                        skipConditions: "$pro_category_builder",
-                    },
-                    {
-                        displayText: "PG",
-                        renderConditions: "$pro_category_pg",
-                    },
-                ],
-            },
-        ],
-    },
-    // TODO: Property Type
-    // * Residential & Residential Project
-    {
-        name: "Property Type",
-
-        tooltip: "To proceed you need to login/signup.",
-        questions: [
-            {
-                content: "What type of property your're looking for?",
-                ansType: "checkbox",
-                key: "pro_type",
-                options: [
-                    { displayText: "Bungalow", renderConditions: "$resi_resiProj" },
-                    { displayText: "Villa", renderConditions: "$resi_resiProj" },
-                    { displayText: "Independent House", renderConditions: "$resi_resiProj" },
-                    { displayText: "Simplex", renderConditions: "$resi_resiProj" },
-                    { displayText: "Duplex", renderConditions: "$resi_resiProj" },
-                    { displayText: "Triplex", renderConditions: "$resi_resiProj" },
-                    { displayText: "Row House", renderConditions: "$resi_resiProj" },
-                    { displayText: "Town House", renderConditions: "$resi_resiProj" },
-                    { displayText: "Semi Detached House", renderConditions: "$resi_resiProj" },
-                    { displayText: "Apartment", renderConditions: "$resi_resiProj" },
-                    { displayText: "Flat", renderConditions: "$resi_resiProj" },
-                    { displayText: "Studio Apartment", renderConditions: "$resi_resiProj" },
-                    { displayText: "Builder Floor", renderConditions: "$resi_resiProj" },
-                    { displayText: "Penthouse", renderConditions: "$resi_resiProj" },
-                    { displayText: "Residential Land", renderConditions: "$resi_resiProj" },
-                    {
-                        displayText: "Farm House",
-                        renderConditions: "$resi_resiProj",
-                    },
-                    {
-                        displayText: "River/Water Facing House",
-                        renderConditions: "$resi_resiProj",
-                    },
-                    {
-                        displayText: "Hill-Side House",
-                        renderConditions: "$resi_resiProj",
-                    },
-                    {
-                        displayText: "Jungle Attached House",
-                        renderConditions: "$resi_resiProj",
-                    },
-                    { displayText: "Shop (Multiple Shutters)", renderConditions: "$commr_commrProj" },
-                    { displayText: "Shop for Brand Stores", renderConditions: "$commr_commrProj" },
-                    { displayText: "Building for Institutions/ Banks", renderConditions: "$commr_commrProj" },
-                    {
-                        displayText: "Floors in Building for Institutions/ Banks",
-                        renderConditions: "$commr_commrProj",
-                    },
-                    { displayText: "Building for Hostels", renderConditions: "$commr_commrProj" },
-                    { displayText: "Floors in Building for Hostels", renderConditions: "$commr_commrProj" },
-                    { displayText: "Godown/ Storage", renderConditions: "$commr_commrProj" },
-                    { displayText: "Cold Storage", renderConditions: "$commr_commrProj" },
-                    {
-                        displayText: "Commercial Land",
-                        renderConditions: "$commr_commrProj",
-                    },
-                    { displayText: "Office Space", renderConditions: "$officeSpace" },
-                    {
-                        displayText: "Office Space (Time-Share)",
-                        renderConditions: "$officeSpace",
-                    },
-                    {
-                        displayText: "Office Space (SEZ)",
-                        renderConditions: "$officeSpace",
-                    },
-                    { displayText: "Industrial Land", renderConditions: "$industrial" },
-                    { displayText: "Factory Building", renderConditions: "$industrial" },
-                    { displayText: "Single Crop", renderConditions: "$agricultural" },
-                    { displayText: "Multiple Crops", renderConditions: "$agricultural" },
-                    { displayText: "Non Cultivated", renderConditions: "$agricultural" },
-                    { displayText: "Horticultural Land", renderConditions: "$agricultural" },
-                    { displayText: "Farm (House and Land)", renderConditions: "$agricultural" },
-                ],
-            },
-        ],
-    },
-
-    {
-        /*
-        2. Price Range
-        3. Location Radius
-        4. Agent Allowed
-        5. Valid till
-        6. Contact Preferences - Same
-        */
-        name: "Property Details",
-        questions: [
-            {
-                content: "Price Range",
-                key: "price_range",
-                subgroups: ["price_range"],
-            },
-            {
-                content: "Location Radius",
-                key: "loc_radius",
-                ansType: "text",
-                unit: "Km",
-            },
-            {
-                content: "Agent Allowed",
-                key: "agent_allowed",
-                ansType: "radio",
-                options: [
-                    {
-                        displayText: "Yes",
-                    },
-                    {
-                        displayText: "No",
-                    },
-                ],
-            },
-        ],
-    },
-];
-
-export const postPropertygroups = [
+export const groups = [
     {
         name: "User Type",
         questions: [
@@ -283,475 +74,452 @@ export const postPropertygroups = [
         ],
     },
     // TODO: Property Type
-    // * Residential & Residential Project
     {
         name: "Property Type",
-        renderConditions: "$resi_resiProj",
         tooltip: "To proceed you need to login/signup.",
         questions: [
             {
-                content: "What type of property your're looking for?",
-                ansType: "radio",
-                key: "pro_type",
-                options: [
-                    { displayText: "Bungalow" },
-                    { displayText: "Villa" },
-                    { displayText: "Independent House" },
-                    { displayText: "Simplex" },
-                    { displayText: "Duplex" },
-                    { displayText: "Triplex" },
-                    { displayText: "Row House" },
-                    { displayText: "Town House" },
-                    { displayText: "Semi Detached House" },
-                    { displayText: "Apartment" },
-                    { displayText: "Flat" },
-                    { displayText: "Studio Apartment" },
-                    { displayText: "Builder Floor" },
-                    { displayText: "Penthouse" },
-                    { displayText: "Residential Land", renderConditions: "$5" },
-                    // { displayText: "Residential Plot", renderConditions: "$5" },
-                    // {
-                    // 	displayText: "Residential Plot in a Project",
-                    // 	renderConditions: "$5",
-                    // },
+                renderConditions: "$resi_resiProj",
+                questions: [
                     {
-                        displayText: "Farm House",
-                        skipConditions: "$oa_resiProj",
+                        content: "What type of property your're looking for?",
+                        ansType: "radio",
+                        key: "pro_type",
+                        options: [
+                            { displayText: "Bungalow" },
+                            { displayText: "Villa" },
+                            { displayText: "Independent House" },
+                            { displayText: "Simplex" },
+                            { displayText: "Duplex" },
+                            { displayText: "Triplex" },
+                            { displayText: "Row House" },
+                            { displayText: "Town House" },
+                            { displayText: "Semi Detached House" },
+                            { displayText: "Apartment" },
+                            { displayText: "Flat" },
+                            { displayText: "Studio Apartment" },
+                            { displayText: "Builder Floor" },
+                            { displayText: "Penthouse" },
+                            { displayText: "Residential Land", renderConditions: "$5" },
+                            // { displayText: "Residential Plot", renderConditions: "$5" },
+                            // {
+                            // 	displayText: "Residential Plot in a Project",
+                            // 	renderConditions: "$5",
+                            // },
+                            {
+                                displayText: "Farm House",
+                                skipConditions: "$oa_resiProj",
+                            },
+                            {
+                                displayText: "River/Water Facing House",
+                                skipConditions: "$oa_resiProj",
+                            },
+                            {
+                                displayText: "Hill-Side House",
+                                skipConditions: "$oa_resiProj",
+                            },
+                            {
+                                displayText: "Jungle Attached House",
+                                skipConditions: "$oa_resiProj",
+                            },
+                        ],
                     },
+                ],
+            },
+            {
+                renderConditions: "$commr_commrProj",
+                questions: [
                     {
-                        displayText: "River/Water Facing House",
-                        skipConditions: "$oa_resiProj",
+                        content: "What type of property your're looking for?",
+                        key: "pro_type",
+                        ansType: "radio",
+                        options: [
+                            { displayText: "Shop (Multiple Shutters)" },
+                            { displayText: "Shop for Brand Stores" },
+                            { displayText: "Building for Institutions/ Banks" },
+                            {
+                                displayText: "Floors in Building for Institutions/ Banks",
+                            },
+                            { displayText: "Building for Hostels" },
+                            { displayText: "Floors in Building for Hostels" },
+                            { displayText: "Godown/ Storage" },
+                            { displayText: "Cold Storage" },
+                            {
+                                displayText: "Commercial Land",
+                                renderConditions: "$comm_prop_type_buy_sell",
+                            },
+                        ],
                     },
+                ],
+            },
+            {
+                renderConditions: "$officeSpace",
+                questions: [
                     {
-                        displayText: "Hill-Side House",
-                        skipConditions: "$oa_resiProj",
+                        content: "What type of property your're looking for?",
+                        key: "pro_type",
+                        ansType: "radio",
+                        options: [
+                            { displayText: "Office Space" },
+                            {
+                                displayText: "Office Space (Time-Share)",
+                                renderConditions: "$prop_type_os_rent",
+                            },
+                            {
+                                displayText: "Office Space (SEZ)",
+                                renderConditions: "$prop_type_os_rent",
+                            },
+                        ],
                     },
+                ],
+            },
+            {
+                renderConditions: "$industrial",
+                questions: [
                     {
-                        displayText: "Jungle Attached House",
-                        skipConditions: "$oa_resiProj",
+                        content: "What type of property your're looking for?",
+                        key: "pro_type",
+                        ansType: "radio",
+                        options: [{ displayText: "Industrial Land" }, { displayText: "Factory Building" }],
+                    },
+                ],
+            },
+
+            {
+                renderConditions: "$agricultural",
+                questions: [
+                    {
+                        content: "What type of property your're looking for?",
+                        key: "pro_type",
+                        ansType: "radio",
+                        options: [
+                            { displayText: "Single Crop" },
+                            { displayText: "Multiple Crops" },
+                            { displayText: "Non Cultivated" },
+                            { displayText: "Horticultural Land" },
+                            { displayText: "Farm (House and Land)" },
+                        ],
                     },
                 ],
             },
         ],
     },
-    // * Commercial and Commercial Project
-    {
-        name: "Property Type",
-        renderConditions: "$commr_commrProj",
-        tooltip: "To proceed you need to login/signup.",
-        questions: [
-            {
-                content: "What type of property your're looking for?",
-                key: "pro_type",
-                ansType: "radio",
-                options: [
-                    { displayText: "Shop (Multiple Shutters)" },
-                    { displayText: "Shop for Brand Stores" },
-                    { displayText: "Building for Institutions/ Banks" },
-                    {
-                        displayText: "Floors in Building for Institutions/ Banks",
-                    },
-                    { displayText: "Building for Hostels" },
-                    { displayText: "Floors in Building for Hostels" },
-                    { displayText: "Godown/ Storage" },
-                    { displayText: "Cold Storage" },
-                    {
-                        displayText: "Commercial Land",
-                        renderConditions: "$comm_prop_type_buy_sell",
-                    },
-                ],
-            },
-        ],
-    },
-    // * Office Space
-    {
-        name: "Property Type",
-        renderConditions: "$officeSpace",
-        tooltip: "To proceed you need to login/signup.",
-        questions: [
-            {
-                content: "What type of property your're looking for?",
-                key: "pro_type",
-                ansType: "radio",
-                options: [
-                    { displayText: "Office Space" },
-                    {
-                        displayText: "Office Space (Time-Share)",
-                        renderConditions: "$prop_type_os_rent",
-                    },
-                    {
-                        displayText: "Office Space (SEZ)",
-                        renderConditions: "$prop_type_os_rent",
-                    },
-                ],
-            },
-        ],
-    },
-    // * Industrial
-    {
-        name: "Property Type",
-        renderConditions: "$industrial",
-        tooltip: "To proceed you need to login/signup.",
-        questions: [
-            {
-                content: "What type of property your're looking for?",
-                key: "pro_type",
-                ansType: "radio",
-                options: [{ displayText: "Industrial Land" }, { displayText: "Factory Building" }],
-            },
-        ],
-    },
-    // * Agricultural
-    {
-        name: "Property Type",
-        renderConditions: "$agricultural",
-        tooltip: "To proceed you need to login/signup.",
-        questions: [
-            {
-                content: "What type of property your're looking for?",
-                key: "pro_type",
-                ansType: "radio",
-                options: [
-                    { displayText: "Single Crop" },
-                    { displayText: "Multiple Crops" },
-                    { displayText: "Non Cultivated" },
-                    { displayText: "Horticultural Land" },
-                    { displayText: "Farm (House and Land)" },
-                ],
-            },
-        ],
-    },
+
     // TODO: Area Description
     // * not_agro_pg_indus
     {
         name: "Area Description",
-        renderConditions: "$not_agro_pg_indus",
         questions: [
             {
-                content: "Area Range",
-                // renderConditions: "$prop_1",
-                renderConditions: "$area_range",
-                subgroups: ["area_range"],
-                key: "area_desc_area_range",
-            },
-            {
-                content: "Constructed Area Range",
-                subgroups: ["ca_range"],
-                renderConditions: "$ca_range",
-                // renderConditions: "$prop_1",
-                key: "area_desc_ca_range",
-            },
-            {
-                content: "Space Type",
-                key: "os_area_desc_space_type",
-                renderConditions: "$office_space_share",
-                ansType: "checkbox",
-                options: [
-                    { displayText: "Office Private" },
-                    { displayText: "Dedicated Desk" },
-                    { displayText: "Shared Desk" },
-                    { displayText: "Covered space for Team" },
-                    { displayText: "Conference Room " },
-                    { displayText: "Event Space " },
-                ],
-            },
-            {
-                content: "Super built-up Area",
-                ansType: "number",
-                renderConditions: "$sbupa_bua",
-                unit: "sqft",
-                key: "area_desc_sba",
-            },
-            {
-                content: "Built-up Area",
-                ansType: "number",
-                renderConditions: "$sbupa_bua",
-                unit: "sqft",
-                key: "area_desc_bua",
-            },
-            {
-                content: "Carpet Area",
-                ansType: "number",
-                renderConditions: "$carpet_area",
-                unit: "sqft",
-                key: "area_desc_carpet_area",
-            },
-            {
-                content: "Area",
-                ansType: "number",
-                // renderConditions: "$prop_sqft_area",
-                // renderConditions: "$oa_resi_hh",
-                renderConditions: "$area_sqft",
-                unit: "sqft",
-                key: "area_desc_area",
-            },
-            {
-                content: "Constructed Area",
-                ansType: "number",
-                renderConditions: "$const_area",
-                unit: "sqft",
-                key: "area_desc_ca",
-            },
-            {
-                content: "Number of units",
-                ansType: "number",
-                renderConditions: "$no_of_units",
-                key: "area_desc_unit_cnt",
-            },
-            {
-                content: "Super built-up Area Min Max",
-                renderConditions: "$sbua_bua_mm",
-                subgroups: ["min_max_sba"],
-                key: "area_desc_sbuamm",
-                // ansType: "number",
-            },
-            {
-                content: "Built-up Area Min Max",
-                renderConditions: "$sbua_bua_mm",
-                subgroups: ["min_max_ba"],
-                key: "area_desc_buamm",
-                // ansType: "number",
-            },
-            {
-                content: "Carpet Area Min Max",
-                renderConditions: "$ca_mm",
-                subgroups: ["min_max_ca"],
-                key: "area_desc_camm",
-                // ansType: "number",
-            },
-            {
-                content: "Floor Area",
-                ansType: "number",
-                renderConditions: "$floor_area",
-                unit: "sqft",
-                key: "area_desc_floorarea",
-            },
-            // * Floor Area range //
-            {
-                content: "Floor Area",
-                renderConditions: "$floor_area_range",
-                subgroups: ["min_max_fa"],
-            },
-            {
-                content: "Room Configuration",
-                ansType: "radio",
-                renderConditions: "$room_bath_config",
-                key: "area_desc_room_config",
-                options: [
-                    { displayText: "1 BHK", subgroups: ["bhk1_cfg"] },
+                renderConditions: "$not_agro_pg_indus",
+                questions: [
                     {
-                        displayText: "1.5 BHK",
-                        subgroups: ["bhk1_cfg", "bhk2_cfg"],
+                        content: "Area Range",
+                        // renderConditions: "$prop_1",
+                        renderConditions: "$area_range",
+                        subgroups: ["area_range"],
+                        key: "area_desc_area_range",
                     },
                     {
-                        displayText: "2 BHK",
-                        subgroups: ["bhk1_cfg", "bhk2_cfg", "bhk3_cfg"],
+                        content: "Constructed Area Range",
+                        subgroups: ["ca_range"],
+                        renderConditions: "$ca_range",
+                        // renderConditions: "$prop_1",
+                        key: "area_desc_ca_range",
                     },
                     {
-                        displayText: "2.5 BHK",
-                        subgroups: ["bhk1_cfg", "bhk2_cfg", "bhk3_cfg", "bhk4_cfg"],
-                    },
-                    {
-                        displayText: "3 BHK",
-                        subgroups: ["bhk1_cfg", "bhk2_cfg", "bhk3_cfg", "bhk4_cfg", "bhk5_cfg"],
-                    },
-                    {
-                        displayText: "3.5 BHK",
-                        subgroups: ["bhk1_cfg", "bhk2_cfg", "bhk3_cfg", "bhk4_cfg", "bhk5_cfg", "bhk6_cfg"],
-                    },
-                    {
-                        displayText: "4 BHK",
-                        subgroups: ["bhk1_cfg", "bhk2_cfg", "bhk3_cfg", "bhk4_cfg", "bhk5_cfg", "bhk6_cfg", "bhk7_cfg"],
-                    },
-                    {
-                        displayText: "4.5 BHK",
-                        subgroups: [
-                            "bhk1_cfg",
-                            "bhk2_cfg",
-                            "bhk3_cfg",
-                            "bhk4_cfg",
-                            "bhk5_cfg",
-                            "bhk6_cfg",
-                            "bhk7_cfg",
-                            "bhk8_cfg",
+                        content: "Space Type",
+                        key: "os_area_desc_space_type",
+                        renderConditions: "$office_space_share",
+                        ansType: "checkbox",
+                        options: [
+                            { displayText: "Office Private" },
+                            { displayText: "Dedicated Desk" },
+                            { displayText: "Shared Desk" },
+                            { displayText: "Covered space for Team" },
+                            { displayText: "Conference Room " },
+                            { displayText: "Event Space " },
                         ],
                     },
                     {
-                        displayText: "5+ BHK",
-                        subgroups: [
-                            "bhk1_cfg",
-                            "bhk2_cfg",
-                            "bhk3_cfg",
-                            "bhk4_cfg",
-                            "bhk5_cfg",
-                            "bhk6_cfg",
-                            "bhk7_cfg",
-                            "bhk8_cfg",
-                            "bhk9_cfg",
+                        content: "Super built-up Area",
+                        ansType: "number",
+                        renderConditions: "$sbupa_bua",
+                        unit: "sqft",
+                        key: "area_desc_sba",
+                    },
+                    {
+                        content: "Built-up Area",
+                        ansType: "number",
+                        renderConditions: "$sbupa_bua",
+                        unit: "sqft",
+                        key: "area_desc_bua",
+                    },
+                    {
+                        content: "Carpet Area",
+                        ansType: "number",
+                        renderConditions: "$carpet_area",
+                        unit: "sqft",
+                        key: "area_desc_carpet_area",
+                    },
+                    {
+                        content: "Area",
+                        ansType: "number",
+                        // renderConditions: "$prop_sqft_area",
+                        // renderConditions: "$oa_resi_hh",
+                        renderConditions: "$area_sqft",
+                        unit: "sqft",
+                        key: "area_desc_area",
+                    },
+                    {
+                        content: "Constructed Area",
+                        ansType: "number",
+                        renderConditions: "$const_area",
+                        unit: "sqft",
+                        key: "area_desc_ca",
+                    },
+                    {
+                        content: "Number of units",
+                        ansType: "number",
+                        renderConditions: "$no_of_units",
+                        key: "area_desc_unit_cnt",
+                    },
+                    {
+                        content: "Super built-up Area Min Max",
+                        renderConditions: "$sbua_bua_mm",
+                        subgroups: ["min_max_sba"],
+                        key: "area_desc_sbuamm",
+                        // ansType: "number",
+                    },
+                    {
+                        content: "Built-up Area Min Max",
+                        renderConditions: "$sbua_bua_mm",
+                        subgroups: ["min_max_ba"],
+                        key: "area_desc_buamm",
+                        // ansType: "number",
+                    },
+                    {
+                        content: "Carpet Area Min Max",
+                        renderConditions: "$ca_mm",
+                        subgroups: ["min_max_ca"],
+                        key: "area_desc_camm",
+                        // ansType: "number",
+                    },
+                    {
+                        content: "Floor Area",
+                        ansType: "number",
+                        renderConditions: "$floor_area",
+                        unit: "sqft",
+                        key: "area_desc_floorarea",
+                    },
+                    // * Floor Area range //
+                    {
+                        content: "Floor Area",
+                        renderConditions: "$floor_area_range",
+                        subgroups: ["min_max_fa"],
+                    },
+                    {
+                        content: "Room Configuration",
+                        ansType: "radio",
+                        renderConditions: "$room_bath_config",
+                        key: "area_desc_room_config",
+                        options: [
+                            { displayText: "1 BHK", subgroups: ["bhk1_cfg"] },
+                            {
+                                displayText: "1.5 BHK",
+                                subgroups: ["bhk1_cfg", "bhk2_cfg"],
+                            },
+                            {
+                                displayText: "2 BHK",
+                                subgroups: ["bhk1_cfg", "bhk2_cfg", "bhk3_cfg"],
+                            },
+                            {
+                                displayText: "2.5 BHK",
+                                subgroups: ["bhk1_cfg", "bhk2_cfg", "bhk3_cfg", "bhk4_cfg"],
+                            },
+                            {
+                                displayText: "3 BHK",
+                                subgroups: ["bhk1_cfg", "bhk2_cfg", "bhk3_cfg", "bhk4_cfg", "bhk5_cfg"],
+                            },
+                            {
+                                displayText: "3.5 BHK",
+                                subgroups: ["bhk1_cfg", "bhk2_cfg", "bhk3_cfg", "bhk4_cfg", "bhk5_cfg", "bhk6_cfg"],
+                            },
+                            {
+                                displayText: "4 BHK",
+                                subgroups: [
+                                    "bhk1_cfg",
+                                    "bhk2_cfg",
+                                    "bhk3_cfg",
+                                    "bhk4_cfg",
+                                    "bhk5_cfg",
+                                    "bhk6_cfg",
+                                    "bhk7_cfg",
+                                ],
+                            },
+                            {
+                                displayText: "4.5 BHK",
+                                subgroups: [
+                                    "bhk1_cfg",
+                                    "bhk2_cfg",
+                                    "bhk3_cfg",
+                                    "bhk4_cfg",
+                                    "bhk5_cfg",
+                                    "bhk6_cfg",
+                                    "bhk7_cfg",
+                                    "bhk8_cfg",
+                                ],
+                            },
+                            {
+                                displayText: "5+ BHK",
+                                subgroups: [
+                                    "bhk1_cfg",
+                                    "bhk2_cfg",
+                                    "bhk3_cfg",
+                                    "bhk4_cfg",
+                                    "bhk5_cfg",
+                                    "bhk6_cfg",
+                                    "bhk7_cfg",
+                                    "bhk8_cfg",
+                                    "bhk9_cfg",
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        content: "Number of Baths",
+                        ansType: "radio",
+                        renderConditions: "$room_bath_config",
+                        key: "area_desc_bath_cnt",
+                        options: [
+                            { displayText: "1", subgroups: ["bath1_cfg"] },
+                            {
+                                displayText: "2",
+                                subgroups: ["bath1_cfg", "bath2_cfg"],
+                            },
+                            {
+                                displayText: "3",
+                                subgroups: ["bath1_cfg", "bath2_cfg", "bath3_cfg"],
+                            },
+                            {
+                                displayText: "4",
+                                subgroups: ["bath1_cfg", "bath2_cfg", "bath3_cfg", "bath4_cfg"],
+                            },
+                            {
+                                displayText: "5+",
+                                subgroups: ["bath1_cfg", "bath2_cfg", "bath3_cfg", "bath4_cfg", "bath5_cfg"],
+                            },
                         ],
                     },
                 ],
             },
+            // * agro_area
             {
-                content: "Number of Baths",
-                ansType: "radio",
-                renderConditions: "$room_bath_config",
-                key: "area_desc_bath_cnt",
-                options: [
-                    { displayText: "1", subgroups: ["bath1_cfg"] },
+                renderConditions: "$agro_area",
+                questions: [
                     {
-                        displayText: "2",
-                        subgroups: ["bath1_cfg", "bath2_cfg"],
+                        content: "Area",
+                        ansType: "number",
+                        unit: "acres",
+                        key: "agro_area_desc_area",
                     },
                     {
-                        displayText: "3",
-                        subgroups: ["bath1_cfg", "bath2_cfg", "bath3_cfg"],
-                    },
-                    {
-                        displayText: "4",
-                        subgroups: ["bath1_cfg", "bath2_cfg", "bath3_cfg", "bath4_cfg"],
-                    },
-                    {
-                        displayText: "5+",
-                        subgroups: ["bath1_cfg", "bath2_cfg", "bath3_cfg", "bath4_cfg", "bath5_cfg"],
-                    },
-                ],
-            },
-        ],
-    },
-    // * agro_area
-    {
-        name: "Area Description",
-        renderConditions: "$agro_area",
-        questions: [
-            {
-                content: "Area",
-                ansType: "number",
-                unit: "acres",
-                key: "agro_area_desc_area",
-            },
-            {
-                content: "Road Facing",
-                ansType: "radio",
-                key: "agro_area_desc_road_facing",
-                options: [
-                    {
-                        displayText: "Yes",
-                    },
-                    {
-                        displayText: "No",
+                        content: "Road Facing",
+                        ansType: "radio",
+                        key: "agro_area_desc_road_facing",
+                        options: [
+                            {
+                                displayText: "Yes",
+                            },
+                            {
+                                displayText: "No",
+                            },
+                        ],
                     },
                 ],
             },
-        ],
-    },
-    // * pg_area
-    {
-        name: "Area Description",
-        renderConditions: "$pg_area",
-        questions: [
+            // * pg_area
             {
-                content: "Number of Rooms Available (single sharing)",
-                ansType: "number",
-                key: "pg_area_desc_ss_room_cnt",
+                renderConditions: "$pg_area",
+                questions: [
+                    {
+                        content: "Number of Rooms Available (single sharing)",
+                        ansType: "number",
+                        key: "pg_area_desc_ss_room_cnt",
+                    },
+                    {
+                        content: "Number of Rooms Available (twin/ more sharing)",
+                        ansType: "number",
+                        key: "pg_area_desc_ms_room_cnt",
+                    },
+                ],
             },
+            // * industrial_area
             {
-                content: "Number of Rooms Available (twin/ more sharing)",
-                ansType: "number",
-                key: "pg_area_desc_ms_room_cnt",
-            },
-        ],
-    },
-    // * industrial_area
-    {
-        name: "Area Description",
-        renderConditions: "$industrial_area",
-        questions: [
-            {
-                content: "Total area",
-                ansType: "number",
-                unit: "sqft",
-                key: "industrial_area_desc_ta",
-            },
-            {
-                content: "Covered/ Built area",
-                ansType: "number",
-                unit: "sqft",
-                key: "industrial_area_desc_cba",
+                renderConditions: "$industrial_area",
+                questions: [
+                    {
+                        content: "Total area",
+                        ansType: "number",
+                        unit: "sqft",
+                        key: "industrial_area_desc_ta",
+                    },
+                    {
+                        content: "Covered/ Built area",
+                        ansType: "number",
+                        unit: "sqft",
+                        key: "industrial_area_desc_cba",
+                    },
+                ],
             },
         ],
     },
     // TODO: Parking
-    // #1
-    // {
-    // 	name: "Parking",
-    // 	skipConditions: "$parking",
-    // 	questions: [
-    // 		{
-    // 			content: "Parking Available",
-    // 			ansType: "radio",
-    // 			key: "parking_avail_status",
-    // 			options: [{ displayText: "Yes" }, { displayText: "No" }],
-    // 		},
-    // 		{
-    // 			content: "Number of parkings available",
-    // 			ansType: "number",
-    // 			renderConditions: "$parking_avail",
-    // 			key: "parking_avail_cnt",
-    // 		},
-    // 	],
-    // },
-    // #2
     {
         name: "Parking",
-        // skipConditions: "$parking",
-        renderConditions: "$park_1",
         questions: [
             {
-                content: "Number of allocated parkings",
-                ansType: "number",
-                key: "hh_parking_allocated_cnt",
+                renderConditions: "$park_1",
+                questions: [
+                    {
+                        content: "Number of allocated parkings",
+                        ansType: "number",
+                        key: "hh_parking_allocated_cnt",
+                    },
+                    {
+                        content: "Number of covered parkings",
+                        ansType: "number",
+                        key: "hh_parking_covered_cnt",
+                    },
+                ],
             },
             {
-                content: "Number of covered parkings",
-                ansType: "number",
-                key: "hh_parking_covered_cnt",
-            },
-            // {
-            // 	content: "Visitors Parking Available",
-            // 	ansType: "radio",
-            // 	key: "hh_parking_vis_avail_status",
-            // 	options: [{ displayText: "Yes" }, { displayText: "No" }],
-            // },
-        ],
-    },
-    // #3
-    {
-        name: "Parking",
-        renderConditions: "$parking_resi_proj",
-        questions: [
-            {
-                content: "Number of allocated parkings per unit",
-                ansType: "number",
-                key: "resi_proj_parking_appu_cnt",
-            },
-            {
-                content: "Number of covered parkings per unit",
-                ansType: "number",
-                key: "resi_proj_parking_cppu_cnt",
-            },
-            {
-                content: "Additional Parkings Available",
-                ansType: "radio",
-                key: "resi_proj_parking_ap_avail_status",
-                options: [{ displayText: "Yes" }, { displayText: "No" }],
+                renderConditions: "$parking_resi_proj",
+                questions: [
+                    {
+                        content: "Number of allocated parkings per unit",
+                        ansType: "number",
+                        key: "resi_proj_parking_appu_cnt",
+                    },
+                    {
+                        content: "Number of covered parkings per unit",
+                        ansType: "number",
+                        key: "resi_proj_parking_cppu_cnt",
+                    },
+                    {
+                        content: "Additional Parkings Available",
+                        ansType: "radio",
+                        key: "resi_proj_parking_ap_avail_status",
+                        options: [{ displayText: "Yes" }, { displayText: "No" }],
+                    },
+                ],
             },
         ],
     },
     // TODO: Property Age
     {
-        skipConditions: "$prop_age_skip",
         name: "Property Age",
+        skipConditions: "$prop_age_skip",
         questions: [
             {
                 content: "Property Age",
@@ -2105,20 +1873,6 @@ export const subgroupsCollection = {
             },
         ],
     },
-    price_range: {
-        questions: [
-            {
-                content: "From",
-                ansType: "number",
-                key: "price_range_from",
-            },
-            {
-                content: "To",
-                ansType: "number",
-                key: "price_range_to",
-            },
-        ],
-    },
     // TODO: constructed_area_range
     ca_range: {
         questions: [
@@ -2151,22 +1905,3 @@ export const subgroupsCollection = {
         ],
     },
 };
-
-export const stepperLabels = [
-    "User Type",
-    "Transaction Type",
-    "Property Category",
-    "Property Type",
-    "Area Description",
-    "Parking",
-    "Property Age",
-    "Property Description",
-    "Price Details",
-    "Agent Details",
-    "Availability",
-    "Mark Location",
-    "Property Address",
-    "Image Upload",
-    "Contact Publisher",
-    // "Finish",
-];

@@ -1,13 +1,14 @@
 .prop-container {
-	width: 100%;
-	max-width: 1200px;
-	background-color: #eeeeee;
-	background-color: #eeeeee;
-	margin: 0 auto;
-	padding: 1em 0;
+  width: 100%;
+  max-width: 1200px;
+  background-color: #eeeeee;
+  background-color: #eeeeee;
+  margin: 0 auto;
+  padding: 1em 0;
+  padding-top: 0;
 }
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }

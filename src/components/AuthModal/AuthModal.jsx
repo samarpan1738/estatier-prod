@@ -36,6 +36,7 @@ const AuthModal = () => {
 				onClick={onOpen}
 				className="nav-auth-btn"
 				bgColor="#340e62"
+				id="auth-btn"
 			>
 				Sign in
 			</Button>
