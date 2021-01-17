@@ -20,7 +20,7 @@ import {
 // const { obj: formikInitState, subgroupsCollection } = populateInitialState(groups);
 
 // console.log(subgroupsCollection);
-function FormikStepForm({ groups, conditions, showTooltip }) {
+function FormikStepForm({ groups, conditions, showTooltip, isPostEnquiry }) {
     const dispatch = useDispatch();
     const step = useSelector(selectStep);
     const stepperCnt = useSelector(selectStepperCnt);
@@ -92,6 +92,7 @@ function FormikStepForm({ groups, conditions, showTooltip }) {
                     stepperCnt_stepCnt={stepperCnt_stepCnt}
                     subgroupsCollection={subgroupsCollection}
                     showTooltip={showTooltip}
+                    isPostEnquiry={isPostEnquiry}
                 />
             </div>
         </Formik>

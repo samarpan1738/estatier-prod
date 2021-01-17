@@ -720,8 +720,8 @@ const DeleteProperty_MUTATION = gql`
 // Post Enquiry
 
 export const PostEnquiry_MUTATION = gql`
-mutation PostEnquiry($propertyid: ID!) {
-    PostEnquiry(
+    mutation PostEnquiry(
+        $pro_post_user: ID
         $user_group: [String]
         $user_type: [String]
         $pro_trans_type: [String]
@@ -731,20 +731,36 @@ mutation PostEnquiry($propertyid: ID!) {
         $answers: [String]
         $enquiry_status: String
         $property_enquiry_date: String
+    ) {
+        PostEnquiry(
+            proInput: {
+                pro_post_user: $pro_post_user
+                user_group: $user_group
+                user_type: $user_type
+                pro_trans_type: $pro_trans_type
+                pro_category: $pro_category
+                pro_type: $pro_type
+                questions: $questions
+                answers: $answers
+                enquiry_status: $enquiry_status
+                property_enquiry_date: $property_enquiry_date
+            }
         ) {
-        proInput:{
-            user_group: $user_group
-            user_type: $user_type
-            pro_trans_type: $pro_trans_type
-            pro_category: $pro_category
-            pro_type: $pro_type
-            questions: $questions
-            answers: $answers
-            enquiry_status: $enquiry_status
-            property_enquiry_date: $property_enquiry_date
+            _id
+            pro_post_user
+            user_group
+            user_type
+            pro_trans_type
+            pro_category
+            pro_type
+            questions
+            answers
+            enquiry_status
+            property_enquiry_date
+            createdAt
+            updatedAt
         }
     }
-}
 `;
 
 // General

@@ -26,7 +26,7 @@ import {
     ModalCloseButton,
     useDisclosure,
 } from "@chakra-ui/react";
-import GROUP_QUERY_MAP, { DeleteFullProperty_MUTATION } from "../../../queries";
+import GROUP_QUERY_MAP, { DeleteFullProperty_MUTATION, PostEnquiry_MUTATION } from "../../../queries";
 import request from "graphql-request";
 import { selectIsLoggedIn, selectUserId } from "../../../features/user/userSlice";
 import {
@@ -62,6 +62,7 @@ function FormikStepper({
     stepperCnt_stepCnt,
     subgroupsCollection,
     showTooltip,
+    isPostEnquiry,
 }) {
     const dispatch = useDispatch();
     const setStep = (val) => dispatch(setStepRedux(val));
@@ -415,6 +416,32 @@ function FormikStepper({
         dispatch(setProperty(values));
         onOpen(e);
     };
+    const postEnquiryApiCall = () => {
+        // Make post enquiry api call
+        const data = {};
+        console.log(values);
+        data.pro_post_user = user_id;
+        data.user_group = values["user_group"];
+        data.pro_trans_type = values["pro_trans_type"];
+        data.pro_category = values["pro_category"];
+        data.pro_type = values["pro_type"];
+        data.questions = ["Price Range", "Location Radius", "Agent Allowed"];
+        data.answers = [
+            `₹${values["price_range_from"]}-${values["price_range_to"]}`,
+            values["loc_radius"] + " Km",
+            values["agent_allowed"],
+        ];
+        data.enquiry_status = "0";
+        data.property_enquiry_date = Date.now().toString();
+        request("https://estatier.herokuapp.com/graphql", PostEnquiry_MUTATION, data)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                // console.log(err.message.split(":")[0]);
+                console.log(err);
+            });
+    };
     return (
         <div className="form-content">
             {/* Preview Property modal */}
@@ -470,22 +497,26 @@ function FormikStepper({
                             </Button>
                         )}
 
-                        {/* {stepperCnt < stepperLabels.length - 1 ? ( */}
-                        {groups[step].name !== "Contact Preferences" ? (
-                            <Button
-                                isLoading={isValidating}
-                                disabled={!isValid || isValidating}
-                                onClick={handleNext}
-                                className="form-next-btn"
-                            >
-                                Next
-                            </Button>
-                        ) : (
-                            <>
-                                <Button onClick={previewPropertyToggle} colorScheme="purple" marginRight="28px">
-                                    Preview
+                        {!(isPostEnquiry && groups[step].name === "Property Details") &&
+                            groups[step].name !== "Contact Preferences" && (
+                                <Button
+                                    isLoading={isValidating}
+                                    disabled={!isValid || isValidating}
+                                    onClick={handleNext}
+                                    className="form-next-btn"
+                                >
+                                    Next
                                 </Button>
-                            </>
+                            )}
+                        {!isPostEnquiry && groups[step].name === "Contact Preferences" && (
+                            <Button onClick={previewPropertyToggle} colorScheme="purple" marginRight="28px">
+                                Preview
+                            </Button>
+                        )}
+                        {isPostEnquiry && groups[step].name === "Property Details" && (
+                            <Button onClick={postEnquiryApiCall} colorScheme="purple" marginRight="28px">
+                                Post Enquiry
+                            </Button>
                         )}
                     </div>
                 </div>
