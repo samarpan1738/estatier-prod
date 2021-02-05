@@ -135,6 +135,7 @@ function FormikStepper({
                         const { questions } = group;
                         questions.forEach(
                             ({ content, ansType, unit, key, renderConditions, skipConditions, subgroups, options }) => {
+                                console.log(content, values[key]);
                                 if (
                                     (skipConditions && checkConditions(values, conditions[skipConditions], ansType)) ||
                                     (renderConditions &&
@@ -247,6 +248,7 @@ function FormikStepper({
                         const { questions } = group;
                         questions.forEach(
                             ({ content, ansType, unit, key, renderConditions, skipConditions, subgroups, options }) => {
+                                console.log(values[key]);
                                 if (
                                     (skipConditions && checkConditions(values, conditions[skipConditions], ansType)) ||
                                     (renderConditions &&

@@ -18,6 +18,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { changeLocation, selectLocation } from "../../../features/location/locationSlice";
 import { IconButton, Tooltip, withStyles } from "@material-ui/core";
+import { setLocation } from "../../../features/search/searchSlice";
 const LargerTooltip = withStyles({
     tooltip: {
         fontSize: "14px",
@@ -84,10 +85,11 @@ export default function Location() {
     }, []);
     console.log(location);
     const handleSelect = (value) => {
+        console.log(value);
         const city = value.split(",")[0];
         setAddress("");
         setChange(false);
-        dispatch(changeLocation(city));
+        dispatch(setLocation(city));
     };
 
     const searchOptions = {

@@ -32,7 +32,7 @@ function MapStepperGroup({ group, conditions }) {
                     {questions.map((question, idx) => {
                         return (
                             <>
-                                {shouldSkipQuestion(question) ? null : (
+                                {shouldSkipQuestion(question) || question.hide ? null : (
                                     <Question question={question} questions_length={questions.length} />
                                 )}
                             </>
@@ -71,7 +71,10 @@ function MapComponent({ setFieldValue }) {
     });
     const { values } = useFormikContext();
     const location = useSelector(selectLocation);
-    const [coords, setCoords] = useState(center);
+    const [coords, setCoords] = useState({
+        lat: values["mark_loc_lat"] || location.lat || center.lat,
+        lng: values["mark_loc_lng"] || location.lng || center.lng,
+    });
     const handleClick = (e) => {
         // console.log(e);
         // console.log(e.latLng.lat());
@@ -79,12 +82,25 @@ function MapComponent({ setFieldValue }) {
 
         setCoords({ lat: e.latLng.lat(), lng: e.latLng.lng() });
     };
+    // useEffect(() => {
+
+    //     setCoords({
+    //         lat: location.lat || center.lat,
+    //         lng: location.lng || center.lng,
+    //     });
+    // }, [location]);
     useEffect(() => {
-        setCoords({
-            lat: location.lat || center.lat,
-            lng: location.lng || center.lng,
-        });
-    }, [location]);
+        setFieldValue("mark_loc_map", values["mark_loc_map"]);
+        setFieldValue("mark_loc_pin", values["mark_loc_map"]);
+        setFieldValue("prop_addr_house_no", values["mark_loc_map"]);
+        setFieldValue("mark_loc_tncl", values["mark_loc_map"]);
+        setFieldValue("mark_loc_landmark", values["mark_loc_map"]);
+        setFieldValue("mark_loc_ctv", values["mark_loc_map"]);
+        setFieldValue("mark_loc_state", values["mark_loc_map"]);
+        setFieldValue("mark_loc_road_name", values["mark_loc_map"]);
+        setFieldValue("mark_loc_lat", values["mark_loc_map"]);
+        setFieldValue("mark_loc_lng", values["mark_loc_map"]);
+    }, []);
     useEffect(() => {
         console.log(coords);
         Geocode.fromLatLng(coords.lat, coords.lng).then(
@@ -99,7 +115,8 @@ function MapComponent({ setFieldValue }) {
                 setFieldValue("mark_loc_ctv", "");
                 setFieldValue("mark_loc_state", "");
                 setFieldValue("mark_loc_road_name", "");
-
+                setFieldValue("mark_loc_lat", coords.lat + "");
+                setFieldValue("mark_loc_lng", coords.lng + "");
                 console.log(res);
                 res.forEach(({ long_name, short_name, types }) => {
                     types.forEach((type) => {

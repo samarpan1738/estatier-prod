@@ -1,20 +1,3 @@
-// TODO: Add acknowledgement group
-// TODO: Add image group acc. to prev info (Dropdown)
-// TODO: To escape schema validation, remove the ansType property from the question
-
-// TODO: sqft/acres option
-// TODO: Price Details - 2 options - acres/sqft and on request
-// TODO: Edit button on Prop address which takes to prev step
-// TODO: Upload Image --> Add later checkbox | Default Unchecked, Featured Image option
-// TODO: Prefered Call Days --> Default values - Sat,Sun
-// TODO: Prefered Call Timings --> if 'from' then 'to' also and validation
-// * Done
-// TODO: Show steps incrementally
-// TODO: Move to top --> Mark the property/ nearest landmark location on the map
-// TODO: Contact Publisher --> Contact Preferences
-// TODO: Mark location - Add pincode field
-// TODO: Visible to others --> Hide my plot/house no.| Default value - Yes
-
 export const postEnquiryGroups = [
     {
         name: "User Type",
@@ -927,6 +910,18 @@ export const postPropertygroups = [
                 content: "Pincode",
                 ansType: "text",
                 key: "mark_loc_pin",
+            },
+            {
+                content: "Latitude",
+                ansType: "text",
+                key: "mark_loc_lat",
+                hide: "true",
+            },
+            {
+                content: "Longitude",
+                ansType: "text",
+                key: "mark_loc_lng",
+                hide: "true",
             },
         ],
     },
@@ -2170,3 +2165,20 @@ export const stepperLabels = [
     "Contact Publisher",
     // "Finish",
 ];
+
+// TODO: Add acknowledgement group
+// TODO: Add image group acc. to prev info (Dropdown)
+// TODO: To escape schema validation, remove the ansType property from the question
+
+// TODO: sqft/acres option
+// TODO: Price Details - 2 options - acres/sqft and on request
+// TODO: Edit button on Prop address which takes to prev step
+// TODO: Upload Image --> Add later checkbox | Default Unchecked, Featured Image option
+// TODO: Preferred Call Days --> Default values - Sat,Sun
+// TODO: Preferred Call Timings --> if 'from' then 'to' also and validation
+// * Done
+// TODO: Show steps incrementally
+// TODO: Move to top --> Mark the property/ nearest landmark location on the map
+// TODO: Contact Publisher --> Contact Preferences
+// TODO: Mark location - Add pincode field
+// TODO: Visible to others --> Hide my plot/house no.| Default value - Yes

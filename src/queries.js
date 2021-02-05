@@ -630,8 +630,7 @@ const PostPropPropertImageGroupJUpdate_MUTATION = gql`
     }
 `;
 
-// Delete
-
+// Delete Group Questions
 const DeleteAreaGroupA_MUTATION = gql`
     mutation DeleteGroupQuestions($propertyid: ID!) {
         DeleteAreaGroupA(propertyid: $propertyid) {
@@ -718,7 +717,6 @@ const DeleteProperty_MUTATION = gql`
 `;
 
 // Post Enquiry
-
 export const PostEnquiry_MUTATION = gql`
     mutation PostEnquiry(
         $pro_post_user: ID
@@ -879,6 +877,170 @@ export const GET_USER_DETAILS_QUERY = gql`
         }
     }
 `;
+export const PropertySearch_QUERY = gql`
+    query PropertySearch($lat: Float, $long: Float) {
+        PropertySearch(search: { lat: $lat, long: $long }) {
+            _id
+            pro_post_user
+            user_group
+            user_type
+            pro_trans_type
+            pro_category
+            pro_type
+            pro_list_with_agent
+            agent
+            pro_status
+            property_post_date
+            createdAt
+            updatedAt
+            GroupA {
+                _id
+                user_id
+                property
+                parent_question
+                level
+                question
+                answer
+                units
+                brisk_grid
+                question_input_type
+                date
+                createdAt
+                updatedAt
+            }
+            GroupB {
+                _id
+                user_id
+                property
+                parent_question
+                level
+                question
+                answer
+                units
+                brisk_grid
+                question_input_type
+                date
+                createdAt
+                updatedAt
+            }
+            GroupC {
+                _id
+                user_id
+                property
+                parent_question
+                level
+                question
+                answer
+                units
+                brisk_grid
+                question_input_type
+                date
+                createdAt
+                updatedAt
+            }
+            GroupD {
+                _id
+                user_id
+                property
+                parent_question
+                level
+                question
+                answer
+                units
+                brisk_grid
+                question_input_type
+                date
+                createdAt
+                updatedAt
+            }
+            GroupE {
+                _id
+                user_id
+                property
+                parent_question
+                level
+                question
+                answer
+                units
+                brisk_grid
+                question_input_type
+                date
+                createdAt
+                updatedAt
+            }
+            GroupF {
+                _id
+                user_id
+                property
+                parent_question
+                level
+                question
+                answer
+                units
+                brisk_grid
+                question_input_type
+                date
+                createdAt
+                updatedAt
+            }
+            GroupG {
+                _id
+                user_id
+                property
+                parent_question
+                level
+                question
+                answer
+                units
+                brisk_grid
+                question_input_type
+                date
+                createdAt
+                updatedAt
+            }
+            GroupH {
+                _id
+                user_id
+                property
+                latitude
+                longitude
+                brisk_grid
+                date
+            }
+            GroupI {
+                _id
+                user_id
+                property
+                parent_question
+                level
+                question
+                answer
+                units
+                brisk_grid
+                question_input_type
+                date
+                createdAt
+                updatedAt
+            }
+            GroupJ {
+                _id
+                user_id
+                property
+                parent_question
+                level
+                question
+                answer
+                units
+                brisk_grid
+                question_input_type
+                date
+                createdAt
+                updatedAt
+            }
+        }
+    }
+`;
+// Queries
 
 const GROUP_QUERY_MAP = {
     "Property Type": {

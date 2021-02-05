@@ -1,72 +1,72 @@
 #navbar {
-  position: sticky;
-  width: 100%;
-  top: 0px;
-  z-index: 2;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: white;
-  color: black;
-  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.3);
-  padding: 12px;
-  transition: all ease-in-out 150ms;
-  padding: 0;
+    position: sticky;
+    width: 100%;
+    top: 0px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.3);
+    padding: 12px;
+    transition: all ease-in-out 150ms;
+    padding: 0;
 }
 
 #nav-logo {
-  font-size: 28px;
-  margin: 0px 20px;
+    font-size: 28px;
+    margin: 0px 20px;
 }
 #logo-container {
-  cursor: pointer;
+    cursor: pointer;
 }
 .hide-nav-search {
-  visibility: hidden;
-  opacity: 0;
+    visibility: hidden;
+    opacity: 0;
 }
 
 #nav-links-container {
-  display: flex;
-  background-color: white;
-  height: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  align-items: center;
+    display: flex;
+    background-color: white;
+    height: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    align-items: center;
 }
 
 .nav-at-banner {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  padding: 12px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 12px !important;
 }
 
 .nav-at-banner #nav-links-container {
-  box-shadow: 0px 0px 8px 0px rgb(200, 200, 200);
+    box-shadow: 0px 0px 8px 0px rgb(200, 200, 200);
 }
 
 .nav-items {
-  cursor: pointer;
-  margin: 0px 24px;
-  color: #340e62;
+    cursor: pointer;
+    margin: 0px 24px;
+    color: #340e62;
 }
 .nav-auth-btn {
-  margin: 0 10px;
+    margin: 0 10px;
 }
 @media (max-width: 768px) {
-  .nav-items:not(:last-child) {
-    display: none;
-  }
+    .nav-items:not(:last-child) {
+        display: none;
+    }
 
-  .navbar-search {
-    width: auto;
-  }
-  .navbar-search input,
-  .navbar-search .search-map {
-    display: none;
-    width: 0px;
-  }
-  .navbar-search .search-submit {
-    border-radius: 8px;
-  }
+    .navbar-search {
+        width: auto;
+    }
+    .navbar-search input,
+    .navbar-search .search-map {
+        display: none;
+        width: 0px;
+    }
+    .navbar-search .search-submit {
+        border-radius: 8px;
+    }
 }
