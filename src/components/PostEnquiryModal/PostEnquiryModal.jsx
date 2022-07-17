@@ -1,5 +1,5 @@
 import React from "react";
-import FormikStepForm from "../PostProperty/FormikStepForm/FormikStepForm";
+import PostPropertyForm from "../PostProperty/PostPropertyForm";
 import { conditions, postEnquiryGroups } from "../../utils/PostProperty/PropertyDataStructure_final";
 import {
     Modal,
@@ -31,7 +31,7 @@ function PostEnquiry({ isOpen, onOpen, onClose }) {
                     <Divider />
                     <ModalCloseButton />
                     <ModalBody width="1260px" overflow="auto">
-                        <FormikStepForm
+                        <PostPropertyForm
                             conditions={conditions}
                             groups={postEnquiryGroups}
                             showTooltip={"false"}

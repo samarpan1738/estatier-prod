@@ -444,6 +444,7 @@ function FormikStepper({
                 console.log(err);
             });
     };
+
     return (
         <div className="form-content">
             {/* Preview Property modal */}

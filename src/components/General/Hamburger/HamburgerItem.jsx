@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function HamburgerItem(props) {
-	const history = useHistory();
+	const navigate = useNavigate();
 	const [show, setShow] = useState(false);
 
 	return (
@@ -12,7 +12,7 @@ export default function HamburgerItem(props) {
 			className={
 				"hamburger-drawer-item " + (props.className ? props.className : "")
 			}
-			onClick={() => history.push(props.to || "/")}
+			onClick={() => navigate(props.to || "/")}
 		>
 			<span onClick={() => setShow((prev) => !prev)}>
 				{props.item}

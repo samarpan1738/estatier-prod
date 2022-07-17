@@ -13,17 +13,17 @@ import {
 	selectUserId,
 } from "../../../features/user/userSlice";
 import AuthModal from "../../AuthModal/AuthModal";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar({ atBanner, isSearchable = true }) {
-	const history = useHistory();
+	const navigate = useNavigate();
 	const isLoggedIn = useSelector(selectIsLoggedIn, shallowEqual);
 	const user = useSelector(selectUser, shallowEqual);
 	const [show, setShow] = useState(false);
 	console.log("userd =>", user);
 	return (
 		<div id="navbar" className={atBanner ? "nav-at-banner" : null}>
-			<div id="logo-container" onClick={() => history.push("/")}>
+			<div id="logo-container" onClick={() => navigate("/")}>
 				<div id="nav-logo">LOGO</div>
 			</div>
 

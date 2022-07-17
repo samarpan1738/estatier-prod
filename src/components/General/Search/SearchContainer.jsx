@@ -5,7 +5,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { Popup, TileLayer, MapContainer } from "react-leaflet";
 import * as L from "esri-leaflet-geocoder";
 import "./searchContainer.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { searchSlice, selectLocation, setLocation } from "../../../features/search/searchSlice";
 import Geocode from "react-geocode";
@@ -17,7 +17,7 @@ Geocode.setRegion("in");
 export default function SearchContainer(props) {
     const dispatch = useDispatch();
     const location = useSelector(selectLocation);
-    const history = useHistory();
+    const history = useNavigate();
     const ReverseGeocodeRef = useRef(new L.ReverseGeocode());
     const [centerCoord, setCenterCoord] = useState([23, 77]);
     const [address, setAddress] = useState(location.q ? location.q : "");
@@ -33,7 +33,7 @@ export default function SearchContainer(props) {
             Geocode.fromAddress(address).then((res) => {
                 const { lat, lng } = res.results[0].geometry.location;
                 dispatch(setLocation({ q: address, lat, lng }));
-                history.push(`/search?q=${address}&lat=${lat}&lng=${lng}`);
+                navigate(`/search?q=${address}&lat=${lat}&lng=${lng}`);
             }).catch(err=>{
                 console.log("Error fetching lat,lng from address : ",err)
             });

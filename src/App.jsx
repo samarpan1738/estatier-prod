@@ -1,42 +1,28 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import PostProperty from "./pages/PostProperty/PostProperty";
-import LandingPage from "./pages/LandingPage/App";
-import MessageCentre from "./pages/MessageCentre/App";
-import Search from "./pages/Search/Search";
+import PostProperty from "./pages/PostProperty";
+import LandingPage from "./pages/LandingPage";
+import MessageCentre from "./pages/MessageCentre";
+import Search from "./pages/Search";
 import AuthModal from "./components/AuthModal/AuthModal";
 import OtpValidation from "./components/AuthModal/OtpValidation/OtpValidation";
-import SinglePropertyPage from "./pages/SingleProperty/App";
+import SinglePropertyPage from "./pages/SingleProperty";
 
 function App() {
     return (
         <div className="App">
-            <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <LandingPage />
-                    </Route>
-                    <Route exact path="/otp">
-                        <OtpValidation mobileNo="8279701267" />
-                    </Route>
-                    <Route exact path="/auth">
-                        <AuthModal />
-                    </Route>
-                    <Route exact path="/message">
-                        <MessageCentre />
-                    </Route>
-                    <Route exact path="/search">
-                        <Search />
-                    </Route>
-                    <Route exact path="/post-prop">
-                        <PostProperty />
-                    </Route>
-                    <Route exact path="/prop">
-                        <SinglePropertyPage />
-                    </Route>
-                </Switch>
-            </Router>
+            <BrowserRouter>
+                <Routes>
+                    <Route index path="/" element={<LandingPage />} />
+                    <Route path="/otp" element={<OtpValidation mobileNo="8279701267" />} />
+                    <Route path="/auth" element={<AuthModal />} />
+                    <Route path="/message" element={<MessageCentre />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/post-prop" element={<PostProperty />} />
+                    <Route path="/prop" element={<SinglePropertyPage />} />
+                </Routes>
+            </BrowserRouter>
         </div>
     );
 }

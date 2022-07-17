@@ -17,7 +17,6 @@ import {
 	ModalContent,
 	ModalCloseButton,
 } from "@chakra-ui/react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./authModal.css";

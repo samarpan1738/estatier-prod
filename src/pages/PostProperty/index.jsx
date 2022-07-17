@@ -1,7 +1,7 @@
 import React from "react";
 
 // Components
-import FormikStepForm from "../../components/PostProperty/FormikStepForm/FormikStepForm";
+import PostPropertyForm from "../../components/PostProperty/PostPropertyForm";
 import {
     conditions,
     postPropertygroups,
@@ -15,7 +15,7 @@ function PostProperty() {
     return (
         <div className="post-property-page">
             <Navbar />
-            <FormikStepForm conditions={conditions} groups={postPropertygroups} />
+            <PostPropertyForm conditions={conditions} groups={postPropertygroups} />
         </div>
     );
 }

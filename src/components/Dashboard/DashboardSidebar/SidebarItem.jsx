@@ -1,12 +1,12 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SidebarItem = React.forwardRef(
 	({ content = "", className = "", onClick = "", icon: Icon = () => <></>, collapse = false, path = "/" }, ref) => {
-		const history = useHistory();
+		const navigate = useNavigate();
 
 		const handleClick = (e) => {
-			history.push(path);
+			navigate(path);
 			onClick(e);
 		};
 

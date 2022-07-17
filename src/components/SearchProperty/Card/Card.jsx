@@ -15,7 +15,7 @@ import OpenInNewIcon from "@material-ui/icons/OpenInNew";
 import CardImg from "../../../img/card-img.jpg";
 // Styles
 import "./card.scss";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { pinProperty } from "../../../features/search/searchSlice";
 
@@ -23,7 +23,7 @@ function Card({ index, p, setMapState, height, mapToggle, opacity }) {
     // console.log(p);
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     // console.log(p);
     // const { location, street, price, bedCnt, baCnt, area, lat, lng, isPinned } = p;
     const {
@@ -130,7 +130,7 @@ function Card({ index, p, setMapState, height, mapToggle, opacity }) {
                         </div>
 
                         <div className="open-card-toggle toggle-icon">
-                            <OpenInNewIcon fontSize="small" onClick={() => history.push("/prop")} />
+                            <OpenInNewIcon fontSize="small" onClick={() => navigate("/prop")} />
                         </div>
                     </div>
                 </div>
