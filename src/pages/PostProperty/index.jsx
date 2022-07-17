@@ -8,7 +8,7 @@ import {
     postEnquiryGroups,
 } from "../../utils/PostProperty/PropertyDataStructure_final";
 // Styles
-import "./postProperty.css";
+import "./index.css";
 import Navbar from "../../components/General/Navbar_2/Navbar";
 
 function PostProperty() {

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import usePromise from "../../../Hooks/usePromise";
+import usePromise from "../../../hooks/usePromise";
 import PlacesAutocomplete from "react-places-autocomplete";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import EditLocationRoundedIcon from "@material-ui/icons/EditLocationRounded";

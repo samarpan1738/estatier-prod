@@ -2,19 +2,19 @@ import React, { useCallback, useEffect } from "react";
 
 import { Form, useFormikContext } from "formik";
 import StepperGroup from "../StepperGroup/StepperGroup";
-import TooltipImg from "../../../img/tooltip.svg";
+import TooltipImg from "@src/img/tooltip.svg";
 import Tooltip from "../Tooltip/Tooltip";
 
 // import { subgroupsCollection } from "../../../utils/PostProperty/PropertyDataStructure_final";
 import { useMediaQuery } from "@material-ui/core";
 
 // Utils
-import checkConditions from "../../../utils/PostProperty/checker";
-import { useNextGroup, usePrevGroup } from "../../../utils/PostProperty/groupChanger";
+import checkConditions from "@src/utils/PostProperty/checker";
+import { useNextGroup, usePrevGroup } from "@src/utils/PostProperty/groupChanger";
 
 // Styles
 import "./formikStepper.css";
-import ValidationSchemaGenerator from "../../../utils/PostProperty/ValidationSchemaGenerator";
+import ValidationSchemaGenerator from "@src/utils/PostProperty/ValidationSchemaGenerator";
 import {
     Button,
     Modal,
@@ -26,9 +26,9 @@ import {
     ModalCloseButton,
     useDisclosure,
 } from "@chakra-ui/react";
-import GROUP_QUERY_MAP, { DeleteFullProperty_MUTATION, PostEnquiry_MUTATION } from "../../../queries";
+import GROUP_QUERY_MAP, { DeleteFullProperty_MUTATION, PostEnquiry_MUTATION } from "@src/queries";
 import request from "graphql-request";
-import { selectIsLoggedIn, selectUserId } from "../../../features/user/userSlice";
+import { selectIsLoggedIn, selectUserId } from "@src/features/user/userSlice";
 import {
     resetForm as resetFormState,
     setTooltip,
@@ -41,8 +41,8 @@ import {
     pushGroupsToDelete,
     popGroupsToDelete,
     selectGroupsToDelete,
-} from "../../../features/postProperty/postPropertySlice";
-import { setProperty } from "../../../features/singleProp/singlePropSlice";
+} from "@src/features/postProperty/postPropertySlice";
+import { setProperty } from "@src/features/singleProp/singlePropSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { IoArrowBack, IoArrowForward } from "react-icons/all";
 import PreviewProperty from "../../SingleProperty/PropPage/PropPage";

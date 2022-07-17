@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import useWidth from "../../../Hooks/useWidth";
+import useWidth from "../../../hooks/useWidth";
 
 export default function OfferItem(props) {
 	const windowWidth = useWidth();

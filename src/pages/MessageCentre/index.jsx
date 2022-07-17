@@ -1,5 +1,5 @@
-import "./App.css";
-import ContactsContainer from "../../components/MessageCentre/ContactsContainer/ContactsContainer";
+import "./index.css";
+import ContactsContainer from "../../components/MessageCentre/ContactsContainer";
 import ConversationContainer from "../../components/MessageCentre/ConversationContainer/ConversationContainer";
 import Navbar from "../../components/General/Navbar_2/Navbar";
 

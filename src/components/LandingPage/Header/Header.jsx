@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { selectLocation } from "../../../features/location/locationSlice";
-import usePromise from "../../../Hooks/usePromise";
+import usePromise from "../../../hooks/usePromise";
 import "./header.css";
 
 export default function Header(props) {

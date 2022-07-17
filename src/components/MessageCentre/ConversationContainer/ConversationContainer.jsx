@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useSocket from "../../../Hooks/useSocket";
+import useSocket from "@src/hooks/useSocket";
 import SendIcon from "@material-ui/icons/Send";
 import CloseIcon from "@material-ui/icons/Close";
 import DeleteIcon from "@material-ui/icons/Delete";

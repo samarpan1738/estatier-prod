@@ -1,4 +1,4 @@
-import "./App.css";
+import "./index.css";
 import PropPage from "../../components/SingleProperty/PropPage/PropPage";
 import Navbar from "../../components/General/Navbar_2/Navbar";
 function SinglePropertyPage() {

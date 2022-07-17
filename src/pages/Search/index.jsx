@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import SearchPage from "../../components/SearchProperty/SearchPage/SearchPage";
 import { changeLocation } from "../../features/location/locationSlice";
 import { setLocation } from "../../features/search/searchSlice";
-import "./search.css";
+import "./index.css";
 function Search() {
     const dispatch = useDispatch();
     const urlSearchParamsObj = new URLSearchParams(useLocation().search);

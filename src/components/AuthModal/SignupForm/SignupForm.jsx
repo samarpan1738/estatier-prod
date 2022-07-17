@@ -18,7 +18,7 @@ import googleIcon from "../../../img/google-icon.ico";
 import "./signupForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Spinner, Stack, useToast } from "@chakra-ui/react";
-import useQuery from "../../../Hooks/useQuery";
+import useQuery from "../../../hooks/useQuery";
 import OtpValidation from "../OtpValidation/OtpValidation";
 import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
 import { SIGNUP_MUTATION } from "../../../queries";

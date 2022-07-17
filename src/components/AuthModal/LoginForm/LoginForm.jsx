@@ -11,7 +11,7 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 import { loginUser, selectUserId } from "../../../features/user/userSlice";
 
-import useQuery from "../../../Hooks/useQuery";
+import useQuery from "../../../hooks/useQuery";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { LOGIN_QUERY, GET_USER_DETAILS_QUERY } from "../../../queries";
 
