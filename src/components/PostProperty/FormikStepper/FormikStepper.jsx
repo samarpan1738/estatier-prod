@@ -10,7 +10,7 @@ import { useMediaQuery } from "@material-ui/core";
 
 // Utils
 import checkConditions from "../../../utils/PostProperty/checker";
-import { nextGroup, prevGroup } from "../../../utils/PostProperty/groupChanger";
+import { useNextGroup, usePrevGroup } from "../../../utils/PostProperty/groupChanger";
 
 // Styles
 import "./formikStepper.css";
@@ -35,8 +35,7 @@ import {
     selectTooltip,
     selectPropId,
     setPropId,
-    selectStep,
-    setStep as setStepRedux,
+    selectCurrentGroupIndex,
     setQuestionId,
     selectFormData,
     pushGroupsToDelete,
@@ -55,19 +54,18 @@ function FormikStepper({
     groups,
     conditions,
     setValidationSchema,
-    setStepperCnt,
     stepperCnt,
-    setStepperLabels,
-    setStepperCnt_stepCnt,
-    stepperCnt_stepCnt,
     subgroupsCollection,
     showTooltip,
     isPostEnquiry,
+    setSteps,
+    steps
 }) {
+    const nextGroup = useNextGroup();
+    const prevGroup = usePrevGroup();
     const dispatch = useDispatch();
-    const setStep = (val) => dispatch(setStepRedux(val));
     // * Selecting values
-    const step = useSelector(selectStep);
+    const currentGroupIndex = useSelector(selectCurrentGroupIndex);
     const isLoggedIn = useSelector(selectIsLoggedIn);
     const user_id = useSelector(selectUserId);
     const property_id = useSelector(selectPropId);
@@ -77,13 +75,12 @@ function FormikStepper({
     // * Modal stuff
     const { isOpen, onOpen, onClose } = useDisclosure();
     let { values, isValid, isValidating, validateForm, resetForm, setFieldTouched } = useFormikContext();
-
     const matches = useMediaQuery("(min-width:600px)");
     // console.log("Groups to Delete ", groupsToDelete);
     // * Creating and setting the Validation Schema for current group
     useEffect(() => {
         ValidationSchemaGenerator(
-            step,
+            currentGroupIndex,
             groups,
             conditions,
             values,
@@ -95,7 +92,7 @@ function FormikStepper({
         return () => {
             // console.log("Formik stepper unmounted");
         };
-    }, [step]);
+    }, [currentGroupIndex]);
 
     const createGroupQuestionsApiCall = (groupName) => {
         console.log(groupName);
@@ -206,7 +203,7 @@ function FormikStepper({
                             }
                         );
                     }
-                    sendAllAnswers(groups[step]);
+                    sendAllAnswers(groups[currentGroupIndex]);
             }
         }
     };
@@ -334,18 +331,12 @@ function FormikStepper({
                             }
                         );
                     }
-                    sendAllAnswers(groups[step]);
+                    sendAllAnswers(groups[currentGroupIndex]);
             }
         }
     };
     const handleNext = () => {
-        const groupName = groups[step].name;
-
-        // * Open login/signup modal
-        if (stepperCnt === 3 && !isLoggedIn) {
-            document.getElementById("auth-btn").click();
-            return;
-        }
+        const groupName = groups[currentGroupIndex].name;
         if (!formData[groupName]) createGroupQuestionsApiCall(groupName);
         else updateGroupQuestionsApiCall(groupName);
 
@@ -354,49 +345,29 @@ function FormikStepper({
         nextGroup(
             validateForm,
             values,
-            step,
+            currentGroupIndex,
             setFieldTouched,
-            setStep,
-            setStepperCnt,
-            (val) => {
-                dispatch(setTooltip(val));
-            },
             stepperCnt,
-            setStepperLabels,
-            setStepperCnt_stepCnt,
-            stepperCnt_stepCnt,
             groups,
             conditions,
-            subgroupsCollection
+            setSteps
         );
     };
     const handlePrev = () => {
         // Not working :(
         validateForm();
-        dispatch(pushGroupsToDelete(groups[step].name));
+        dispatch(pushGroupsToDelete(groups[currentGroupIndex].name));
         prevGroup(
-            validateForm,
-            values,
-            step,
-            setFieldTouched,
-            setStep,
-            setStepperCnt,
-            (val) => {
-                dispatch(setTooltip(val));
-            },
             stepperCnt,
-            setStepperLabels,
-            setStepperCnt_stepCnt,
             groups,
-            conditions,
-            subgroupsCollection
+            setSteps,
+            steps
         );
     };
     // * Reset Form Handler
     const _resetForm = useCallback(() => {
         resetForm();
-        // handleReset();
-        setStepperLabels([groups[0].name]);
+        setSteps([{ label: groups[0].name, groupIndex: 0 }]);
         console.log(property_id);
         if (property_id) {
             const data = { propertyid: property_id };
@@ -414,7 +385,7 @@ function FormikStepper({
     }, [property_id]);
 
     const previewPropertyToggle = (e) => {
-        // createGroupQuestionsApiCall(groups[step].name);
+        // createGroupQuestionsApiCall(groups[currentGroupIndex].name);
         dispatch(setProperty(values));
         onOpen(e);
     };
@@ -475,12 +446,12 @@ function FormikStepper({
             {/* FORM */}
             <div id="left-post">
                 <Form autoComplete="off">
-                    {groups[step].name === "Mark Location" ? (
-                        <MapStepperGroup group={groups[step]} conditions={conditions} />
+                    {groups[currentGroupIndex].name === "Mark Location" ? (
+                        <MapStepperGroup group={groups[currentGroupIndex]} conditions={conditions} />
                     ) : (
-                        <StepperGroup group={groups[step]} conditions={conditions} />
+                        <StepperGroup group={groups[currentGroupIndex]} conditions={conditions} />
                     )}
-                    {/* {step === groups.length - 1 && <button type="submit">Submit</button>} */}
+                    {/* {currentGroupIndex === groups.length - 1 && <button type="submit">Submit</button>} */}
                 </Form>
                 <div className="form-control-btns">
                     <Button onClick={_resetForm} id="reset-form-btn">
@@ -488,7 +459,7 @@ function FormikStepper({
                     </Button>
 
                     <div>
-                        {step > 0 && (
+                        {currentGroupIndex > 0 && (
                             <Button
                                 onClick={handlePrev}
                                 disabled={isValidating}
@@ -500,8 +471,8 @@ function FormikStepper({
                             </Button>
                         )}
 
-                        {!(isPostEnquiry && groups[step].name === "Property Details") &&
-                            groups[step].name !== "Contact Preferences" && (
+                        {!(isPostEnquiry && groups[currentGroupIndex].name === "Property Details") &&
+                            groups[currentGroupIndex].name !== "Contact Preferences" && (
                                 <Button
                                     isLoading={isValidating}
                                     disabled={!isValid || isValidating}
@@ -511,12 +482,12 @@ function FormikStepper({
                                     Next
                                 </Button>
                             )}
-                        {!isPostEnquiry && groups[step].name === "Contact Preferences" && (
+                        {!isPostEnquiry && groups[currentGroupIndex].name === "Contact Preferences" && (
                             <Button onClick={previewPropertyToggle} colorScheme="purple" marginRight="28px">
                                 Preview
                             </Button>
                         )}
-                        {isPostEnquiry && groups[step].name === "Property Details" && (
+                        {isPostEnquiry && groups[currentGroupIndex].name === "Property Details" && (
                             <Button onClick={postEnquiryApiCall} colorScheme="purple" marginRight="28px">
                                 Post Enquiry
                             </Button>

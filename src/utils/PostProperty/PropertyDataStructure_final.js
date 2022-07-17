@@ -201,6 +201,7 @@ export const postPropertygroups = [
                 options: [{ displayText: "Owner" }, { displayText: "Agent" }, { displayText: "Builder" }],
             },
         ],
+        loginRequired:false
     },
     {
         name: "Transaction Type",
@@ -220,6 +221,7 @@ export const postPropertygroups = [
                 ],
             },
         ],
+        loginRequired:false
     },
     {
         name: "Property Category",
@@ -264,6 +266,7 @@ export const postPropertygroups = [
                 ],
             },
         ],
+        loginRequired:false
     },
     // TODO: Property Type
     // * Residential & Residential Project
@@ -316,6 +319,7 @@ export const postPropertygroups = [
                 ],
             },
         ],
+        loginRequired:false
     },
     // * Commercial and Commercial Project
     {
@@ -345,6 +349,7 @@ export const postPropertygroups = [
                 ],
             },
         ],
+        loginRequired:false
     },
     // * Office Space
     {
@@ -369,6 +374,7 @@ export const postPropertygroups = [
                 ],
             },
         ],
+        loginRequired:false
     },
     // * Industrial
     {
@@ -383,6 +389,7 @@ export const postPropertygroups = [
                 options: [{ displayText: "Industrial Land" }, { displayText: "Factory Building" }],
             },
         ],
+        loginRequired:false
     },
     // * Agricultural
     {
@@ -403,6 +410,7 @@ export const postPropertygroups = [
                 ],
             },
         ],
+        loginRequired:false
     },
     // TODO: Area Description
     // * not_agro_pg_indus
@@ -601,6 +609,7 @@ export const postPropertygroups = [
                 ],
             },
         ],
+        loginRequired:true
     },
     // * agro_area
     {
@@ -627,6 +636,7 @@ export const postPropertygroups = [
                 ],
             },
         ],
+        loginRequired:true
     },
     // * pg_area
     {
@@ -644,6 +654,7 @@ export const postPropertygroups = [
                 key: "pg_area_desc_ms_room_cnt",
             },
         ],
+        loginRequired:true
     },
     // * industrial_area
     {
@@ -663,6 +674,7 @@ export const postPropertygroups = [
                 key: "industrial_area_desc_cba",
             },
         ],
+        loginRequired:true
     },
     // TODO: Parking
     // #1
@@ -707,6 +719,7 @@ export const postPropertygroups = [
             // 	options: [{ displayText: "Yes" }, { displayText: "No" }],
             // },
         ],
+        loginRequired:true
     },
     // #3
     {
@@ -730,11 +743,12 @@ export const postPropertygroups = [
                 options: [{ displayText: "Yes" }, { displayText: "No" }],
             },
         ],
+        loginRequired:true
     },
     // TODO: Property Age
     {
-        skipConditions: "$prop_age_skip",
         name: "Property Age",
+        skipConditions: "$prop_age_skip",
         questions: [
             {
                 content: "Property Age",
@@ -750,6 +764,7 @@ export const postPropertygroups = [
                 ],
             },
         ],
+        loginRequired:true
     },
     // TODO: Property Description
     {
@@ -761,6 +776,7 @@ export const postPropertygroups = [
                 key: "prop_desc",
             },
         ],
+        loginRequired:true
     },
     // TODO: Price Details
     {
@@ -778,6 +794,7 @@ export const postPropertygroups = [
                 options: [{ displayText: "Yes" }, { displayText: "No" }],
             },
         ],
+        loginRequired:true
     },
     // TODO: Agent Details
     {
@@ -800,6 +817,7 @@ export const postPropertygroups = [
                 key: "agent_details_srv_charge",
             },
         ],
+        loginRequired:true
     },
     {
         name: "Agent Details",
@@ -812,6 +830,7 @@ export const postPropertygroups = [
                 options: [{ displayText: "Yes" }, { displayText: "No" }],
             },
         ],
+        loginRequired:true
     },
     // TODO: Availability
     {
@@ -838,6 +857,7 @@ export const postPropertygroups = [
                 options: [{ displayText: "Company Agreement" }, { displayText: "Any" }],
             },
         ],
+        loginRequired:true
     },
     // TODO: Mark Location
     {
@@ -924,6 +944,7 @@ export const postPropertygroups = [
                 hide: "true",
             },
         ],
+        loginRequired:true
     },
     // TODO: Property Address
     {
@@ -983,6 +1004,7 @@ export const postPropertygroups = [
                 key: "mark_loc_pin",
             },
         ],
+        loginRequired:true
     },
     // TODO: Image Upload
     {
@@ -993,6 +1015,7 @@ export const postPropertygroups = [
                 customOptions: "true",
             },
         ],
+        loginRequired:true
     },
     // TODO: Contact Publisher
     {
@@ -1032,6 +1055,7 @@ export const postPropertygroups = [
                 // key: "contact_pub_contact_on",
             },
         ],
+        loginRequired:true
     },
 ];
 

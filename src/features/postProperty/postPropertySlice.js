@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const postPropertySlice = createSlice({
     name: "postProperty",
     initialState: {
-        step: 0,
+        currentGroupIndex: 0,
         stepperCnt: 0,
         currentGroup: null,
         values: null,
@@ -26,7 +26,7 @@ export const postPropertySlice = createSlice({
             return state;
         },
         resetForm: (state, action) => {
-            // state.step = 0;
+            // state.currentGroupIndex = 0;
             // state.stepperCnt = 0;
             // state.currentGroup = null;
             // state.values = null;
@@ -36,7 +36,7 @@ export const postPropertySlice = createSlice({
             // state.groupsToDelete = [
             //     // groupName
             // ];
-            state.step = 0;
+            state.currentGroupIndex = 0;
             state.stepperCnt = 0;
             state.currentGroup = null;
             state.values = null;
@@ -45,9 +45,9 @@ export const postPropertySlice = createSlice({
             state.formData = {};
             state.groupsToDelete = [];
         },
-        setStep: (state, action) => {
-            // console.log("Setp step action running");
-            state.step = action.payload;
+        setCurrentGroupIndex: (state, action) => {
+            // console.log("Setp currentGroupIndex action running");
+            state.currentGroupIndex = action.payload;
         },
         setStepperCnt: (state, action) => {
             state.stepperCnt = action.payload;
@@ -88,7 +88,7 @@ export const postPropertySlice = createSlice({
 // * Actions
 export const {
     setInitialState,
-    setStep,
+    setCurrentGroupIndex,
     resetForm,
     setStepperCnt,
     setTooltip,
@@ -101,7 +101,7 @@ export const {
 // * Selectors
 export const selectPostPropState = (state) => state.postProperty;
 export const selectSubgroupsCollection = (state) => state.postProperty.subgroupsCollection;
-export const selectStep = (state) => state.postProperty.step;
+export const selectCurrentGroupIndex = (state) => state.postProperty.currentGroupIndex;
 export const selectStepperCnt = (state) => state.postProperty.stepperCnt;
 export const selectTooltip = (state) => state.postProperty.tooltip;
 export const selectPropId = (state) => state.postProperty.propertyId;
