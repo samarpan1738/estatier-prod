@@ -3,15 +3,14 @@ import HelpIcon from "@material-ui/icons/Help";
 import styles from "./tooltip.module.css";
 
 const Tooltip = ({ content }) => {
-  console.log(content);
   return (
     <div id="tooltip-card">
       {content.heading}
       {content.content && (
         <ol>
-          {content.content.map((tooltip) => {
+          {content.content.map((tooltip, idx) => {
             return (
-              <li className={styles.tooltip_list_item}>
+              <li key={idx} className={styles.tooltip_list_item}>
                 <h3>{tooltip}</h3>
               </li>
             );

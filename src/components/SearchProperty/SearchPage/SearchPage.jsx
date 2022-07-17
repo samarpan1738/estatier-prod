@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PropertySearch_QUERY } from "../../../queries";
 import request from "graphql-request";
 import Geocode from "react-geocode";
-import { ReactComponent as LoadingSVG } from "./loading.svg";
+import LoadingSVG from "./loading.svg?component";
 import "./loading.css";
 import { useLocation, useParams } from "react-router-dom";
 

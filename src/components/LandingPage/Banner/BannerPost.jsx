@@ -3,8 +3,8 @@ import Carousel from "../../General/Carousel/Carousel";
 import BannerPostItem from "./BannerPostItem";
 import HomeIcon from "@material-ui/icons/Home";
 import BusinessIcon from "@material-ui/icons/Business";
-import { ReactComponent as PlotIcon } from "../../img/land-parcels.svg";
-import { ReactComponent as ProjectIcon } from "../../img/settings.svg";
+import PlotIcon from "../../img/land-parcels.svg?component";
+import ProjectIcon from "../../img/settings.svg?component";
 
 export default function BannerPost({ openEnquiryModal }) {
     const settings = {

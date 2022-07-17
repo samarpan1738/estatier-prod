@@ -10,9 +10,9 @@ import {
 } from "@react-google-maps/api";
 import mapStyles from "../../mapStyles.js";
 import CloseIcon from "@material-ui/icons/Close";
-
+const API_KEY = import.meta.env.VITE_GOOGLE_KEY_PRO;
+console.log("API_KEY : ",API_KEY)
 function Map({ setMapState, position }) {
-	const API_KEY = process.env.REACT_APP_GOOGLE_KEY_PRO;
 	const mapRef = useRef(null);
 	const render = useRef(0);
 	console.log(render.current++);

@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 // Components
 import { Formik } from "formik";
 // import { conditions, groups } from "../../../utils/PostProperty/PropertyDataStructure_final";
-import FormikStepper from "../FormikStepper/FormikStepper.js";
+import FormikStepper from "../FormikStepper/FormikStepper";
 import "./formikStepForm.css";
 import { Step, StepLabel, Stepper, useMediaQuery } from "@material-ui/core";
 import populateInitialState from "../../../utils/PostProperty/FormikInitStateGenerator";
@@ -84,7 +84,7 @@ function FormikStepForm({ groups, conditions, showTooltip, isPostEnquiry }) {
                     // step={step}
                     // setStep={(val) => dispatch(setStep(val))}
                     setValidationSchema={setValidationSchema}
-                    stepperCnt={stepperCnt}
+                    // stepperCnt={stepperCnt}
                     setStepperCnt={(val) => dispatch(setStepperCnt(val))}
                     stepperCnt={stepperCnt}
                     setStepperLabels={setStepperLabels}

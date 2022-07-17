@@ -9,7 +9,8 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { searchSlice, selectLocation, setLocation } from "../../../features/search/searchSlice";
 import Geocode from "react-geocode";
-Geocode.setApiKey("AIzaSyCSwAnZjqeWrLTA-H19JSpILE3AVuHsw38");
+const VITE_APP_GOOGLE_MAPS_API_KEY=import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY
+Geocode.setApiKey(VITE_APP_GOOGLE_MAPS_API_KEY);
 Geocode.setLanguage("en");
 Geocode.setRegion("in");
 
@@ -28,11 +29,17 @@ export default function SearchContainer(props) {
     console.log("Location ==> ", location);
     // Here we want query_loc,lat,lng
     const handleSearch = () => {
-        Geocode.fromAddress(address).then((res) => {
-            const { lat, lng } = res.results[0].geometry.location;
-            dispatch(setLocation({ q: address, lat, lng }));
-            history.push(`/search?q=${address}&lat=${lat}&lng=${lng}`);
-        });
+        try {
+            Geocode.fromAddress(address).then((res) => {
+                const { lat, lng } = res.results[0].geometry.location;
+                dispatch(setLocation({ q: address, lat, lng }));
+                history.push(`/search?q=${address}&lat=${lat}&lng=${lng}`);
+            }).catch(err=>{
+                console.log("Error fetching lat,lng from address : ",err)
+            });
+        } catch (error) {
+            console.log("Error fetching lat,lng from address : ",error)
+        }
     };
     useEffect(() => {
         console.log(showMore);

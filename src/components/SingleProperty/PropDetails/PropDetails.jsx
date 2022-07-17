@@ -56,7 +56,7 @@ function PropDetails({ src, propData }) {
     },
     {
       title: "Address",
-      value: "Ansal Plaza Vaishali, Sector 1 Vaishali, Ghaziabad, Delhi NCR",
+      // value: "Ansal Plaza Vaishali, Sector 1 Vaishali, Ghaziabad, Delhi NCR",
       value: `House No ${prop_addr_house_no}, ${prop_addr_house_road_name}, ${prop_addr_house_tncl}, ${prop_addr_ctv}, ${prop_addr_state} - 	${prop_addr_pin}`,
     },
     {

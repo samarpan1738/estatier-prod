@@ -6,7 +6,6 @@ import SearchPage from "../../components/SearchProperty/SearchPage/SearchPage";
 import { changeLocation } from "../../features/location/locationSlice";
 import { setLocation } from "../../features/search/searchSlice";
 import "./search.css";
-console.log(process.env.REACT_APP_GOOGLE_KEY);
 function Search() {
     const dispatch = useDispatch();
     const urlSearchParamsObj = new URLSearchParams(useLocation().search);
